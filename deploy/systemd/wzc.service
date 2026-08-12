@@ -1,0 +1,17 @@
+[Unit]
+Description=wzc web application
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/wzc/current
+Environment=NODE_ENV=production
+Environment=PORT=3000
+ExecStart=/usr/bin/env bash -lc 'npm install --omit=dev && npm start'
+Restart=always
+RestartSec=5
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
