@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-03",
+  "advisories": [
+    {
+      "id": "CVE-2026-119373",
+      "component": "sqlite",
+      "policy_severity": "HIGH",
+      "rule": "sqlite_version_and_fts5",
+      "affected_below": "3.54.0",
+      "required_capability": "fts5",
+      "source_url": "https://security-tracker.debian.org/tracker/CVE-2026-119373",
+      "source_checked_at": "2026-11-03",
+      "upstream_patch_url": "https://github.com/sqlite/sqlite/commit/e1c9934f9f11a499029abb020ea715a08970da80",
+      "scope": "Runtime upstream-version and FTS5 necessary-condition match only; no exploitability claim or vendor-backport attestation."
+    }
+  ]
+}

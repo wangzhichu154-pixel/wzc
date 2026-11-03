@@ -1,0 +1,8 @@
+{
+  "version": "ridge-af7a151d210f2f0476851553",
+  "automatic_promotion": false,
+  "training": "passed",
+  "simulation": "rejected",
+  "simulation_reason": "Invalid numeric field: max_drawdown_units",
+  "active_pointer_exists": false
+}

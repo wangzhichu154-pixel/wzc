@@ -1,0 +1,147 @@
+{
+  "scanner": "Trivy 0.76.1",
+  "image_id": "sha256:7ef1962f85f0b553b9e4bb08e1769c46ae6f1f05195561d50df283daa85d03d4",
+  "scope": "application image only",
+  "critical_hits": 0,
+  "high_hits": 46,
+  "unique_cves": 10,
+  "release_gate_passed": false,
+  "findings": [
+    {
+      "id": "CVE-2025-69720",
+      "severity": "HIGH",
+      "packages": [
+        "libncursesw6",
+        "libtinfo6",
+        "ncurses-base",
+        "ncurses-bin"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-119373",
+      "severity": "HIGH",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-119586",
+      "severity": "HIGH",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-16742",
+      "severity": "HIGH",
+      "packages": [
+        "libsystemd0",
+        "libudev1"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-54369",
+      "severity": "HIGH",
+      "packages": [
+        "libacl1"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-76642",
+      "severity": "HIGH",
+      "packages": [
+        "bsdutils",
+        "libblkid1",
+        "liblastlog2-2",
+        "libmount1",
+        "libsmartcols1",
+        "libuuid1",
+        "login",
+        "mount",
+        "util-linux"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-78408",
+      "severity": "HIGH",
+      "packages": [
+        "bsdutils",
+        "libblkid1",
+        "liblastlog2-2",
+        "libmount1",
+        "libsmartcols1",
+        "libuuid1",
+        "login",
+        "mount",
+        "util-linux"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-78409",
+      "severity": "HIGH",
+      "packages": [
+        "bsdutils",
+        "libblkid1",
+        "liblastlog2-2",
+        "libmount1",
+        "libsmartcols1",
+        "libuuid1",
+        "login",
+        "mount",
+        "util-linux"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-78410",
+      "severity": "HIGH",
+      "packages": [
+        "bsdutils",
+        "libblkid1",
+        "liblastlog2-2",
+        "libmount1",
+        "libsmartcols1",
+        "libuuid1",
+        "login",
+        "mount",
+        "util-linux"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-9538",
+      "severity": "HIGH",
+      "packages": [
+        "perl-base"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block title %}登录 · 交易研究平台{% endblock %}
+{% block content %}<section class="auth-layout"><div class="auth-card card"><p class="eyebrow">安全访问</p><h1>登录账户</h1><p class="muted">访问您的行情数据、回放任务与风险研究记录。</p><form method="post">{% csrf_token %}<input type="hidden" name="next" value="{{ next }}">{{ form.as_p }}<button class="button button-primary" type="submit">登录</button></form><p><a href="{% url 'accounts:password_reset' %}">忘记密码？</a> · <a href="{% url 'accounts:register' %}">创建账户</a></p></div></section>{% endblock %}

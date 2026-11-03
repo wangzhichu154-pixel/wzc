@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}导出个人数据 · 交易研究平台{% endblock %}
+{% block content %}<section class="auth-layout"><div class="auth-card card"><h1>导出个人数据</h1><p>导出账户资料、登录记录、审计与研究数据元信息。密码、会话密钥和第三方密钥不包含在导出中。下载文件可能包含个人信息，请妥善保管。</p><form method="post">{% csrf_token %}{{ form.as_p }}<button class="button button-primary" type="submit">验证密码并下载 JSON</button></form></div></section>{% endblock %}

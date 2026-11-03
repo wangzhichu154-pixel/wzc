@@ -1,0 +1,172 @@
+name: quality-and-image
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16-bookworm
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-ephemeral-only
+          POSTGRES_DB: trading_ci
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres -d trading_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+      redis:
+        image: redis:7.4-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      APP_ENV: testing
+      DATABASE_URL: postgresql://postgres:ci-ephemeral-only@127.0.0.1:5432/trading_ci
+      REDIS_URL: redis://127.0.0.1:6379/0
+      CELERY_BROKER_URL: redis://127.0.0.1:6379/1
+      CELERY_RESULT_BACKEND: redis://127.0.0.1:6379/2
+      TEST_USE_REDIS: "1"
+      DJANGO_SETTINGS_MODULE: config.testing
+      ENGINE_BINARY: ${{ github.workspace }}/build/trading-replay
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt -r requirements-ml.txt
+      - name: Generate ephemeral test signing secret
+        run: python -c "import os,secrets; open(os.environ['GITHUB_ENV'],'a').write('DJANGO_SECRET_KEY='+secrets.token_urlsafe(64)+'\n')"
+      - name: Lint
+        run: ruff check .
+      - name: Operations safety tests
+        run: python -m unittest discover -s scripts/tests -v
+      - name: Build and test C++
+        run: |
+          cmake -S engine -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --parallel 2
+          ctest --test-dir build --output-on-failure
+          python engine/tests/test_cli.py
+          cmake -S execution -B build-execution -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-execution --parallel 2
+          ctest --test-dir build-execution --output-on-failure
+          python -m unittest discover -s execution/tests -p 'test_*.py'
+      - name: Check migrations
+        run: |
+          python backend/manage.py makemigrations --check --dry-run
+          python backend/manage.py migrate --noinput
+      - name: Install browser
+        run: python -m playwright install --with-deps chromium
+      - name: Python unit and integration tests
+        run: coverage run -m pytest -q
+      - name: Browser end-to-end workflow
+        run: python tests/e2e/run.py
+      - name: Offline AI pipeline and operator browser acceptance
+        env:
+          OPENBLAS_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+        run: |
+          python -m ml.fixtures --output artifacts/ci-ai/dataset --sessions 10 --steps 128 --seed 46 --start-date 2026-10-01
+          python -m ml.prepare --source-manifest artifacts/ci-ai/dataset/source-manifest.json
+          python -m ml.pipeline --manifest artifacts/ci-ai/dataset/manifest.json --run-dir artifacts/ci-ai/run --store artifacts/ci-ai/store --admission ml/admission.example.json --config ml/pipeline.example.json
+          python tests/e2e/ml_run.py --registry artifacts/ci-ai/store --artifacts artifacts/e2e-ai --port 8777 --require-flat-ledger
+      - name: Coverage report
+        if: always()
+        run: coverage report
+      - name: Dependency vulnerability audit
+        run: |
+          python -m pip_audit -r requirements.txt --strict
+          python -m pip_audit -r requirements-ml.txt --strict
+      - name: Validate Compose and build runtime image
+        run: |
+          python scripts/init_env.py
+          docker compose config --quiet
+          docker build --tag trading-system:${{ github.sha }} .
+      - name: Record actual runtime components
+        run: |
+          mkdir -p artifacts/security
+          candidate_image_id="$(docker image inspect trading-system:${{ github.sha }} --format '{{.Id}}')"
+          docker run --rm -i --entrypoint python trading-system:${{ github.sha }} - --image-id "$candidate_image_id" < scripts/runtime_inventory.py > artifacts/security/runtime-inventory.json
+      - name: Collect runtime vulnerability evidence
+        uses: aquasecurity/trivy-action@0.28.0
+        env:
+          TRIVY_LIST_ALL_PKGS: "true"
+        with:
+          image-ref: trading-system:${{ github.sha }}
+          version: v0.76.1
+          scanners: vuln
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          # This step collects JSON. The mandatory following gate rejects both
+          # scanner findings and independently verified upstream advisory rules.
+          exit-code: "0"
+          format: json
+          output: artifacts/security/trivy.json
+      - name: Enforce complete security release gate
+        run: python scripts/security_gate.py --trivy artifacts/security/trivy.json --inventory artifacts/security/runtime-inventory.json --advisories infrastructure/security/known_advisories.json --output artifacts/security/gate.json
+      - name: Preserve the verified image without rebuilding
+        run: |
+          mkdir -p candidate
+          docker image inspect trading-system:${{ github.sha }} --format '{{.Id}}' > candidate/image-id.txt
+          docker save trading-system:${{ github.sha }} | gzip -1 > candidate/image.tar.gz
+          cd candidate
+          sha256sum image.tar.gz > image.tar.gz.sha256
+      - name: Transfer verified image
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-image-${{ github.sha }}
+          path: candidate/
+          retention-days: 3
+          if-no-files-found: error
+      - name: Save test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: |
+            artifacts/
+            test-results/
+          if-no-files-found: ignore
+
+  publish-candidate:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: verified-image-${{ github.sha }}
+          path: candidate
+      - name: Set lowercase image name
+        run: echo "IMAGE_NAME=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish exactly the verified image
+        run: |
+          cd candidate
+          sha256sum --check image.tar.gz.sha256
+          docker load --input image.tar.gz
+          test "$(docker image inspect trading-system:${{ github.sha }} --format '{{.Id}}')" = "$(cat image-id.txt)"
+          docker tag trading-system:${{ github.sha }} "$IMAGE_NAME:${{ github.sha }}"
+          docker push "$IMAGE_NAME:${{ github.sha }}"
+# Deliberately no automatic production deployment without a configured target.
+# Promote the verified immutable digest through Staging and release gates.

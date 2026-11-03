@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}回放任务{% endblock %}
+{% block content %}<header class="page-header"><div><p class="eyebrow">REPLAY HISTORY</p><h1>回放任务</h1><p class="muted">每次运行保留独立的输入、参数快照与结果。</p></div><a class="button button-primary" href="{% url 'trading:datasets' %}">选择数据集</a></header><section class="card">{% include "trading/_jobs_table.html" with jobs=page_obj %}{% include "trading/_pagination.html" %}</section>{% endblock %}

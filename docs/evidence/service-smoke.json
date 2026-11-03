@@ -1,0 +1,1 @@
+{"postgres": true, "runtime_ddl_denied": true, "redis": true, "real_celery_worker": true, "real_cpp_engine": true, "messages": 8, "scope": "isolated local development service chain"}

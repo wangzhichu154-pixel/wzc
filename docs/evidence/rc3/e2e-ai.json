@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "scope": "Local read-only Chromium acceptance; no training, promotion or broker authorization",
+  "test_environment": "isolated-sqlite-real-readonly-registry",
+  "flows": [
+    "verified-operator-login",
+    "real-model-status-with-synthetic-provenance-and-failed-gates",
+    "ordinary-user-and-anonymous-model-access-denied",
+    "read-only-api-rejects-write",
+    "seven-viewports-with-real-model-tables",
+    "refresh-keeps-registry-unchanged"
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "document_overflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "document_overflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "document_overflow": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "document_overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "document_overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "document_overflow": false
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "document_overflow": false
+    }
+  ],
+  "browser_errors": [],
+  "models": [
+    {
+      "version": "ridge-af7a151d210f2f0476851553",
+      "stage": "evaluated",
+      "provenance_kind": "synthetic",
+      "evaluation_passed": true,
+      "simulation_passed": false
+    },
+    {
+      "version": "ridge-7c58b134e83740784dd16f60",
+      "stage": "evaluated",
+      "provenance_kind": "synthetic",
+      "evaluation_passed": true,
+      "simulation_passed": false
+    }
+  ]
+}

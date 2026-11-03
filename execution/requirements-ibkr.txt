@@ -1,0 +1,4 @@
+# Optional operator tool only; not part of the web service or trading hot path.
+# Install the Python client from the IBKR API release approved by your operator.
+# PyPI 9.81.1.post1 is an older distribution: use only if approved for your Gateway.
+ibapi==9.81.1.post1

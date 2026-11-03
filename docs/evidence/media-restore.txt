@@ -1,0 +1,2 @@
+Private media restored into an isolated volume
+Media restore passed: 6 entries, 206 bytes; volume=restored_media_9b3f383a5681a8f0; kept=False

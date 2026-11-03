@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "signal_ttl_ns": 250000000,
+    "min_expected_edge_bps": 1.0,
+    "fee_per_share_units": 35,
+    "min_fee_per_order_units": 10000,
+    "slippage_buffer_units": 20,
+    "max_target_position": 10,
+    "allow_short": false
+  },
+  "gates": {
+    "min_train_samples": 200,
+    "min_validation_samples": 100,
+    "max_validation_rmse_bps": 5.0,
+    "min_rmse_improvement_ratio": 0.0,
+    "min_direction_accuracy": 0.5,
+    "min_simulation_events": 1000,
+    "min_simulation_fills": 10,
+    "min_net_pnl_units": 0,
+    "max_drawdown_units": 1000000,
+    "min_stress_net_pnl_units": -50000,
+    "required_stress_multiplier": 2.0,
+    "min_holdout_sessions": 1,
+    "max_model_age_seconds": 604800
+  }
+}

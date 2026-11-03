@@ -1,0 +1,8 @@
+# Offline CPU training only; runtime inference is standard-library-only.
+numpy==2.5.4
+scipy==1.18.1
+scikit-learn==1.9.1
+joblib==1.6.0
+narwhals==2.28.0
+threadpoolctl==3.7.0
+cloudpickle==3.1.2

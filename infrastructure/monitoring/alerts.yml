@@ -1,0 +1,39 @@
+groups:
+  - name: availability
+    rules:
+      - alert: ScrapeTargetDown
+        expr: up == 0
+        for: 2m
+        labels: {severity: critical}
+        annotations:
+          summary: "Monitoring target {{ $labels.job }} is unavailable"
+      - alert: HostDiskSpaceLow
+        expr: node_filesystem_avail_bytes{fstype!~"tmpfs|overlay"} / node_filesystem_size_bytes{fstype!~"tmpfs|overlay"} < 0.15
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: "Host filesystem has less than 15% space available"}
+      - alert: HostMemoryLow
+        expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.1
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: "Host memory available is below 10%"}
+      - alert: PostgresUnavailable
+        expr: pg_up == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: "PostgreSQL exporter cannot reach database"}
+      - alert: RedisUnavailable
+        expr: redis_up == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: "Redis exporter cannot reach Redis"}
+      - alert: APIErrorRatioHigh
+        expr: sum(rate(vector_http_requests_total{status=~"5.."}[5m])) / clamp_min(sum(rate(vector_http_requests_total[5m])), 0.01) > 0.05
+        for: 5m
+        labels: {severity: critical}
+        annotations: {summary: "API 5xx ratio is above 5%; inspect request IDs and server logs"}
+      - alert: APIP99LatencyHigh
+        expr: histogram_quantile(0.99, sum by (le) (rate(vector_http_request_duration_seconds_bucket[5m]))) > 2
+        for: 10m
+        labels: {severity: warning}
+        annotations: {summary: "Observed application P99 latency exceeds two seconds"}

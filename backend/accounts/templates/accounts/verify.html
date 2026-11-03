@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}验证邮箱 · 交易研究平台{% endblock %}
+{% block content %}<section class="auth-layout"><div class="auth-card card"><h1>确认验证邮箱</h1><p>点击按钮完成邮箱验证。验证不会开启实盘交易权限。</p><form method="post">{% csrf_token %}<button class="button button-primary" type="submit">验证我的邮箱</button></form></div></section>{% endblock %}

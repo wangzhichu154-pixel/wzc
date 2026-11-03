@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}请求无法处理{% endblock %}
+{% block content %}
+<section class="error-page" aria-labelledby="error-title">
+  <div class="error-code" aria-hidden="true">400</div>
+  <span class="eyebrow">请求格式有误</span>
+  <h1 id="error-title">这次请求无法处理</h1>
+  <p>请求可能已过期，或包含不支持的内容。请返回原页面，检查输入后重新提交。</p>
+  {% if request.request_id %}<p class="text-small">问题编号：<code>{{ request.request_id }}</code></p>{% endif %}
+  <div class="actions"><a class="button button-primary" href="/">返回工作台</a><a class="button button-secondary" href="/feedback/">反馈问题</a></div>
+</section>
+{% endblock %}

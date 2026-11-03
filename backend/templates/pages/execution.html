@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}执行接入{% endblock %}
+{% block content %}
+<header class="page-header"><div><span class="eyebrow">EXECUTION OPERATIONS</span><h1>执行接入</h1><p>独立纸账户执行器的只读运行状态。研究任务与真实 Broker 接入分别管理。</p></div><button class="button" type="button" data-reload>刷新状态</button></header>
+<div class="grid grid-2">
+<section class="card"><h2>IBKR 纸账户</h2>
+{% if paper.available %}
+<dl class="detail-list"><div><dt>执行器状态</dt><dd>{{ paper.state }}</dd></div><div><dt>Broker 连接</dt><dd>{{ paper.connected|yesno:"已连接,未连接" }}</dd></div><div><dt>风险准入</dt><dd>{{ paper.armed|yesno:"已启用,未启用" }}</dd></div><div><dt>风险锁存</dt><dd>{{ paper.kill_latched|yesno:"已触发,未触发" }}</dd></div><div><dt>当前库存</dt><dd>{{ paper.inventory }}</dd></div><div><dt>未终结订单</dt><dd>{{ paper.open_orders }}</dd></div><div><dt>状态更新年龄</dt><dd>{{ paper.age_seconds }} 秒</dd></div></dl>
+{% else %}
+<div class="empty-state"><h3>{% if paper.state == 'stale' %}状态已过期{% else %}执行器未就绪{% endif %}</h3><p>尚未获取到有效的独立执行器状态。不能据此判断 Broker 上没有工作订单。请由运维检查接入配置和对账状态。</p></div>
+{% endif %}
+</section>
+<section class="card"><h2>实盘资金</h2><span class="badge badge-blocked">未启用</span><p class="section-spaced">当前交付不通过网页启用实盘，也不会把纸账户结果视为实盘收益。</p><p class="muted">纸账户启动要求明确账户环境、有效行情、完整订单核对和核心风控通过。断线、行情缺口或状态不明时，执行器停止新增风险并保留未决订单占用。</p><a href="{% url 'trading:jobs' %}">查看研究任务</a></section>
+</div>
+<section class="card section-spaced"><h2>操作边界</h2><p>此页面不会发单、撤单或解除交易风险锁存。独立执行器的启停由配置好的本地主机 Supervisor 和受权运维执行。平台的“暂停研究任务”不会撤销 Broker 订单。</p><p class="muted">数据来自受控状态文件，仅用于监控。净收益需要完整成交、费用与有效估值；自动策略不保证盈利。</p></section>
+{% endblock %}

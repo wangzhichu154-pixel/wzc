@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}研究收益评估 · Vector{% endblock %}
+{% block content %}
+<header class="page-header"><div><p class="eyebrow">RESEARCH EVIDENCE</p><h1>研究收益评估</h1><p class="muted">复核真实模拟账本和成本假设，识别样本不足、风险暴露与成本敏感性。</p></div></header>
+<div class="alert">评估仅用于历史模拟研究。正收益样本不构成盈利证明，也不会开启实盘交易。不同文件不代表独立交易日或样本外数据。</div>
+<section class="card"><h2>创建不可变评估</h2><p class="muted">最多选择 50 个不同文件对应的已完成模拟任务；要求风险、延迟、成本和模型版本一致。下方显示最近 200 个可选任务，历史任务亦可通过 API 指定。</p>
+{% if not user.email_verified %}<div class="empty-state"><h3>请先验证邮箱</h3><p>验证账户邮箱后才能创建研究评估。</p></div>{% elif not form.fields.job_ids.choices %}<div class="empty-state"><h3>暂无可评估的模拟任务</h3><p>先上传行情并完成自动做市模拟，再回来复核结果。</p><a href="{% url 'trading:datasets' %}" class="button button-primary">创建模拟任务</a></div>{% else %}<form method="post" class="form-grid">{% csrf_token %}{{ form.as_p }}<div class="actions"><button type="submit" class="button button-primary">生成研究评估</button><a href="{% url 'trading:jobs' %}" class="button button-secondary">查看模拟任务</a></div></form>{% endif %}</section>
+<section class="card"><h2>评估记录</h2>{% if page_obj.object_list %}<div class="table-wrap" tabindex="0" role="region" aria-label="研究收益评估记录"><table><thead><tr><th>创建时间</th><th>分类</th><th>不同文件数</th><th>模拟成交股数</th><th>操作</th></tr></thead><tbody>{% for item in page_obj %}<tr><td>{{ item.created_at|date:"Y-m-d H:i" }}</td><td>{{ item.result.status_label }}</td><td>{{ item.result.capture_count }}</td><td>{{ item.result.filled_quantity }}</td><td><a href="{% url 'trading:assessment_detail' item.pk %}">查看评估</a></td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state"><h3>尚无评估记录</h3><p>完成模拟任务后，选择真实结果进行账本复核与压力分析。</p></div>{% endif %}
+{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">上一页</a>{% endif %} <span class="muted">第 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} 页</span> {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">下一页</a>{% endif %}</section>
+{% endblock %}

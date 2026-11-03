@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}产品说明{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div><span class="eyebrow">VECTOR · PRODUCT</span><h1>从行情记录到可追溯的研究结果</h1><p>管理你的 ITCH 行情数据，运行订单簿回放与自动做市模拟，核对结果、配置与操作记录。</p></div>
+  <div class="actions">{% if user.is_authenticated %}<a class="button button-primary" href="/datasets/">打开行情数据</a>{% else %}<a class="button button-primary" href="/accounts/register/">创建账户</a><a class="button button-secondary" href="/accounts/login/">登录</a>{% endif %}</div>
+</header>
+<div class="grid grid-3">
+  <section class="card"><span class="eyebrow">01 · 数据</span><h2>使用你的行情记录</h2><p class="muted">上传具有使用权限的 NASDAQ ITCH 记录。系统检查文件、保留完整性摘要，并按账户隔离访问。</p><a href="/datasets/">管理数据集 →</a></section>
+  <section class="card"><span class="eyebrow">02 · 回放</span><h2>重建订单簿与决策</h2><p class="muted">提交回放任务后，查看排队、运行或失败状态。完成结果与输入数据及参数快照关联，便于复查。</p><a href="/jobs/">查看回放任务 →</a></section>
+  <section class="card"><span class="eyebrow">03 · 管理</span><h2>把账户与操作留在控制范围内</h2><p class="muted">验证邮箱、管理登录设备、调整研究配置，并通过反馈入口追踪使用问题。</p><a href="/accounts/profile/">账户与安全 →</a></section>
+</div>
+<section class="card card-accent section-spaced" aria-labelledby="scope-title">
+  <h2 id="scope-title">清晰区分研究与真实执行</h2>
+  <p>本工作台处理历史行情研究任务。自动做市模拟使用明确的延迟、队列与费用假设，模拟结果不是真实账户收益。公共行情中的成交记录不等于你的账户成交，回放决策也不等于订单已经发送。</p>
+  <p class="muted">本版本不通过网页向交易所或 broker 发送订单，不显示未经取得的实时行情、账户持仓或交易收益。历史回放不能证明真实成交概率、队列位置或未来收益。</p>
+  <span class="badge badge-info">研究任务与实盘交易权限分离</span>
+</section>
+<section class="card section-spaced" aria-labelledby="getting-started">
+  <h2 id="getting-started">开始使用</h2>
+  <ol class="steps-list"><li><strong>注册并验证邮箱。</strong> 使用验证邮件确认账户所有权。</li><li><strong>上传有权使用的数据。</strong> 文件格式要求以数据上传页面为准。</li><li><strong>提交并查看任务。</strong> 失败任务会说明原因；重新提交前先核对已有状态。</li><li><strong>复核研究结果。</strong> 结合输入质量与策略假设理解输出，不把回放表现视为实盘承诺。</li></ol>
+</section>
+{% endblock %}

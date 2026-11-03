@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}研究参数{% endblock %}
+{% block content %}<header class="page-header"><div><p class="eyebrow">RESEARCH LIMITS</p><h1>研究参数</h1><p class="muted">新任务会保存这些参数的独立快照，已运行任务保持原始配置。</p></div></header>
+<section class="card"><div class="alert">这些参数不授予实盘交易权限。行情回放模式检查报价意图，无法验证账户库存和亏损。自动做市模拟模式将这些限额作用于模拟账户及成交，模拟结果不保证真实盈利。</div><form method="post" class="form-grid">{% csrf_token %}{{ form.as_p }}<div class="actions"><button class="button button-primary" type="submit" {% if not user.email_verified %}disabled{% endif %}>保存研究参数</button></div></form></section>{% endblock %}

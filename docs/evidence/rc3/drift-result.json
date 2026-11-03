@@ -1,0 +1,40 @@
+{
+  "scope": "offline replay of synthetic September data against August training-only reference",
+  "model_version": "ridge-7c58b134e83740784dd16f60",
+  "evaluated": true,
+  "drift_detected": true,
+  "reason": "FEATURE_DRIFT",
+  "samples": 3000,
+  "features": {
+    "spread_bps": {
+      "standardized_mean_shift": 0.019470878820020222,
+      "psi": 5.456589928112776,
+      "drift_detected": true
+    },
+    "imbalance": {
+      "standardized_mean_shift": 0.011298079915373956,
+      "psi": 0.002011191818779063,
+      "drift_detected": false
+    },
+    "microprice_offset_bps": {
+      "standardized_mean_shift": 0.014354065776351569,
+      "psi": 0.002550040282610191,
+      "drift_detected": false
+    },
+    "past_return_bps": {
+      "standardized_mean_shift": 0.028451873377296433,
+      "psi": 1.5439406925222428,
+      "drift_detected": true
+    },
+    "realized_volatility_bps": {
+      "standardized_mean_shift": 0.5766801262139292,
+      "psi": 0.38932569029222275,
+      "drift_detected": true
+    },
+    "log_depth": {
+      "standardized_mean_shift": 0.006480675514567486,
+      "psi": 0.003693932596987812,
+      "drift_detected": false
+    }
+  }
+}

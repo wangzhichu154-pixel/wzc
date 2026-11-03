@@ -1,0 +1,25 @@
+...........................{"event": "paper_order_submitted_locally", "utc_ns": 1793709786330376482, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+{"event": "paper_status", "utc_ns": 1793709786330476883, "armed": true, "killed": false, "position": 0, "open_orders": 1, "pnl_units": 0, "pnl_mark_valid": true, "sequence": 0, "mode": "paper"}
+.{"event": "paper_order_submitted_locally", "utc_ns": 1793709786334357222, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+..{"event": "paper_order_submitted_locally", "utc_ns": 1793709786338956976, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+..{"event": "paper_order_submitted_locally", "utc_ns": 1793709786341590722, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+{"event": "paper_killed", "utc_ns": 1793709786341726197, "reason": "test disk fault", "cancellation_confirmed": false}
+....{"event": "paper_order_submitted_locally", "utc_ns": 1793709786347449847, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+.{"event": "paper_order_submitted_locally", "utc_ns": 1793709786349399901, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+{"event": "paper_killed", "utc_ns": 1793709786349710159, "reason": "Late fill arrived after a terminal cancel.", "cancellation_confirmed": false}
+.{"event": "paper_order_submitted_locally", "utc_ns": 1793709786351431758, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+..{"event": "paper_order_submitted_locally", "utc_ns": 1793709786356787244, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+..{"event": "paper_order_submitted_locally", "utc_ns": 1793709786359899292, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+..{"event": "paper_order_submitted_locally", "utc_ns": 1793709786364443883, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+...{"event": "paper_order_submitted_locally", "utc_ns": 1793709786369095536, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+.{"event": "paper_killed", "utc_ns": 1793709786370735291, "reason": "SDK send outcome is unknown; automatic resend prohibited.", "cancellation_confirmed": false}
+..{"event": "paper_order_submitted_locally", "utc_ns": 1793709786373557412, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+...{"event": "paper_order_submitted_locally", "utc_ns": 1793709786377580536, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+{"event": "paper_killed", "utc_ns": 1793709786377660857, "reason": "Reported cumulative fill has no matching execution; risk retained.", "cancellation_confirmed": false}
+{"event": "paper_status", "utc_ns": 1793709786377685194, "armed": false, "killed": true, "position": 0, "open_orders": 0, "pnl_units": 0, "pnl_mark_valid": true, "sequence": 0, "mode": "paper"}
+..{"event": "paper_order_submitted_locally", "utc_ns": 1793709786381212118, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+..........................
+----------------------------------------------------------------------
+Ran 81 tests in 0.082s
+
+OK

@@ -1,0 +1,26 @@
+{
+  "features": {
+    "max_gap_ns": 1000000000,
+    "regular_close_ns": 57600000000000,
+    "regular_open_ns": 34200000000000,
+    "window_events": 32
+  },
+  "selection": "validation_mse_then_training_walk_forward_mse",
+  "split_fraction": [
+    0.6,
+    0.2,
+    0.2
+  ],
+  "training": {
+    "alphas": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "horizon_ns": 500000000,
+    "max_abs_prediction_bps": 1000.0,
+    "max_label_delay_ns": 250000000,
+    "min_samples_per_session": 64,
+    "seed": 44
+  }
+}

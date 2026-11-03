@@ -1,0 +1,42 @@
+{
+  "blocked_finding_count": 1,
+  "blocked_findings": [
+    {
+      "condition": "upstream_version_below_fixed_and_fts5_enabled",
+      "exploitability_assessed": false,
+      "fixed_upstream_version": "3.54.0",
+      "id": "CVE-2026-119373",
+      "installed_version": "3.53.4",
+      "package": "sqlite-runtime",
+      "severity": "HIGH",
+      "source": "known_upstream_advisory",
+      "source_url": "https://security-tracker.debian.org/tracker/CVE-2026-119373"
+    }
+  ],
+  "blocked_unique_vulnerability_count": 1,
+  "evaluated_at": "2026-11-03T12:46:27.445003Z",
+  "evidence_age_limit_seconds": 86400,
+  "failure_codes": [
+    "UPSTREAM_ADVISORY_MATCH"
+  ],
+  "future_clock_skew_limit_seconds": 300,
+  "image_id": "sha256:38fd5a425aa93b06d367e2e47e2da6a9bc0cabdaf5788fb1707d143fd1416e97",
+  "input_sha256": {
+    "advisories": "a539996ee1036d16779b90bf407b31338153b0a81d87dc3a01dc149d0025e701",
+    "inventory": "ad6a9b2e70cecfac139c280fbf2deeddac89b190ec7a9f57c78b8549e3b40bfc",
+    "trivy": "2e4d0d2b37e76025b462fdd3444707beed9a4ffbb01bb5911fc8df53f87ac1b7"
+  },
+  "release_allowed": false,
+  "scan_created_at": "2026-11-03T12:46:17.346109233Z",
+  "schema_version": 1,
+  "scope": "Trusted CI inputs; caller-supplied image identity; no exploitability or profitability assurance.",
+  "status": "blocked",
+  "trivy_severity_counts": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "LOW": 1,
+    "MEDIUM": 5,
+    "UNKNOWN": 0
+  },
+  "unverified_codes": []
+}

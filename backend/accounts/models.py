@@ -1,0 +1,141 @@
+import hashlib
+import secrets
+import uuid
+
+from django.contrib.auth.models import AbstractUser, UserManager as DjangoUserManager
+from django.db import models
+from django.db.models.functions import Lower
+from django.utils import timezone
+
+
+def credential_digest(user):
+    state = f"{user.get_session_auth_hash()}:{user.email}:{user.security_version}"
+    return hashlib.sha256(state.encode()).hexdigest()
+
+
+class UserManager(DjangoUserManager):
+    def _create_user(self, username, email, password, **extra_fields):
+        if not email:
+            raise ValueError("Email is required")
+        email = email.strip().lower()
+        username = username or uuid.uuid4().hex
+        return super()._create_user(username, email, password, **extra_fields)
+
+    def create_user(self, username=None, email=None, password=None, **extra_fields):
+        return super().create_user(username, email, password, **extra_fields)
+
+    def create_superuser(self, username=None, email=None, password=None, **extra_fields):
+        extra_fields.setdefault("email_verified", True)
+        extra_fields.setdefault("role", User.Role.SUPERADMIN)
+        return super().create_superuser(username, email, password, **extra_fields)
+
+
+class User(AbstractUser):
+    class Role(models.TextChoices):
+        USER = "user", "普通用户"
+        MEMBER = "member", "会员用户"
+        PREMIUM = "premium", "高级会员"
+        ADMIN = "admin", "管理员"
+        SUPERADMIN = "superadmin", "超级管理员"
+
+    email = models.EmailField(unique=True)
+    email_verified = models.BooleanField(default=False)
+    role = models.CharField(max_length=16, choices=Role.choices, default=Role.USER)
+    security_version = models.PositiveIntegerField(default=1)
+    updated_at = models.DateTimeField(auto_now=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
+    objects = UserManager()
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    class Meta:
+        constraints = [models.UniqueConstraint(Lower("email"), name="accounts_email_ci_unique")]
+
+    def save(self, *args, **kwargs):
+        self.email = self.email.strip().lower()
+        super().save(*args, **kwargs)
+
+    @property
+    def is_operator(self):
+        return bool(self.is_active and self.email_verified and (
+            self.is_superuser or (self.is_staff and self.role in {self.Role.ADMIN, self.Role.SUPERADMIN})
+        ))
+
+
+class AccountToken(models.Model):
+    class Kind(models.TextChoices):
+        VERIFY = "verify", "Verify email"
+        RESET = "reset", "Reset password"
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="account_tokens")
+    kind = models.CharField(max_length=10, choices=Kind.choices)
+    digest = models.CharField(max_length=64, unique=True)
+    credential_digest = models.CharField(max_length=64, default="", editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField(db_index=True)
+    used_at = models.DateTimeField(null=True, blank=True)
+
+    @property
+    def usable(self):
+        return (self.used_at is None and self.expires_at > timezone.now() and self.user.is_active
+                and secrets.compare_digest(self.credential_digest, credential_digest(self.user)))
+
+
+class DeviceSession(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="device_sessions")
+    session_key = models.CharField(max_length=40, unique=True)
+    user_agent = models.CharField(max_length=200, blank=True)
+    ip_hash = models.CharField(max_length=64, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    last_seen_at = models.DateTimeField(default=timezone.now)
+    expires_at = models.DateTimeField()
+    revoked_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        indexes = [models.Index(fields=["user", "revoked_at", "expires_at"])]
+
+
+class LoginRecord(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    email_hash = models.CharField(max_length=64, blank=True)
+    ip_hash = models.CharField(max_length=64, blank=True)
+    success = models.BooleanField(default=False)
+    new_device = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+
+class AuditEvent(models.Model):
+    actor = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    action = models.CharField(max_length=80, db_index=True)
+    target = models.CharField(max_length=200, blank=True)
+    request_id = models.CharField(max_length=64, blank=True)
+    ip_hash = models.CharField(max_length=64, blank=True)
+    metadata = models.JSONField(default=dict)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+
+class EmailJob(models.Model):
+    """Durable outbox: tokens are generated by the worker, never stored in plaintext."""
+
+    class Kind(models.TextChoices):
+        VERIFY = "verify", "Verify email"
+        RESET = "reset", "Reset password"
+        SECURITY = "security", "New login notice"
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    kind = models.CharField(max_length=12, choices=Kind.choices)
+    status = models.CharField(max_length=12, default="pending", db_index=True)
+    attempts = models.PositiveSmallIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    sent_at = models.DateTimeField(null=True, blank=True)
+    lease_until = models.DateTimeField(null=True, blank=True)
+    next_attempt_at = models.DateTimeField(default=timezone.now, db_index=True)
+    last_error_code = models.CharField(max_length=64, blank=True)
+
+    class Meta:
+        indexes = [models.Index(fields=["status", "next_attempt_at"])]

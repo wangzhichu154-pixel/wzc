@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Cookie 说明{% endblock %}
+{% block content %}
+<article class="legal-page">
+  <header class="page-header"><div><span class="eyebrow">COOKIES</span><h1>Cookie 说明</h1><p>保持账户登录与保护表单提交所需的浏览器存储。</p></div></header>
+  <div class="legal-meta"><span>版本：2026-11-01</span></div>
+  <div class="card">
+    <h2>本应用使用的 Cookie</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Cookie 用途表，可横向滚动">
+      <table><caption>必要 Cookie</caption><thead><tr><th scope="col">类型</th><th scope="col">用途</th><th scope="col">失效方式</th></tr></thead><tbody>
+        <tr><td>登录会话</td><td>将浏览器请求关联到已验证身份；Cookie 不保存明文密码。</td><td>退出、设备撤销、会话超时或安全状态变化时失效。</td></tr>
+        <tr><td>CSRF 防伪</td><td>帮助服务器判断修改请求是否来自本站页面。</td><td>由浏览器与服务器配置的期限管理；身份变化时可能更新。</td></tr>
+      </tbody></table>
+    </div>
+    <h2>你的选择</h2>
+    <p>你可通过浏览器清除 Cookie。清除或阻止必要 Cookie 后，登录及受保护表单可能无法使用。注销登录或撤销设备会话可以使对应登录凭据在服务器失效；仅在本机删除 Cookie 不会自动注销其他设备。</p>
+    <h2>分析与广告</h2>
+    <p>本应用代码不加载广告网络、第三方分析或社交跟踪脚本。若运营方以后增加非必要跟踪，应在启用前更新说明，并落实适用的同意和退出机制。</p>
+    <h2>更多信息</h2>
+    <p>数据处理和权利入口详见<a href="/privacy/">隐私政策</a>。{% if support_email %}疑问可发送至 <a href="mailto:{{ support_email }}">{{ support_email }}</a>。{% endif %}</p>
+  </div>
+</article>
+{% endblock %}

@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "scope": "Local read-only Chromium acceptance; no training, promotion or broker authorization",
+  "test_environment": "isolated-sqlite-real-readonly-registry",
+  "flows": [
+    "verified-operator-login",
+    "real-model-status-with-synthetic-provenance-and-failed-gates",
+    "settled-flat-account-does-not-restore-market-or-admit-zero-trades",
+    "ordinary-user-and-anonymous-model-access-denied",
+    "read-only-api-rejects-write",
+    "seven-viewports-with-real-model-tables",
+    "refresh-keeps-registry-unchanged"
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "document_overflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "document_overflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "document_overflow": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "document_overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "document_overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "document_overflow": false
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "document_overflow": false
+    }
+  ],
+  "browser_errors": [],
+  "models": [
+    {
+      "version": "ridge-d008e93b6e608c2753c8bff9",
+      "stage": "evaluated",
+      "provenance_kind": "synthetic",
+      "evaluation_passed": true,
+      "simulation_passed": false
+    }
+  ],
+  "valuation_cases": [
+    {
+      "version": "ridge-d008e93b6e608c2753c8bff9",
+      "basis": "reconciled_flat_ledger",
+      "net_pnl_valid": true,
+      "quote_mark_valid": false,
+      "drawdown_complete": true,
+      "failure_codes": [
+        "NO_FILLS"
+      ]
+    }
+  ]
+}

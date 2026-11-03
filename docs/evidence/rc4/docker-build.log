@@ -1,0 +1,111 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.47kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.81kB 0.0s done
+#2 DONE 0.0s
+
+#3 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#3 DONE 0.3s
+
+#4 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#4 CACHED
+
+#5 [internal] load metadata for docker.io/library/python:3.12-slim-trixie
+#5 DONE 0.3s
+
+#6 [internal] load metadata for docker.io/library/debian:trixie-slim
+#6 DONE 0.3s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 352B 0.0s done
+#7 DONE 0.0s
+
+#8 [engine-build 1/5] FROM docker.io/library/debian:trixie-slim@sha256:f6b08b09a05725f9431502d3b5714f5c4576e82c1a84fa1debe0c24a7e0c3ec4
+#8 DONE 0.0s
+
+#9 [python-build 1/4] FROM docker.io/library/python:3.12-slim-trixie@sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 88.29kB 0.0s done
+#10 DONE 0.0s
+
+#11 [engine-build 2/5] RUN --mount=type=secret,id=proxy_ca,mode=0444     set --; if [ -f /run/secrets/proxy_ca ]; then set -- -o Acquire::https::CaInfo=/run/secrets/proxy_ca; fi;     apt-get "$@" update && apt-get "$@" install -y --no-install-recommends g++ cmake make python3 ca-certificates && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [runtime  5/16] COPY --chmod=0444 VERSION /app/VERSION
+#12 CACHED
+
+#13 [runtime  8/16] COPY --from=engine-build /build/trading-ml-replay /app/build/trading-ml-replay
+#13 CACHED
+
+#14 [engine-build 4/5] COPY engine/ ./engine/
+#14 CACHED
+
+#15 [runtime  7/16] COPY --from=engine-build /build/trading-replay /app/build/trading-replay
+#15 CACHED
+
+#16 [runtime  6/16] RUN pip install --no-cache-dir --no-index --find-links=/wheels -r /app/requirements.txt && rm -rf /wheels
+#16 CACHED
+
+#17 [engine-build 3/5] WORKDIR /src
+#17 CACHED
+
+#18 [engine-build 5/5] RUN cmake -S engine -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build -j2 && ctest --test-dir /build --output-on-failure
+#18 CACHED
+
+#19 [python-build 2/4] WORKDIR /build
+#19 CACHED
+
+#20 [python-build 4/4] RUN --mount=type=secret,id=proxy_ca,mode=0444     if [ -f /run/secrets/proxy_ca ]; then export PIP_CERT=/run/secrets/proxy_ca; fi;     pip wheel --only-binary=:all: --no-cache-dir --wheel-dir /wheels -r requirements.txt
+#20 CACHED
+
+#21 [python-build 3/4] COPY requirements.txt .
+#21 CACHED
+
+#22 [runtime  2/16] RUN --mount=type=secret,id=proxy_ca,mode=0444     set --; if [ -f /run/secrets/proxy_ca ]; then set -- -o Acquire::https::CaInfo=/run/secrets/proxy_ca; fi;     apt-get "$@" update && apt-get "$@" upgrade -y --no-install-recommends     && apt-get "$@" install -y --no-install-recommends libstdc++6 ca-certificates && rm -rf /var/lib/apt/lists/*     && groupadd --gid 10001 app && useradd --uid 10001 --gid app --no-create-home --shell /usr/sbin/nologin app
+#22 CACHED
+
+#23 [runtime  3/16] COPY --from=python-build /wheels /wheels
+#23 CACHED
+
+#24 [runtime  4/16] COPY requirements.txt /app/requirements.txt
+#24 CACHED
+
+#25 [runtime  9/16] COPY --from=engine-build /build/libvector_core.so /app/build/libvector_core.so
+#25 CACHED
+
+#26 [runtime 10/16] COPY --chown=app:app backend/ /app/backend/
+#26 DONE 6.4s
+
+#27 [runtime 11/16] COPY --chown=app:app execution/ /app/execution/
+#27 DONE 5.1s
+
+#28 [runtime 12/16] COPY --chown=app:app ml/ /app/ml/
+#28 DONE 2.7s
+
+#29 [runtime 13/16] COPY --chown=app:app infrastructure/docker/app-entrypoint.sh /app/entrypoint.sh
+#29 DONE 1.8s
+
+#30 [runtime 14/16] RUN mkdir -p /app/staticfiles /app/media /app/emails && chown app:app /app/staticfiles /app/media /app/emails && chmod 0700 /app/emails && chmod 0755 /app/entrypoint.sh
+#30 DONE 1.8s
+
+#31 [runtime 15/16] WORKDIR /app/backend
+#31 DONE 1.3s
+
+#32 [runtime 16/16] RUN python manage.py makemigrations --check --dry-run --settings=config.testing
+#32 3.286 No changes detected
+#32 DONE 3.5s
+
+#33 exporting to image
+#33 exporting layers
+#33 exporting layers 2.5s done
+#33 writing image sha256:c51392a1508b9a3b4c278336a835b005d8dc7dd7f5341c12c8f7f62a4ede696c done
+#33 naming to docker.io/library/trading-system:local done
+#33 DONE 2.5s
+
+#34 resolving provenance for metadata file
+#34 DONE 0.0s
+ trading-system:local  Built

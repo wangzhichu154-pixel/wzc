@@ -1,0 +1,388 @@
+{
+  "estimator": {
+    "alpha": 0.1,
+    "coefficients": [
+      -0.024659231397727972,
+      0.04150966072507752,
+      0.016797604902255882,
+      0.12384730346840045,
+      0.014800566277520083,
+      -0.020653746553040944
+    ],
+    "intercept": -0.03553849988766041
+  },
+  "features": {
+    "config": {
+      "max_gap_ns": 1000000000,
+      "regular_close_ns": 57600000000000,
+      "regular_open_ns": 34200000000000,
+      "window_events": 32
+    },
+    "names": [
+      "spread_bps",
+      "imbalance",
+      "microprice_offset_bps",
+      "past_return_bps",
+      "realized_volatility_bps",
+      "log_depth"
+    ],
+    "schema_version": "causal_book_v1"
+  },
+  "model_type": "ridge_mid_return_bps",
+  "model_version": "ridge-af7a151d210f2f0476851553",
+  "preprocessing": {
+    "mean": [
+      4.549516693935431,
+      -0.14082833975776532,
+      -0.3208669072978922,
+      -0.027853460919413087,
+      0.16356561580832268,
+      5.144304782426798
+    ],
+    "scale": [
+      0.9398407363024281,
+      0.4184967183179955,
+      0.9807240102783353,
+      1.2301502401488653,
+      0.07748486357616988,
+      0.5168516559958009
+    ]
+  },
+  "provenance": {
+    "authorized_use_attested": false,
+    "dataset_sha256": "31150046d937ac1ad3c1c4ff3c6319dce0aa8884c4576c76ea1192dd2e183540",
+    "kind": "synthetic",
+    "source": "deterministic synthetic ITCH fixture seed=45; short intraday windows; no market-performance evidence",
+    "symbol": "TEST"
+  },
+  "schema_version": 1,
+  "target": {
+    "horizon_ns": 500000000,
+    "max_abs_prediction_bps": 1000.0,
+    "max_label_delay_ns": 250000000,
+    "name": "future_mid_return_bps"
+  },
+  "training": {
+    "config": {
+      "features": {
+        "max_gap_ns": 1000000000,
+        "regular_close_ns": 57600000000000,
+        "regular_open_ns": 34200000000000,
+        "window_events": 32
+      },
+      "selection": "validation_mse_then_training_walk_forward_mse",
+      "split_fraction": [
+        0.6,
+        0.2,
+        0.2
+      ],
+      "training": {
+        "alphas": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "horizon_ns": 500000000,
+        "max_abs_prediction_bps": 1000.0,
+        "max_label_delay_ns": 250000000,
+        "min_samples_per_session": 64,
+        "seed": 44
+      }
+    },
+    "data_manifest_sha256": "386ef9f188ff5b16688d2799a1ba55d498427c37c075ecfea1602afa8268d047",
+    "dataset_sha256": "31150046d937ac1ad3c1c4ff3c6319dce0aa8884c4576c76ea1192dd2e183540",
+    "exporter_sha256": "898d97b3bfe59174f3fdc871f28968d7791c94bc207dd5acce4398baf128114f",
+    "feature_reference": {
+      "features": {
+        "imbalance": {
+          "counts": [
+            5627,
+            5807,
+            5718,
+            5714,
+            5723,
+            5706,
+            5727,
+            5721,
+            5717,
+            5719
+          ],
+          "edges": [
+            -0.8718861209964412,
+            -0.6666666666666666,
+            -0.5684210526315789,
+            -0.45054945054945056,
+            -0.30120481927710846,
+            -0.1671388101983003,
+            -0.04878048780487805,
+            0.08333333333333333,
+            0.25990551181102384,
+            0.48264984227129337,
+            0.8410041841004184
+          ],
+          "mean": -0.14082833975776532,
+          "scale": 0.4184967183179955
+        },
+        "log_depth": {
+          "counts": [
+            5440,
+            5751,
+            5861,
+            5739,
+            5693,
+            5739,
+            5731,
+            5679,
+            5798,
+            5748
+          ],
+          "edges": [
+            3.6635616461296463,
+            4.343805421853684,
+            4.543294782270004,
+            4.919980925828125,
+            5.123963979403259,
+            5.262690188904886,
+            5.37989735354046,
+            5.5053315359323625,
+            5.631211781821365,
+            5.752572638825633,
+            6.0330862217988015
+          ],
+          "mean": 5.144304782426798,
+          "scale": 0.5168516559958009
+        },
+        "microprice_offset_bps": {
+          "counts": [
+            5718,
+            5718,
+            5718,
+            5718,
+            5717,
+            5718,
+            5718,
+            5718,
+            5718,
+            5718
+          ],
+          "edges": [
+            -3.2667459182158076,
+            -1.4650901651931447,
+            -1.2206518219783178,
+            -0.9868739055763265,
+            -0.6852840481753875,
+            -0.37631771898100336,
+            -0.1053435053382364,
+            0.17508391054989048,
+            0.5524061896915043,
+            1.1083634308970083,
+            3.0083497572591487
+          ],
+          "mean": -0.3208669072978922,
+          "scale": 0.9807240102783353
+        },
+        "past_return_bps": {
+          "counts": [
+            5715,
+            5531,
+            5882,
+            2291,
+            20604,
+            5680,
+            5749,
+            5727
+          ],
+          "edges": [
+            -4.0036032429191515,
+            -1.5008254539994326,
+            -0.9980039920154393,
+            -0.9932459276917882,
+            0.0,
+            0.4991265285747559,
+            0.997605746209107,
+            1.4977533699456202,
+            4.005206768800118
+          ],
+          "mean": -0.027853460919413087,
+          "scale": 1.2301502401488653
+        },
+        "realized_volatility_bps": {
+          "counts": [
+            11428,
+            5720,
+            5696,
+            5740,
+            5718,
+            5718,
+            5723,
+            5717,
+            5719
+          ],
+          "edges": [
+            0.0,
+            0.12237918773720949,
+            0.12632115092922958,
+            0.1667465700746393,
+            0.1764200658705351,
+            0.17958734362178233,
+            0.21610386026783204,
+            0.2195714189462283,
+            0.2515974992642251,
+            0.40064414868000536
+          ],
+          "mean": 0.16356561580832268,
+          "scale": 0.07748486357616988
+        },
+        "spread_bps": {
+          "counts": [
+            5450,
+            5603,
+            5735,
+            5514,
+            6064,
+            5686,
+            5898,
+            5765,
+            5416,
+            6048
+          ],
+          "edges": [
+            2.9716210192660095,
+            3.977724741447892,
+            3.982080637132902,
+            3.9864460833167232,
+            3.992015968063872,
+            3.994407829039345,
+            4.0,
+            4.006009013520281,
+            5.972526378658173,
+            5.989817310572028,
+            8.99865020246963
+          ],
+          "mean": 4.549516693935431,
+          "scale": 0.9398407363024281
+        }
+      },
+      "fit_scope": "training_only",
+      "samples": 57179
+    },
+    "features_fit_scope": "training_only",
+    "market_exports_verified": true,
+    "market_time_assumption": "ordered_exchange_event_time; actual_receive_time_unavailable",
+    "seed": 44,
+    "selection_scope": "training_walk_forward_and_validation_only",
+    "split": {
+      "test": {
+        "samples": 19060,
+        "sessions": [
+          {
+            "capture_id": "synthetic-2026-09-11",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-11"
+          },
+          {
+            "capture_id": "synthetic-2026-09-14",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-14"
+          }
+        ]
+      },
+      "train": {
+        "samples": 57179,
+        "sessions": [
+          {
+            "capture_id": "synthetic-2026-09-01",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-01"
+          },
+          {
+            "capture_id": "synthetic-2026-09-02",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-02"
+          },
+          {
+            "capture_id": "synthetic-2026-09-03",
+            "first_label_end_ns": 34200960000000,
+            "first_timestamp_ns": 34200460000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9529,
+            "session_date": "2026-09-03"
+          },
+          {
+            "capture_id": "synthetic-2026-09-04",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-04"
+          },
+          {
+            "capture_id": "synthetic-2026-09-07",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-07"
+          },
+          {
+            "capture_id": "synthetic-2026-09-08",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-08"
+          }
+        ]
+      },
+      "validation": {
+        "samples": 19060,
+        "sessions": [
+          {
+            "capture_id": "synthetic-2026-09-09",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-09"
+          },
+          {
+            "capture_id": "synthetic-2026-09-10",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34320060000000,
+            "last_timestamp_ns": 34319560000000,
+            "samples": 9530,
+            "session_date": "2026-09-10"
+          }
+        ]
+      }
+    },
+    "target_units": "basis_points",
+    "versions": {
+      "numpy": "2.5.4",
+      "python": "3.12.14",
+      "sklearn": "1.9.1"
+    }
+  }
+}

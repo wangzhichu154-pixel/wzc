@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "scope": "Local Chromium acceptance only; no deployment or broker validation",
+  "test_environment": "isolated-local-sqlite-eager-real-cpp",
+  "flows": [
+    "register",
+    "verify-real-file-email",
+    "login",
+    "upload-and-real-cpp-replay",
+    "real-cpp-market-making-simulation",
+    "automatic-scheduler-real-cpp-start-stop",
+    "cost-stress-assessment-and-duplicate-history-rejection",
+    "anonymous-and-operator-access-denied",
+    "responsive-seven-viewports",
+    "logout-revokes-access"
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "pages": 10,
+      "document_overflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "pages": 10,
+      "document_overflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "pages": 10,
+      "document_overflow": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "pages": 10,
+      "document_overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "pages": 10,
+      "document_overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "pages": 10,
+      "document_overflow": false
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "pages": 10,
+      "document_overflow": false
+    }
+  ],
+  "browser_errors": []
+}

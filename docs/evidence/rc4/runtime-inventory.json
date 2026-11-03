@@ -1,0 +1,231 @@
+{
+  "application_version": "1.0.0-rc.4",
+  "collected_at": "2026-11-03T12:52:56.983980Z",
+  "errors": [],
+  "image_id": "sha256:c51392a1508b9a3b4c278336a835b005d8dc7dd7f5341c12c8f7f62a4ede696c",
+  "image_identity_source": "caller_supplied_docker_inspect",
+  "libc": {
+    "family": "glibc",
+    "method": "confstr",
+    "version": "2.41"
+  },
+  "openssl": {
+    "version": "OpenSSL 3.5.7 9 Jun 2026",
+    "version_info": [
+      3,
+      5,
+      0,
+      7,
+      0
+    ]
+  },
+  "os_release": {
+    "id": "debian",
+    "name": "Debian GNU/Linux 13 (trixie)",
+    "version_id": "13"
+  },
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.16"
+  },
+  "python_packages": [
+    {
+      "name": "amqp",
+      "version": "5.4.1"
+    },
+    {
+      "name": "argon2-cffi",
+      "version": "25.1.0"
+    },
+    {
+      "name": "argon2-cffi-bindings",
+      "version": "26.1.0"
+    },
+    {
+      "name": "asgiref",
+      "version": "3.13.0"
+    },
+    {
+      "name": "billiard",
+      "version": "4.3.1"
+    },
+    {
+      "name": "celery",
+      "version": "5.6.3"
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1"
+    },
+    {
+      "name": "click",
+      "version": "8.5.0"
+    },
+    {
+      "name": "click-didyoumean",
+      "version": "0.3.1"
+    },
+    {
+      "name": "click-plugins",
+      "version": "1.1.1.2"
+    },
+    {
+      "name": "click-repl",
+      "version": "0.4.1"
+    },
+    {
+      "name": "dj-database-url",
+      "version": "3.1.2"
+    },
+    {
+      "name": "Django",
+      "version": "5.2.18"
+    },
+    {
+      "name": "gunicorn",
+      "version": "25.3.0"
+    },
+    {
+      "name": "kombu",
+      "version": "5.6.2"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pip",
+      "version": "25.0.1"
+    },
+    {
+      "name": "prometheus_client",
+      "version": "0.26.0"
+    },
+    {
+      "name": "prompt_toolkit",
+      "version": "3.0.53"
+    },
+    {
+      "name": "psycopg",
+      "version": "3.3.6"
+    },
+    {
+      "name": "psycopg-binary",
+      "version": "3.3.6"
+    },
+    {
+      "name": "pycparser",
+      "version": "3.12"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "4.0.0"
+    },
+    {
+      "name": "python-json-logger",
+      "version": "4.2.0"
+    },
+    {
+      "name": "redis",
+      "version": "6.4.0"
+    },
+    {
+      "name": "sqlparse",
+      "version": "0.6.0"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6"
+    },
+    {
+      "name": "tzlocal",
+      "version": "5.4.5"
+    },
+    {
+      "name": "vine",
+      "version": "5.1.0"
+    },
+    {
+      "name": "wcwidth",
+      "version": "0.9.4"
+    },
+    {
+      "name": "whitenoise",
+      "version": "6.12.0"
+    }
+  ],
+  "schema_version": 1,
+  "sqlite": {
+    "compile_options": [
+      "ALLOW_ROWID_IN_VIEW",
+      "ATOMIC_INTRINSICS=1",
+      "COMPILER=gcc-14.2.0",
+      "DEFAULT_AUTOVACUUM",
+      "DEFAULT_CACHE_SIZE=-2000",
+      "DEFAULT_FILE_FORMAT=4",
+      "DEFAULT_JOURNAL_SIZE_LIMIT=-1",
+      "DEFAULT_MMAP_SIZE=0",
+      "DEFAULT_PAGE_SIZE=4096",
+      "DEFAULT_PCACHE_INITSZ=20",
+      "DEFAULT_RECURSIVE_TRIGGERS",
+      "DEFAULT_SECTOR_SIZE=4096",
+      "DEFAULT_SYNCHRONOUS=2",
+      "DEFAULT_WAL_AUTOCHECKPOINT=1000",
+      "DEFAULT_WAL_SYNCHRONOUS=2",
+      "DEFAULT_WORKER_THREADS=0",
+      "DIRECT_OVERFLOW_READ",
+      "ENABLE_COLUMN_METADATA",
+      "ENABLE_DBPAGE_VTAB",
+      "ENABLE_DBSTAT_VTAB",
+      "ENABLE_FTS3",
+      "ENABLE_FTS3_PARENTHESIS",
+      "ENABLE_FTS3_TOKENIZER",
+      "ENABLE_FTS4",
+      "ENABLE_FTS5",
+      "ENABLE_LOAD_EXTENSION",
+      "ENABLE_MATH_FUNCTIONS",
+      "ENABLE_PREUPDATE_HOOK",
+      "ENABLE_RTREE",
+      "ENABLE_SESSION",
+      "ENABLE_STMTVTAB",
+      "ENABLE_UNLOCK_NOTIFY",
+      "ENABLE_UPDATE_DELETE_LIMIT",
+      "HAVE_ISNAN",
+      "LIKE_DOESNT_MATCH_BLOBS",
+      "MALLOC_SOFT_LIMIT=1024",
+      "MAX_ATTACHED=10",
+      "MAX_COLUMN=2000",
+      "MAX_COMPOUND_SELECT=500",
+      "MAX_DEFAULT_PAGE_SIZE=32768",
+      "MAX_EXPR_DEPTH=1000",
+      "MAX_FUNCTION_ARG=127",
+      "MAX_LENGTH=1000000000",
+      "MAX_LIKE_PATTERN_LENGTH=50000",
+      "MAX_MMAP_SIZE=0x7fff0000",
+      "MAX_PAGE_COUNT=0xfffffffe",
+      "MAX_PAGE_SIZE=65536",
+      "MAX_SCHEMA_RETRY=25",
+      "MAX_SQL_LENGTH=1000000000",
+      "MAX_TRIGGER_DEPTH=1000",
+      "MAX_VARIABLE_NUMBER=250000",
+      "MAX_VDBE_OP=250000000",
+      "MAX_WORKER_THREADS=8",
+      "MUTEX_PTHREADS",
+      "SECURE_DELETE",
+      "SOUNDEX",
+      "SYSTEM_MALLOC",
+      "TEMP_STORE=1",
+      "THREADSAFE=1",
+      "USE_URI"
+    ],
+    "fts5_compile_option": true,
+    "fts5_enabled": true,
+    "fts5_probe": "available",
+    "version": "3.46.1"
+  },
+  "status": "verified"
+}

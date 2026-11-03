@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "training": {
+    "horizon_ns": 500000000,
+    "max_label_delay_ns": 250000000,
+    "seed": 42,
+    "alphas": [0.1, 1.0, 10.0],
+    "min_samples_per_session": 64,
+    "max_abs_prediction_bps": 1000.0
+  },
+  "features": {
+    "window_events": 32,
+    "max_gap_ns": 1000000000,
+    "regular_open_ns": 34200000000000,
+    "regular_close_ns": 57600000000000
+  },
+  "timeout_seconds": 1800
+}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}AI 模型与验证{% endblock %}
+{% block content %}
+<header class="page-header"><div><span class="eyebrow">MODEL EVIDENCE · READ ONLY</span><h1>AI 模型与验证</h1><p class="muted">从受控模型登记目录读取最近最多 50 个版本的训练、验证和模拟结果。不会通过网页训练模型、发布模型或发送订单。</p></div><form method="get" data-prevent-double-submit><button class="button button-secondary" type="submit">读取并刷新状态</button></form></header>
+<div class="alert"><div>这里显示已记录的证据。预测准确性与历史模拟收益都不证明未来盈利；模型晋级记录也不代表 Broker 已连接或实盘已获授权。</div></div>
+{% if not ml.available %}
+<section class="card"><div class="empty-state" role="status">
+{% if ml.state == 'not_configured' %}<h2>尚未配置模型登记目录</h2><p>没有可读取的训练产物。请由运维配置受控模型目录；本页面不会创建假模型或样例收益。</p>
+{% else %}<h2>模型证据暂不可用</h2><p>登记文件可能缺失、格式不受支持或安全校验未通过。请由运维检查文件与训练流程，再刷新状态。无法据此判断已有模型训练成功。</p>{% endif %}
+</div></section>
+{% else %}
+<div class="grid grid-3"><section class="card"><h2>模拟研究指针</h2><p><code>{{ ml.active.simulation|default:"尚未激活" }}</code></p><p class="muted">仅表示登记的研究版本。</p></section><section class="card"><h2>纸账户模型指针</h2><p><code>{{ ml.active.paper|default:"尚未激活" }}</code></p><p class="muted">此页不启用纸账户，也不修改指针。</p></section><section class="card"><h2>漂移与再训练</h2>{% if ml.retrain %}<p><strong>{{ ml.retrain.state_label }}</strong></p><p>{{ ml.retrain.trigger_label }}</p><p class="muted">记录时间：{{ ml.retrain.updated_at|date:"Y-m-d H:i:s T" }}</p><p class="muted">以登记的状态事件为准；不代表正在后台训练。</p>{% else %}<p>尚无漂移或再训练状态记录</p><p class="muted">缺少报告不能解释为没有模型漂移。</p>{% endif %}</section></div>
+{% if not ml.models %}<section class="card"><div class="empty-state"><h2>暂无已登记模型</h2><p>登记目录可读取，但没有可展示的有效模型版本。先完成离线训练与证据登记。</p></div></section>{% endif %}
+{% for model in ml.models %}
+<section class="card section-spaced" data-model-version="{{ model.version }}"><div class="page-header"><div><p class="eyebrow">IMMUTABLE MODEL VERSION</p><h2><code>{{ model.version }}</code></h2><p class="muted">登记时间：{{ model.registered_at|date:"Y-m-d H:i:s T" }}</p><span class="badge">{{ model.stage_label }}</span> <span class="badge {% if model.provenance_kind == 'synthetic' %}badge-warning{% endif %}">{{ model.provenance_label }}</span>{% if model.active_simulation %} <span class="badge">模拟研究指针</span>{% endif %}{% if model.active_paper %} <span class="badge">纸账户指针</span>{% endif %}</div></div>
+{% if model.provenance_kind == 'synthetic' %}<div class="alert alert-warning"><div>此模型来自合成测试数据，仅用于验证工程流程。相关预测指标和模拟盈亏不得当作真实行情盈利证据。</div></div>{% endif %}
+<h3>训练 / 验证 / 测试</h3><p>预测评估准入：<strong>{{ model.evaluation_passed|yesno:"通过,未通过,未评估" }}</strong>。模型晋级以登记的独立门槛与证据为准。</p>
+{% if model.evaluation_failures %}<div class="alert alert-warning"><div><strong>预测评估未通过原因</strong><ul>{% for failure in model.evaluation_failures %}<li data-failure-code="{{ failure.code }}">{{ failure.label }}</li>{% endfor %}</ul></div></div>{% elif model.evaluation_passed == False %}<p class="muted">旧证据未记录可展示的具体原因，请由运营检查原始评估记录。</p>{% endif %}
+{% if model.training_summary %}
+<p class="muted">选择的 Ridge α：{{ model.training_summary.selected_alpha }}。均方误差单位为 bps²，平均绝对误差与均方根误差单位为 bps；相关系数无单位，方向准确率为 0–1 比例。不可计算的指标显示“不可用”。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="模型训练验证测试指标"><table class="nowrap"><thead><tr><th>数据划分</th><th>估计器</th><th>会话数</th><th>样本数</th><th>MSE（bps²）</th><th>MAE（bps）</th><th>RMSE（bps）</th><th>相关系数</th><th>方向准确率</th></tr></thead><tbody>{% for row in model.metric_rows %}<tr><td>{{ row.split }}</td><td>{{ row.estimator }}</td><td>{{ row.sessions }}</td><td>{{ row.samples }}</td><td>{{ row.mse_bps2|floatformat:6|default:"不可用" }}</td><td>{{ row.mae_bps|floatformat:6|default:"不可用" }}</td><td>{{ row.rmse_bps|floatformat:6|default:"不可用" }}</td><td>{{ row.correlation|floatformat:4|default:"不可用" }}</td><td>{{ row.direction_accuracy|floatformat:4|default:"不可用" }}</td></tr>{% endfor %}</tbody></table></div>
+{% else %}<div class="empty-state"><h3>未记录可展示的训练指标</h3><p>模型登记信息不足以代替训练、验证和测试报告；此处不填充默认准确率。</p></div>{% endif %}
+<h3 class="section-spaced">扣费模拟与风险</h3><p>模拟验证准入：<strong>{{ model.simulation_passed|yesno:"通过,未通过,未评估" }}</strong>。失败的尝试也保留真实结果，不会被显示为已通过。</p>
+{% if model.simulation_failures %}<div class="alert alert-warning"><div><strong>模拟准入未通过原因</strong><ul>{% for failure in model.simulation_failures %}<li data-failure-code="{{ failure.code }}">{{ failure.label }}</li>{% endfor %}</ul></div></div>{% elif model.simulation_passed == False %}<p class="muted">旧证据未记录可展示的具体原因，请由运营检查原始评估记录。</p>{% endif %}
+{% if model.simulation_summary %}
+<p class="muted" data-valuation-basis="{{ model.simulation_summary.valuation.basis|default:'legacy_quote_mark' }}">估值依据：{{ model.simulation_summary.valuation_label }}。</p>
+{% if model.simulation_summary.valuation.basis == 'reconciled_flat_ledger' %}<div class="alert"><div>账户已平仓且无挂单，终值可由核对后的现金账本计算。行情标记失效不会被当作行情已恢复，也不会因此恢复报价权限。</div></div>{% endif %}
+{% if model.simulation_summary.valuation and not model.simulation_summary.drawdown_complete %}<div class="alert alert-warning"><div>估值路径不完整，最大回撤不可核验。即使期末账户终值可以计算，也不能掩盖路径中的估值缺口。</div></div>{% endif %}
+{% if not model.simulation_summary.ledger_complete %}<div class="alert alert-warning"><div>{% if model.simulation_summary.valuation %}账户终值无法完整复核。缺失估值不会填成零，也不能作为有效收益。{% elif model.simulation_summary.pnl_mark_valid == False %}模拟估值无效，净盈亏与回撤无法完整复核。不可用值不会当作零收益。{% else %}当前只有部分模拟汇总，完整费用与收益账本尚未记录。缺失字段显示“未记录”或“不可用”，不能视作费用为零。{% endif %}</div></div>{% endif %}
+{% if model.simulation_summary.fill_count == 0 and model.simulation_summary.filled_quantity == 0 %}<div class="alert alert-warning"><div>没有成交样本。零盈亏不能证明策略有效，也不代表已经满足交易准入门槛。</div></div>{% endif %}
+<div class="grid grid-2"><dl class="detail-list"><div><dt>净盈亏（USD）</dt><dd data-metric="net-pnl">{{ model.simulation_money.net_pnl_units }}</dd></div><div><dt>已实现收益（USD）</dt><dd>{{ model.simulation_money.realized_pnl_units }}</dd></div><div><dt>未实现收益（USD）</dt><dd>{{ model.simulation_money.unrealized_pnl_units }}</dd></div><div><dt>费用 / 假设返佣（USD）</dt><dd>{{ model.simulation_money.fees_units }} / {{ model.simulation_money.rebates_units }}</dd></div><div><dt>{% if model.simulation_summary.drawdown_scope == "max_single_scenario" %}最大单次模拟回撤（USD）{% else %}记录回撤（USD，范围未说明）{% endif %}</dt><dd data-metric="drawdown">{{ model.simulation_money.drawdown_units }}</dd></div></dl><dl class="detail-list"><div><dt>模拟成交（股）</dt><dd>{{ model.simulation_summary.filled_quantity|default_if_none:"未记录" }}</dd></div><div><dt>行情估值标记有效</dt><dd>{{ model.simulation_summary.quote_mark_valid|yesno:"是,否,未记录" }}</dd></div><div><dt>账户终值可计算</dt><dd>{{ model.simulation_summary.net_pnl_valid|yesno:"是,否,未记录" }}</dd></div><div><dt>回撤估值路径完整</dt><dd>{{ model.simulation_summary.drawdown_complete|yesno:"是,否,旧报告未记录" }}</dd></div><div><dt>风险熔断</dt><dd>{{ model.simulation_summary.killed|yesno:"已触发,未触发,未记录" }}</dd></div><div><dt>存在未平仓暴露</dt><dd>{{ model.simulation_summary.open_exposure|yesno:"是,否,未记录" }}</dd></div><div><dt>各场景期末库存合计（股）</dt><dd>{{ model.simulation_summary.inventory|default_if_none:"未记录" }}</dd></div><div><dt>期末活动订单</dt><dd>{{ model.simulation_summary.open_orders_at_end|default_if_none:"未记录" }}</dd></div></dl></div>
+<p class="muted">模拟保留未平仓库存和活动订单，不伪造期末平仓。账户终值、行情有效性和完整回撤分别核验；库存合计不用于抵销不同会话的风险暴露。不同场景的结果不等于连续账户业绩。</p>
+{% else %}<div class="empty-state"><h3>未记录可展示的成本后模拟报告</h3><p>预测误差较低不等于交易盈利；需要有效模拟成交、费用、库存与风控证据。</p></div>{% endif %}
+<details class="section-spaced"><summary>产物完整性标识</summary><dl class="detail-list"><div><dt>模型 SHA256</dt><dd><code>{{ model.model_sha256 }}</code></dd></div><div><dt>政策 SHA256</dt><dd><code>{{ model.policy_sha256 }}</code></dd></div></dl><p class="muted">校验值用于追踪登记产物，不证明数据授权、模型有效性或未来收益。</p></details>
+</section>
+{% endfor %}
+{% endif %}
+<section class="card section-spaced"><h2>只读监控边界</h2><p>训练、模拟验证、运营审批、指针切换分别保存证据。本页面只读取已落盘状态；缺失、过期或不完整的证据不得视作通过。</p><p class="muted">实盘执行授权始终关闭。有关独立纸账户连接状态，请查看<a href="{% url 'execution-console' %}">执行接入</a>。</p></section>
+{% endblock %}

@@ -1,0 +1,22 @@
+[
+  {
+    "job": "node",
+    "health": "up",
+    "error": ""
+  },
+  {
+    "job": "postgres",
+    "health": "up",
+    "error": ""
+  },
+  {
+    "job": "redis",
+    "health": "up",
+    "error": ""
+  },
+  {
+    "job": "trading-app",
+    "health": "up",
+    "error": ""
+  }
+]

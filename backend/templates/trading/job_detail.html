@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}{{ job.get_mode_display }}{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div><p class="eyebrow">RESEARCH RUN</p><h1>{{ job.dataset.name }}</h1><p class="muted">{{ job.get_mode_display }} · 任务 <span class="mono">{{ job.pk }}</span></p></div>
+  <span class="badge badge-{{ job.status }}" data-job-status>{{ job.get_status_display }}</span>
+</header>
+<section class="card run-overview" {% if active %}data-job-poll="{% url 'trading:api_job' job.pk %}"{% endif %} aria-label="任务状态与时间">
+  <dl class="run-metadata">
+    <div><dt>任务状态</dt><dd>{{ job.get_status_display }}{% if job.cancellation_requested %}<span class="text-small muted"> · 等待终止确认</span>{% endif %}</dd></div>
+    <div><dt>尝试次数</dt><dd class="mono">{{ job.attempt }}</dd></div>
+    <div><dt>创建时间 · UTC</dt><dd>{{ job.created_at|date:"m-d H:i:s" }}</dd></div>
+    <div><dt>开始时间 · UTC</dt><dd>{{ job.started_at|date:"m-d H:i:s"|default:"尚未开始" }}</dd></div>
+    <div><dt>完成时间 · UTC</dt><dd>{{ job.finished_at|date:"m-d H:i:s"|default:"尚未结束" }}</dd></div>
+  </dl>
+  {% if job.error_message %}<div class="alert alert-error" role="status"><div><strong>{{ job.error_code }}</strong><br>{{ job.error_message }}</div></div>{% endif %}
+  {% if active %}
+    <p class="muted" data-poll-message>页面会检查任务状态。你可以离开页面，任务仍在后台执行。</p>
+    <div class="actions"><button type="button" class="button button-secondary" data-reload>刷新状态</button><form method="post" action="{% url 'trading:replay_cancel' job.pk %}">{% csrf_token %}<button class="button button-danger" type="submit" {% if job.cancellation_requested %}disabled{% endif %}>取消任务</button></form></div>
+  {% endif %}
+  {% if retryable %}<form method="post" action="{% url 'trading:replay_retry' job.pk %}">{% csrf_token %}<button class="button button-primary" type="submit">用当前研究参数重试</button></form>{% endif %}
+</section>
+{% if job.status == 'succeeded' %}
+  <section class="run-volume" aria-label="行情处理统计">
+    <div><span>处理消息</span><strong>{{ job.result.messages }}</strong></div>
+    <div><span>涉及标的</span><strong>{{ job.result.symbols }}</strong></div>
+    <div><span>报价决策</span><strong>{{ job.result.decisions }}</strong></div>
+    <div><span>公共行情成交事件</span><strong>{{ job.result.trades }}</strong></div>
+  </section>
+  {% if job.mode == 'simulation' %}
+    <section class="card simulation-results" aria-labelledby="simulation-title">
+      <div class="section-header"><div><p class="eyebrow">SIMULATED ACCOUNT · USD</p><h2 id="simulation-title">模拟交易结果</h2></div><div class="actions">{% if simulation.killed %}<span class="badge badge-danger">风险熔断已触发</span>{% else %}<span class="badge badge-neutral">未触发风险熔断</span>{% endif %}{% if simulation.pnl_mark_valid %}<span class="badge badge-info">结束估值有效</span>{% else %}<span class="badge badge-warning">结束估值不可用</span>{% endif %}</div></div>
+      <p class="simulation-disclaimer">以下为模型产生的模拟账本，不是真实交易或 IBKR Paper Trading 结果，不构成盈利承诺。</p>
+      {% if not simulation.pnl_mark_valid %}<div class="alert alert-warning" role="status"><div>结束时估值不可用或陈旧，净盈亏、未实现盈亏与回撤不作为有效结果展示。其他已发生的模拟成交与费用仍保留。</div></div>{% endif %}
+      <div class="simulation-metrics">
+        <div class="simulation-metric simulation-metric-primary"><span class="metric-label">模拟净盈亏 <span>USD</span></span><strong class="simulation-value {% if simulation.pnl_mark_valid %}{% if simulation.net_pnl_units < 0 %}text-danger{% elif simulation.net_pnl_units > 0 %}text-success{% endif %}{% endif %}">{% if simulation.pnl_mark_valid %}{{ simulation_money.net_pnl }}{% else %}<span class="metric-unavailable">估值不可用</span>{% endif %}</strong><span class="metric-footnote">包含未实现盈亏、费用和回扣</span></div>
+        <div class="simulation-metric"><span class="metric-label">最大模拟回撤 <span>USD</span></span><strong class="simulation-value">{% if simulation.pnl_mark_valid %}{{ simulation_money.drawdown }}{% else %}<span class="metric-unavailable">估值不可用</span>{% endif %}</strong><span class="metric-footnote">相对模拟净盈亏高水位</span></div>
+        <div class="simulation-metric"><span class="metric-label">结束库存 <span>股</span></span><strong class="simulation-value">{{ simulation.inventory }}</strong><span class="metric-footnote">正数为多仓，负数为空仓</span></div>
+        <div class="simulation-metric"><span class="metric-label">模拟成交 <span>次</span></span><strong class="simulation-value">{{ simulation.fill_count }}</strong><span class="metric-footnote">累计成交数量 {{ simulation.filled_quantity }} 股</span></div>
+      </div>
+      <dl class="pnl-breakdown">
+        <div><dt>已实现盈亏 <span>USD</span></dt><dd>{{ simulation_money.realized_pnl }}</dd></div>
+        <div><dt>未实现盈亏 <span>USD</span></dt><dd>{% if simulation.pnl_mark_valid %}{{ simulation_money.unrealized_pnl }}{% else %}<span class="text-small muted">估值不可用</span>{% endif %}</dd></div>
+        <div><dt>费用 <span>USD</span></dt><dd>{{ simulation_money.fees }}</dd></div>
+        <div><dt>回扣 <span>USD</span></dt><dd>{{ simulation_money.rebates }}</dd></div>
+      </dl>
+      <div class="simulation-execution"><span>模拟订单提交 <strong>{{ simulation.orders_submitted }}</strong></span><span>模拟撤单完成 <strong>{{ simulation.orders_canceled }}</strong></span><span>风控拒绝 <strong>{{ simulation.risk_rejections }}</strong></span><span>结束时开放订单 <strong>{{ simulation.open_orders_at_end }}</strong></span></div>
+      <p class="result-note">净盈亏 = 已实现 + 未实现 − 费用 + 回扣。结束库存未强制平仓；开放订单及未实现盈亏仍需在解释结果时考虑。隐藏流动性、市场冲击和真实路由可能显著改变结果。</p>
+      {% if simulation.pricing_economics %}
+      <h3>报价成本约束</h3>
+      <dl class="pnl-breakdown">
+        <div><dt>单边成本距离下限 <span>USD / 股</span></dt><dd>{{ pricing_money.cost_half_spread_floor }}</dd></div>
+        <div><dt>每股费用假设 <span>USD / 股</span></dt><dd>{{ pricing_money.fee_per_share }}</dd></div>
+        <div><dt>每单最低佣金 <span>USD</span></dt><dd>{{ pricing_money.min_fee_per_order }}</dd></div>
+        <div><dt>目标净边际 <span>USD / 股</span></dt><dd>{{ pricing_money.min_net_edge }}</dd></div>
+      </dl>
+      <p class="result-note">下限包含滑点缓冲 {{ pricing_money.slippage_buffer }} USD / 股，并将最低佣金保守地分摊到最小 1 股部分成交。距离以库存偏移后的参考价计算；这是报价约束，不能保证成交或净利润。未确认回扣不用于缩小报价。</p>
+      {% else %}<p class="result-note">这是旧版报价模型的结果，不能视为已应用新增最低佣金和成本距离约束。请保留历史记录并新建模拟任务比较。</p>{% endif %}
+      {% if simulation.fill_count == 0 %}<div class="alert alert-warning" role="status"><div>本次模拟没有成交。报价可能因成本、队列位置或市场条件无法成交，零亏损不代表策略有效。停止报价也不代表已经平仓。</div></div>{% endif %}
+      <a class="button button-secondary" href="/assessments/">检查扣费后收益与成本压力</a>
+    </section>
+  {% endif %}
+  <details class="result-details">
+    <summary><span>完整引擎结果与模型说明</span><span class="details-hint">原始 JSON</span></summary>
+    <div class="details-content"><p class="muted">总运行时间包含文件读取和批量处理，不是 Tick-to-Trade 延迟。原始金额单位为 1/10000 USD。</p><pre><code>{{ result_json }}</code></pre></div>
+  </details>
+{% endif %}
+<details class="result-details">
+  <summary><span>不可变研究参数快照</span><span class="details-hint">提交时配置</span></summary>
+  <div class="details-content"><pre><code>{{ parameters_json }}</code></pre>{% if job.mode == 'simulation' %}<h3>模拟执行假设</h3><pre><code>{{ simulation_parameters_json }}</code></pre><p class="muted">库存、费用与日内亏损风控作用于模拟账户，不能代替真实 broker 接入验收。</p>{% else %}<p class="muted">公共行情回放没有账户成交输入，不能验证库存或日内亏损阈值是否会在真实交易中触发。相关参数仅作为研究配置载入和留档。</p>{% endif %}</div>
+</details>
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "state": "completed",
+  "model_version": "ridge-d008e93b6e608c2753c8bff9",
+  "immutable_files_checked": 88,
+  "all_hashes_unchanged": true,
+  "configuration_change_exit": 2,
+  "configuration_change_error": {
+    "state": "blocked",
+    "code": "REQUEST_CHANGED",
+    "message": "Data, policy, configuration, engine or source changed; a consumed test cannot be rerun",
+    "execution_authorized": false
+  },
+  "new_training_processes": 0,
+  "execution_authorized": false
+}

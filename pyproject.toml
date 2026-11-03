@@ -1,0 +1,23 @@
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.testing"
+pythonpath = ["backend"]
+testpaths = ["backend", "tests", "ml/tests"]
+python_files = ["test_*.py", "tests_*.py", "tests.py"]
+addopts = "--strict-markers"
+markers = ["integration: requires real compiled engine or service", "e2e: browser end-to-end tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+exclude = [".venv", "build", "backend/accounts/migrations", "backend/trading/migrations"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = ["E501"]
+
+[tool.coverage.run]
+source = ["backend/accounts", "backend/trading", "backend/common"]
+omit = ["*/migrations/*", "*/tests/*", "*/tests.py", "*/tests_*.py", "*/test_*.py"]
+
+[tool.coverage.report]
+omit = ["*/migrations/*", "*/tests/*", "*/tests.py", "*/tests_*.py", "*/test_*.py"]

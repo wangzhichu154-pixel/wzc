@@ -1,0 +1,34 @@
+{
+  "admission_sha256": "4f4628ae5c6a2a9fd3d045d7f2a5604f1db19434cebb6fb3f9bb29a3611b7229",
+  "cancel_latency_ns": 1000000,
+  "cost_stress_multiplier": 2,
+  "daily_loss_limit_cents": 10000,
+  "dataset_sha256": "88164fa5333589e5b19e49e517622489010e320b9d4d14b3b28baba97306df96",
+  "engine_sha256": "a1ce3b1b0061896a5418df6f32fe61022089bbac299e60849ede30d61cbed638",
+  "latency_ns": 1000000,
+  "latency_stress_multiplier": 5,
+  "maximum_order_shares": 1,
+  "min_net_edge_units": 0,
+  "model_sha256": "ff956a91f00087762a3c1c136a40e62f9ea248755fe35c35cb8efba56ff9a0ed",
+  "new_order_rate": 5,
+  "policy_sha256": "0961d43b8c45cd5d09f20ce8cd501885c94d3167d650385815265e211b59ca73",
+  "python_source_sha256": {
+    "backtest.py": "b4bedb912392493bb80160242c79662a84a96acb76639a68d32ccca592f3f7f9",
+    "data.py": "391aae0afc8f81e82d8054f86fc7e3d354b7f0d83ab5053c40fe2cc9b35b5f6c",
+    "features.py": "e0468c87b4fe543de6e61fd8853195530e77f75c6f6cbaa0de9ec9c375e125bd",
+    "model.py": "25d1266d442607bd2377c9fb4c0c0b1af1b84bee543d532e1785effa2ac99fb5",
+    "runtime.py": "419dd4511d27ad084e1dad196df55f677eb8d813a03e6f862e3fd77167c98bc3",
+    "valuation.py": "91ca22387afcce254ff5dda71cbdb2228789da6a25899e61923344719c7c99e9"
+  },
+  "quote_lifetime_ns": 1000000000,
+  "scenarios": [
+    "model",
+    "cost_aware_two_sided",
+    "wait",
+    "double_cost",
+    "fivefold_latency"
+  ],
+  "schema_version": 1,
+  "split": "test",
+  "tick_size": 100
+}

@@ -1,0 +1,7 @@
+<div class="table-wrap"><table>
+<thead><tr><th>数据集</th><th>模式</th><th>状态</th><th>创建时间</th><th>操作</th></tr></thead>
+<tbody>{% for job in jobs %}<tr>
+<td>{{ job.dataset.name }}</td><td>{{ job.get_mode_display }}</td><td><span class="badge">{{ job.get_status_display }}</span></td>
+<td>{{ job.created_at|date:"Y-m-d H:i:s" }} UTC</td><td><a href="{% url 'trading:job_detail' job.pk %}">查看任务</a></td>
+</tr>{% empty %}<tr><td colspan="5"><div class="empty-state">暂无研究任务。上传授权的 ITCH 文件后即可运行回放或自动做市模拟。</div></td></tr>{% endfor %}</tbody>
+</table></div>

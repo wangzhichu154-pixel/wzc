@@ -1,0 +1,478 @@
+{
+  "estimator": {
+    "alpha": 10.0,
+    "coefficients": [
+      -0.011731716070534476,
+      0.0735178113307225,
+      -0.010178249797873143,
+      0.08153025562837532,
+      0.027282868685913602,
+      -0.019882389932903997
+    ],
+    "intercept": 0.03226338603771938
+  },
+  "features": {
+    "config": {
+      "max_gap_ns": 1000000000,
+      "regular_close_ns": 57600000000000,
+      "regular_open_ns": 34200000000000,
+      "window_events": 32
+    },
+    "names": [
+      "spread_bps",
+      "imbalance",
+      "microprice_offset_bps",
+      "past_return_bps",
+      "realized_volatility_bps",
+      "log_depth"
+    ],
+    "schema_version": "causal_book_v1"
+  },
+  "model_type": "ridge_mid_return_bps",
+  "model_version": "ridge-d008e93b6e608c2753c8bff9",
+  "preprocessing": {
+    "mean": [
+      4.551757736866665,
+      -0.1390032733930222,
+      -0.31537521937569274,
+      0.024607644069968626,
+      0.1663152623832998,
+      5.144302857183308
+    ],
+    "scale": [
+      0.9457584280651502,
+      0.41924700946525634,
+      0.9823878496403535,
+      1.2426198337404466,
+      0.07753842505731685,
+      0.5173472783115614
+    ]
+  },
+  "provenance": {
+    "authorized_use_attested": false,
+    "dataset_sha256": "88164fa5333589e5b19e49e517622489010e320b9d4d14b3b28baba97306df96",
+    "kind": "synthetic",
+    "source": "deterministic synthetic ITCH fixture seed=46; short intraday windows; no market-performance evidence",
+    "symbol": "TEST"
+  },
+  "schema_version": 1,
+  "target": {
+    "horizon_ns": 500000000,
+    "max_abs_prediction_bps": 1000.0,
+    "max_label_delay_ns": 250000000,
+    "name": "future_mid_return_bps"
+  },
+  "training": {
+    "config": {
+      "features": {
+        "max_gap_ns": 1000000000,
+        "regular_close_ns": 57600000000000,
+        "regular_open_ns": 34200000000000,
+        "window_events": 32
+      },
+      "selection": "validation_mse_then_training_walk_forward_mse",
+      "split_fraction": [
+        0.6,
+        0.2,
+        0.2
+      ],
+      "training": {
+        "alphas": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "horizon_ns": 500000000,
+        "max_abs_prediction_bps": 1000.0,
+        "max_label_delay_ns": 250000000,
+        "min_samples_per_session": 64,
+        "seed": 42
+      }
+    },
+    "data_manifest_sha256": "6ef2de0f2e4d0f0cae0ee725bacd1c4b54464f3772e779e0715d9ee087daab91",
+    "dataset_sha256": "88164fa5333589e5b19e49e517622489010e320b9d4d14b3b28baba97306df96",
+    "exporter_sha256": "a1ce3b1b0061896a5418df6f32fe61022089bbac299e60849ede30d61cbed638",
+    "feature_reference": {
+      "features": {
+        "imbalance": {
+          "counts": [
+            22953,
+            22949,
+            22966,
+            22890,
+            23021,
+            22957,
+            22956,
+            22954,
+            22954,
+            22960
+          ],
+          "edges": [
+            -0.8758620689655172,
+            -0.6653386454183267,
+            -0.5665024630541872,
+            -0.4496280110296024,
+            -0.3,
+            -0.16535433070866143,
+            -0.04578156962530443,
+            0.08559629161399367,
+            0.26143790849673204,
+            0.4888888888888889,
+            0.8524590163934426
+          ],
+          "mean": -0.1390032733930222,
+          "scale": 0.41924700946525634
+        },
+        "log_depth": {
+          "counts": [
+            21821,
+            23741,
+            22909,
+            22972,
+            22793,
+            23231,
+            23075,
+            22648,
+            23297,
+            23073
+          ],
+          "edges": [
+            3.6375861597263857,
+            4.343805421853684,
+            4.553876891600541,
+            4.919980925828125,
+            5.123963979403259,
+            5.262690188904886,
+            5.37989735354046,
+            5.5053315359323625,
+            5.631211781821365,
+            5.752572638825633,
+            6.061456918928017
+          ],
+          "mean": 5.144302857183308,
+          "scale": 0.5173472783115614
+        },
+        "microprice_offset_bps": {
+          "counts": [
+            22956,
+            22956,
+            22956,
+            22956,
+            22956,
+            22956,
+            22956,
+            22956,
+            22956,
+            22956
+          ],
+          "edges": [
+            -3.3759793250365546,
+            -1.4646186230352387,
+            -1.217287375547982,
+            -0.9829482856806431,
+            -0.6813723608237039,
+            -0.36974902016565026,
+            -0.0995115970908662,
+            0.18019634306169743,
+            0.5581853139710131,
+            1.114491191441311,
+            3.69743125499318
+          ],
+          "mean": -0.31537521937569274,
+          "scale": 0.9823878496403535
+        },
+        "past_return_bps": {
+          "counts": [
+            22943,
+            22879,
+            23015,
+            7039,
+            84695,
+            22954,
+            23046,
+            22989
+          ],
+          "edges": [
+            -4.015661078204946,
+            -1.496632576702961,
+            -0.9934432743885502,
+            -0.9840582562492539,
+            0.0,
+            0.9879470460383288,
+            0.9941346058250922,
+            1.9755037534574527,
+            4.008417677121567
+          ],
+          "mean": 0.024607644069968626,
+          "scale": 1.2426198337404466
+        },
+        "realized_volatility_bps": {
+          "counts": [
+            45874,
+            22907,
+            22989,
+            23000,
+            22966,
+            22947,
+            22965,
+            22945,
+            22967
+          ],
+          "edges": [
+            0.0,
+            0.1219418263328029,
+            0.12575826425502107,
+            0.16652293261913537,
+            0.17703877384589173,
+            0.19466996850298718,
+            0.21545755856385468,
+            0.22096423210133273,
+            0.2512899782470337,
+            0.39566764754467176
+          ],
+          "mean": 0.1663152623832998,
+          "scale": 0.07753842505731685
+        },
+        "spread_bps": {
+          "counts": [
+            22386,
+            22810,
+            23461,
+            22855,
+            23229,
+            22471,
+            23441,
+            22931,
+            22978,
+            22998
+          ],
+          "edges": [
+            2.9520295202952034,
+            3.9560874295321926,
+            3.960788196851173,
+            3.965500148706256,
+            3.9765384233025154,
+            3.985254558134901,
+            3.99480675122341,
+            4.944864757948871,
+            5.94000594000594,
+            5.973715651135006,
+            8.979795460214516
+          ],
+          "mean": 4.551757736866665,
+          "scale": 0.9457584280651502
+        }
+      },
+      "fit_scope": "training_only",
+      "samples": 229560
+    },
+    "features_fit_scope": "training_only",
+    "market_exports_verified": true,
+    "market_time_assumption": "ordered_exchange_event_time; actual_receive_time_unavailable",
+    "seed": 42,
+    "selection_scope": "training_walk_forward_and_validation_only",
+    "split": {
+      "test": {
+        "samples": 76520,
+        "sessions": [
+          {
+            "capture_id": "synthetic-2026-10-23",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-23"
+          },
+          {
+            "capture_id": "synthetic-2026-10-26",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-26"
+          },
+          {
+            "capture_id": "synthetic-2026-10-27",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-27"
+          },
+          {
+            "capture_id": "synthetic-2026-10-28",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-28"
+          }
+        ]
+      },
+      "train": {
+        "samples": 229560,
+        "sessions": [
+          {
+            "capture_id": "synthetic-2026-10-01",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-01"
+          },
+          {
+            "capture_id": "synthetic-2026-10-02",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-02"
+          },
+          {
+            "capture_id": "synthetic-2026-10-05",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-05"
+          },
+          {
+            "capture_id": "synthetic-2026-10-06",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-06"
+          },
+          {
+            "capture_id": "synthetic-2026-10-07",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-07"
+          },
+          {
+            "capture_id": "synthetic-2026-10-08",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-08"
+          },
+          {
+            "capture_id": "synthetic-2026-10-09",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-09"
+          },
+          {
+            "capture_id": "synthetic-2026-10-12",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-12"
+          },
+          {
+            "capture_id": "synthetic-2026-10-13",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-13"
+          },
+          {
+            "capture_id": "synthetic-2026-10-14",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-14"
+          },
+          {
+            "capture_id": "synthetic-2026-10-15",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-15"
+          },
+          {
+            "capture_id": "synthetic-2026-10-16",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-16"
+          }
+        ]
+      },
+      "validation": {
+        "samples": 76520,
+        "sessions": [
+          {
+            "capture_id": "synthetic-2026-10-19",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-19"
+          },
+          {
+            "capture_id": "synthetic-2026-10-20",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-20"
+          },
+          {
+            "capture_id": "synthetic-2026-10-21",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-21"
+          },
+          {
+            "capture_id": "synthetic-2026-10-22",
+            "first_label_end_ns": 34200950000000,
+            "first_timestamp_ns": 34200450000000,
+            "last_label_end_ns": 34440060000000,
+            "last_timestamp_ns": 34439560000000,
+            "samples": 19130,
+            "session_date": "2026-10-22"
+          }
+        ]
+      }
+    },
+    "target_units": "basis_points",
+    "versions": {
+      "numpy": "2.5.4",
+      "python": "3.12.14",
+      "sklearn": "1.9.1"
+    }
+  }
+}

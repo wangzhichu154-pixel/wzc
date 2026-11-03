@@ -1,0 +1,1 @@
+{"yaml_parsed": true, "mandatory_security_gate_before_transfer": true, "publish_depends_on_verify": true, "publish_rebuilds": false, "remote_ci_executed": false, "parser": "PyYAML 6.0.3"}

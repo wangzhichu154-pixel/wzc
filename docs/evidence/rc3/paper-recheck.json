@@ -1,0 +1,10 @@
+{
+  "ridge-7c58b134e83740784dd16f60": {
+    "paper_activation": "rejected",
+    "reason": "Synthetic or unauthorized models can never enter broker paper"
+  },
+  "ridge-af7a151d210f2f0476851553": {
+    "paper_activation": "rejected",
+    "reason": "Synthetic or unauthorized models can never enter broker paper"
+  }
+}

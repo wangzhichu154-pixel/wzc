@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}行情数据集{% endblock %}
+{% block content %}
+<header class="page-header"><div><p class="eyebrow">MARKET DATA</p><h1>行情数据集</h1><p class="muted">文件仅对你的账户开放。请确认你拥有行情使用和存储授权。</p></div></header>
+<section class="card"><h2>上传 ITCH 文件</h2><p class="muted">每个文件最多 {{ max_size_mb }} MiB。支持 2 字节大端消息长度前缀，暂不接收 PCAP、UDP 抓包或压缩文件。</p>
+<form method="post" enctype="multipart/form-data" class="form-grid">{% csrf_token %}{{ form.as_p }}<div class="actions"><button class="button button-primary" type="submit" {% if not user.email_verified %}disabled{% endif %}>上传并验证文件结构</button></div></form>
+{% if not user.email_verified %}<p class="muted">上传功能需要先验证邮箱。</p>{% endif %}</section>
+<section class="card"><h2>我的数据集</h2><div class="table-wrap"><table><thead><tr><th>名称</th><th>文件大小</th><th>消息数</th><th>上传时间</th><th>操作</th></tr></thead><tbody>
+{% for item in page_obj %}<tr><td>{{ item.name }}</td><td>{{ item.byte_size|filesizeformat }}</td><td>{{ item.message_count }}</td><td>{{ item.created_at|date:"Y-m-d H:i" }} UTC</td><td><a href="{% url 'trading:dataset_detail' item.pk %}">查看数据集</a></td></tr>{% empty %}<tr><td colspan="5"><div class="empty-state">还没有行情文件。上传后这里会显示真实文件信息。</div></td></tr>{% endfor %}
+</tbody></table></div>{% include "trading/_pagination.html" %}</section>
+{% endblock %}

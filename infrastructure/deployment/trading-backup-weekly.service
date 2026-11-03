@@ -1,0 +1,16 @@
+[Unit]
+Description=Trading system retained weekly full PostgreSQL backup
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=trading-ops
+Group=trading-ops
+WorkingDirectory=/opt/trading-system
+UMask=0077
+ExecStart=/usr/bin/python3 scripts/backup.py --output /var/backups/trading/weekly --keep-days 84
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/var/backups/trading

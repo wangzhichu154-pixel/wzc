@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}{{ title }} · 交易研究平台{% endblock %}
+{% block content %}<section class="auth-layout"><div class="auth-card card"><h1>{{ title }}</h1><p role="status">{{ notice }}</p><div class="actions"><a class="button button-primary" href="{% url 'accounts:login' %}">前往登录</a><a class="button button-secondary" href="{% url 'accounts:profile' %}">账户设置</a></div></div></section>{% endblock %}

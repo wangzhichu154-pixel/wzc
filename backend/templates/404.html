@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}页面未找到{% endblock %}
+{% block content %}
+<section class="error-page" aria-labelledby="error-title">
+  <div class="error-code" aria-hidden="true">404</div>
+  <span class="eyebrow">页面不可用</span>
+  <h1 id="error-title">没有找到这个页面</h1>
+  <p>链接可能已经失效，或该资源不属于你的账户。可以回到工作台查看当前可访问的数据与任务。</p>
+  <div class="actions"><a class="button button-primary" href="/">返回工作台</a><a class="button button-secondary" href="/datasets/">查看行情数据</a></div>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+  "archive_sha256": "6040a135d3c0dae90213065ca82656c48ff5e3d44955bbf1bccfaf74b752dba1",
+  "database": "restored_53f25b5e60f99d74",
+  "verified_at": "2026-11-01T14:35:59.531833+00:00",
+  "duration_seconds": 3.966,
+  "migration_count": 26,
+  "database_restore_passed": true,
+  "business_e2e_passed": false,
+  "media_restore_passed": false,
+  "retained": false
+}

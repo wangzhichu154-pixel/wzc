@@ -1,0 +1,39 @@
+from django.urls import path
+
+from . import views, views_automations, views_assessments
+
+app_name = "trading"
+urlpatterns = [
+    path("assessments/", views_assessments.assessments, name="assessments"),
+    path("assessments/<uuid:pk>/", views_assessments.assessment_detail, name="assessment_detail"),
+    path("api/v1/assessments/", views_assessments.api_assessments, name="api_assessments"),
+    path("api/v1/assessments/<uuid:pk>/", views_assessments.api_assessment, name="api_assessment"),
+    path("automations/", views_automations.automations, name="automations"),
+    path("automations/<uuid:pk>/", views_automations.automation_detail, name="automation_detail"),
+    path("automations/<uuid:pk>/start/", views_automations.automation_command, {"action": "start"}, name="automation_start"),
+    path("automations/<uuid:pk>/stop/", views_automations.automation_command, {"action": "stop"}, name="automation_stop"),
+    path("api/v1/automations/", views_automations.api_automations, name="api_automations"),
+    path("api/v1/automations/<uuid:pk>/", views_automations.api_automation, name="api_automation"),
+    path("api/v1/automations/<uuid:pk>/start/", views_automations.api_automation_command, {"action": "start"}, name="api_automation_start"),
+    path("api/v1/automations/<uuid:pk>/stop/", views_automations.api_automation_command, {"action": "stop"}, name="api_automation_stop"),
+    path("", views.dashboard, name="dashboard"),
+    path("datasets/", views.datasets, name="datasets"),
+    path("datasets/<uuid:pk>/", views.dataset_detail, name="dataset_detail"),
+    path("datasets/<uuid:pk>/download/", views.dataset_download, name="dataset_download"),
+    path("datasets/<uuid:pk>/delete/", views.dataset_delete, name="dataset_delete"),
+    path("datasets/<uuid:pk>/replay/", views.replay_create, name="replay_create"),
+    path("jobs/", views.jobs, name="jobs"),
+    path("jobs/<uuid:pk>/", views.job_detail, name="job_detail"),
+    path("jobs/<uuid:pk>/cancel/", views.replay_cancel, name="replay_cancel"),
+    path("jobs/<uuid:pk>/retry/", views.replay_retry, name="replay_retry"),
+    path("risk/", views.risk_profile, name="risk_profile"),
+    path("feedback/", views.feedback, name="feedback"),
+    path("operations/", views.operations, name="operations"),
+    path("api/v1/session/", views.api_session, name="api_session"),
+    path("api/v1/datasets/", views.api_datasets, name="api_datasets"),
+    path("api/v1/datasets/<uuid:pk>/", views.api_dataset, name="api_dataset"),
+    path("api/v1/jobs/", views.api_jobs, name="api_jobs"),
+    path("api/v1/jobs/<uuid:pk>/", views.api_job, name="api_job"),
+    path("api/v1/jobs/<uuid:pk>/cancel/", views.api_cancel, name="api_cancel"),
+    path("api/v1/jobs/<uuid:pk>/retry/", views.api_retry, name="api_retry"),
+]

@@ -1,0 +1,210 @@
+{
+  "captures": [
+    {
+      "capture_id": "synthetic-2026-10-01",
+      "itch_path": "captures/synthetic-2026-10-01.itch",
+      "itch_sha256": "2e08348ad5fe532131c5781704f568f81256711b267904cea99bbdab4a30f84e",
+      "market_csv_path": "market/session-0000.csv",
+      "market_csv_sha256": "edbc236d56406428dbf0996158c9719128acefa727f11c871407c68824f0c096",
+      "session_date": "2026-10-01",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-02",
+      "itch_path": "captures/synthetic-2026-10-02.itch",
+      "itch_sha256": "9d7a9f7c3270eea1ebded24b3b4bc98a41cc6914e968d41b90585bceaa29799e",
+      "market_csv_path": "market/session-0001.csv",
+      "market_csv_sha256": "2b089c0ddc2a9096e7dd0b5b9b1f63ea38bf2cda96be066f3ce667688f1f1e19",
+      "session_date": "2026-10-02",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-05",
+      "itch_path": "captures/synthetic-2026-10-05.itch",
+      "itch_sha256": "121426f3a329dfd4e44319df3876db6b6a98c5588743d46c1f57ce26f723308d",
+      "market_csv_path": "market/session-0002.csv",
+      "market_csv_sha256": "0296ffff300bd403fc52b10cdaf3584f102cc17f476487955a59808886a581eb",
+      "session_date": "2026-10-05",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-06",
+      "itch_path": "captures/synthetic-2026-10-06.itch",
+      "itch_sha256": "106a51720390a66062a18b7cc3ee89b85d0a4c08bad9d1262e626176852f16bb",
+      "market_csv_path": "market/session-0003.csv",
+      "market_csv_sha256": "27e2f5c579de559920a76ad6f951db807f274b82f2856c55991dc2e691537fc2",
+      "session_date": "2026-10-06",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-07",
+      "itch_path": "captures/synthetic-2026-10-07.itch",
+      "itch_sha256": "d1909a7238bdfe3add6ba3fd73ba26bd536e68f5f1165103e2d2d7f2d0b9fa13",
+      "market_csv_path": "market/session-0004.csv",
+      "market_csv_sha256": "55720f34fd841f3096c3651d1a530e8f3be267fc18019fab5b9e5f32904443c3",
+      "session_date": "2026-10-07",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-08",
+      "itch_path": "captures/synthetic-2026-10-08.itch",
+      "itch_sha256": "28223d25d09115bf0bda5885ec322e44a0c95040cf3f8260965af866eaf1e3b0",
+      "market_csv_path": "market/session-0005.csv",
+      "market_csv_sha256": "26b4f3b9429437ba9dfc22618cc49e461970b0d5f622c6caf48bcc8d84730e4f",
+      "session_date": "2026-10-08",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-09",
+      "itch_path": "captures/synthetic-2026-10-09.itch",
+      "itch_sha256": "68879e9526117522d94823a62da7c614f7441441d5bab7e1f729b85263bc7844",
+      "market_csv_path": "market/session-0006.csv",
+      "market_csv_sha256": "d120544d0765acc9952124340571bf1424a707b40f26caa9e0139efb072ff6d5",
+      "session_date": "2026-10-09",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-12",
+      "itch_path": "captures/synthetic-2026-10-12.itch",
+      "itch_sha256": "0374a0a0a3c716224610e4a739f877fbdce50dba5db7ab28a987e27a8af2650e",
+      "market_csv_path": "market/session-0007.csv",
+      "market_csv_sha256": "47de2318e650e452b00abbeaca988f9b4b5eab0aa59887bb5eb6b2dad4ed0126",
+      "session_date": "2026-10-12",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-13",
+      "itch_path": "captures/synthetic-2026-10-13.itch",
+      "itch_sha256": "f76062f240945bc6751d20fb165f9ffee26993f2c1564a95dccf12e7f93c2d65",
+      "market_csv_path": "market/session-0008.csv",
+      "market_csv_sha256": "028cf6ca56b267f939fc72b1577200cfa7c3ad6fc1d3f74d553fda16fc3b8aea",
+      "session_date": "2026-10-13",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-14",
+      "itch_path": "captures/synthetic-2026-10-14.itch",
+      "itch_sha256": "e00c82e649238e03adb0ecde0b52a3704b705a288cd3bf0d6bdd4f1c707364fa",
+      "market_csv_path": "market/session-0009.csv",
+      "market_csv_sha256": "57d3d3d8290eb40821793f9e95851e27a527da27e600b250bb323bb3f0686054",
+      "session_date": "2026-10-14",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-15",
+      "itch_path": "captures/synthetic-2026-10-15.itch",
+      "itch_sha256": "cceb8a23171fb1f30746b5f38604c243d4590d91ad79662dd217e04043b4908e",
+      "market_csv_path": "market/session-0010.csv",
+      "market_csv_sha256": "73a590bc57898deb17909ecceb4282de2ee5ae3ddf333b1e2b85380120720b4f",
+      "session_date": "2026-10-15",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-16",
+      "itch_path": "captures/synthetic-2026-10-16.itch",
+      "itch_sha256": "85f2f512098c5108e895ea8b5c06e8d571337887fcaffef784142ed890bf1b21",
+      "market_csv_path": "market/session-0011.csv",
+      "market_csv_sha256": "e4b6b89076f4c6689622ba64c58ae454cce5fa1114fb894e06a119f6b5126a33",
+      "session_date": "2026-10-16",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-19",
+      "itch_path": "captures/synthetic-2026-10-19.itch",
+      "itch_sha256": "9c37f7230e6daef5578a19ec5559042dd6d6d3719722be6c152d36e3bdb2bec8",
+      "market_csv_path": "market/session-0012.csv",
+      "market_csv_sha256": "d9bdd0a56f1fe8c3b0328aeff0a951f339162f44b4d42b1fcbff19c6f44fa425",
+      "session_date": "2026-10-19",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-20",
+      "itch_path": "captures/synthetic-2026-10-20.itch",
+      "itch_sha256": "759e63c547b556363f60a5b739b9e1438d403f504badb559ba8505eefdd2d58f",
+      "market_csv_path": "market/session-0013.csv",
+      "market_csv_sha256": "a54fb08d5b684b137e70af3290ab19516e0fd12aaccc35d25ab3bb4253865a3d",
+      "session_date": "2026-10-20",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-21",
+      "itch_path": "captures/synthetic-2026-10-21.itch",
+      "itch_sha256": "61656acb7e02494f26facb51320df482487313c32cba025e9c4d2f09efcd7750",
+      "market_csv_path": "market/session-0014.csv",
+      "market_csv_sha256": "14762fdf2990679021e550a1fd2690b5cbd8e90ff670fa47988f8bbe1f39146a",
+      "session_date": "2026-10-21",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-22",
+      "itch_path": "captures/synthetic-2026-10-22.itch",
+      "itch_sha256": "72697c8584a8f8e7a7baa6035d14b17947d530a64837b42de1fddc4b14164ab4",
+      "market_csv_path": "market/session-0015.csv",
+      "market_csv_sha256": "e3860442eb06de47d064b431c0858d8c5ead8b5a804c9c95b91c523563e00dae",
+      "session_date": "2026-10-22",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-23",
+      "itch_path": "captures/synthetic-2026-10-23.itch",
+      "itch_sha256": "9969eb0df01463019969cc0486c4808b6115ad60ebd2a4ee1f636d8c34e5366a",
+      "market_csv_path": "market/session-0016.csv",
+      "market_csv_sha256": "0c33296764ed9c731db0b4dbe3032b7d94a4cc19b3be2ce771e5f466b0e5199e",
+      "session_date": "2026-10-23",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-26",
+      "itch_path": "captures/synthetic-2026-10-26.itch",
+      "itch_sha256": "ae8f53061d1b7711b10ce0b6de75f78160e902aa5606e06f167fdb4c973cdc24",
+      "market_csv_path": "market/session-0017.csv",
+      "market_csv_sha256": "bcd242d3e4717780573c308394eb09c385347d869c98ee1acf71a1ad2e61916f",
+      "session_date": "2026-10-26",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-27",
+      "itch_path": "captures/synthetic-2026-10-27.itch",
+      "itch_sha256": "ee29a96617ab80962c54ba06740718bd3c1f960760f76d74e8b3cd54c84eb1e4",
+      "market_csv_path": "market/session-0018.csv",
+      "market_csv_sha256": "d585e67bcdb02c01a61294c0f6d8d9dbf454b6b7dafc911c32f55db48dedf894",
+      "session_date": "2026-10-27",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    },
+    {
+      "capture_id": "synthetic-2026-10-28",
+      "itch_path": "captures/synthetic-2026-10-28.itch",
+      "itch_sha256": "3040daed720c42d41851ebae7b2e375d2bcce841b2b97c3386a5d0e16f960b46",
+      "market_csv_path": "market/session-0019.csv",
+      "market_csv_sha256": "989e7e5bfb4b7a091fad071edd8853f96a04d1529ef671a4ab47568a61c7e530",
+      "session_date": "2026-10-28",
+      "stock_locate": 1,
+      "symbol": "TEST"
+    }
+  ],
+  "provenance": {
+    "authorized_use_attested": false,
+    "kind": "synthetic",
+    "source": "deterministic synthetic ITCH fixture seed=46; short intraday windows; no market-performance evidence"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,7 @@
+# Optional read-only AI operator monitoring; no training/broker control in Web.
+services:
+  backend:
+    environment:
+      ML_MODEL_STORE_DIR: /app/model-store
+    volumes:
+      - ${ML_MODEL_STORE_HOST_DIR:?Set a readable operator-owned model registry}:/app/model-store:ro

@@ -1,0 +1,40 @@
+........................................................................................... [ 22%]
+................................................ [ 34%]
+.............F.................................................... [ 50%]
+....................................... [ 60%]
+............................................................ [ 75%]
+.............................................................. [ 90%]
+.......................................  [100%]
+=================================== FAILURES ===================================
+_______ TradingTests.test_operations_password_attempts_are_rate_limited ________
+
+self = <trading.tests.TradingTests testMethod=test_operations_password_attempts_are_rate_limited>
+
+    def test_operations_password_attempts_are_rate_limited(self):
+        operator = get_user_model().objects.create_superuser(email="operator@example.test", password="Operator#ActualPass123")
+        self.client.force_login(operator)
+        for _ in range(5):
+            response = self.client.post(reverse("trading:operations"), {"action": "pause", "reason": "maintenance checks", "password": "incorrect-password"})
+            self.assertEqual(response.status_code, 200)
+        response = self.client.post(reverse("trading:operations"), {"action": "pause", "reason": "maintenance checks", "password": "Operator#ActualPass123"})
+>       self.assertEqual(response.status_code, 429)
+E       AssertionError: 302 != 429
+
+backend/trading/tests.py:439: AssertionError
+----------------------------- Captured stderr call -----------------------------
+{"asctime": "2026-11-03 12:49:00,141", "levelname": "INFO", "name": "vector.http", "message": "http_request", "request_id": "fbaa29b0ad7a41f496b47a8a3923b60b", "route": "operations/", "method": "POST", "status": 200, "duration_ms": 169.268, "user_id": 3}
+{"asctime": "2026-11-03 12:49:00,272", "levelname": "INFO", "name": "vector.http", "message": "http_request", "request_id": "30b1f6074fbc4e91bbca181dadf1a21b", "route": "operations/", "method": "POST", "status": 200, "duration_ms": 130.914, "user_id": 3}
+{"asctime": "2026-11-03 12:49:00,437", "levelname": "INFO", "name": "vector.http", "message": "http_request", "request_id": "e36204812538438a9a404fd8f0b0db67", "route": "operations/", "method": "POST", "status": 200, "duration_ms": 163.707, "user_id": 3}
+{"asctime": "2026-11-03 12:49:00,588", "levelname": "INFO", "name": "vector.http", "message": "http_request", "request_id": "3fb513bc2a744ca0bdba24026ad55420", "route": "operations/", "method": "POST", "status": 200, "duration_ms": 150.385, "user_id": 3}
+{"asctime": "2026-11-03 12:49:00,747", "levelname": "INFO", "name": "vector.http", "message": "http_request", "request_id": "dd6e4ef50b42410791a3e63c343c89d1", "route": "operations/", "method": "POST", "status": 200, "duration_ms": 157.41, "user_id": 3}
+{"asctime": "2026-11-03 12:49:00,887", "levelname": "INFO", "name": "vector.http", "message": "http_request", "request_id": "83b5e076b4ad45bcb92e8420f71f34de", "route": "operations/", "method": "POST", "status": 302, "duration_ms": 139.397, "user_id": 3}
+------------------------------ Captured log call -------------------------------
+INFO     vector.http:middleware.py:58 http_request
+INFO     vector.http:middleware.py:58 http_request
+INFO     vector.http:middleware.py:58 http_request
+INFO     vector.http:middleware.py:58 http_request
+INFO     vector.http:middleware.py:58 http_request
+INFO     vector.http:middleware.py:58 http_request
+=========================== short test summary info ============================
+FAILED backend/trading/tests.py::TradingTests::test_operations_password_attempts_are_rate_limited
+1 failed, 404 passed, 170 subtests passed in 157.80s (0:02:37)

@@ -1,0 +1,465 @@
+{
+  "blocked_finding_count": 46,
+  "blocked_findings": [
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "1:2.41.5-0+deb13u1",
+      "package": "bsdutils",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "1:2.41.5-0+deb13u1",
+      "package": "bsdutils",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "1:2.41.5-0+deb13u1",
+      "package": "bsdutils",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "1:2.41.5-0+deb13u1",
+      "package": "bsdutils",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-54369",
+      "installed_version": "2.3.2-2+b1",
+      "package": "libacl1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libblkid1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libblkid1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libblkid1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libblkid1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "liblastlog2-2",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "liblastlog2-2",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "liblastlog2-2",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "liblastlog2-2",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libmount1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libmount1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libmount1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libmount1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2025-69720",
+      "installed_version": "6.5+20250216-2",
+      "package": "libncursesw6",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libsmartcols1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libsmartcols1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libsmartcols1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libsmartcols1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-119373",
+      "installed_version": "3.46.1-7+deb13u2",
+      "package": "libsqlite3-0",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-16742",
+      "installed_version": "257.13-1~deb13u1",
+      "package": "libsystemd0",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2025-69720",
+      "installed_version": "6.5+20250216-2",
+      "package": "libtinfo6",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-16742",
+      "installed_version": "257.13-1~deb13u1",
+      "package": "libudev1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libuuid1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libuuid1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libuuid1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "libuuid1",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "package": "login",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "package": "login",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "package": "login",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "package": "login",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "mount",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "mount",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "mount",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "mount",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2025-69720",
+      "installed_version": "6.5+20250216-2",
+      "package": "ncurses-base",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2025-69720",
+      "installed_version": "6.5+20250216-2",
+      "package": "ncurses-bin",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-9538",
+      "installed_version": "5.40.1-6+deb13u1",
+      "package": "perl-base",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-76642",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "util-linux",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78408",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "util-linux",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78409",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "util-linux",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-78410",
+      "installed_version": "2.41.5-0+deb13u1",
+      "package": "util-linux",
+      "severity": "HIGH",
+      "source": "trivy"
+    },
+    {
+      "condition": "upstream_version_below_fixed_and_fts5_enabled",
+      "exploitability_assessed": false,
+      "fixed_upstream_version": "3.54.0",
+      "id": "CVE-2026-119373",
+      "installed_version": "3.46.1",
+      "package": "sqlite-runtime",
+      "severity": "HIGH",
+      "source": "known_upstream_advisory",
+      "source_url": "https://security-tracker.debian.org/tracker/CVE-2026-119373"
+    }
+  ],
+  "blocked_unique_vulnerability_count": 9,
+  "evaluated_at": "2026-11-03T12:53:50.259035Z",
+  "evidence_age_limit_seconds": 86400,
+  "failure_codes": [
+    "TRIVY_FINDING_SEVERITY_UNKNOWN",
+    "TRIVY_HIGH_OR_CRITICAL",
+    "UPSTREAM_ADVISORY_MATCH"
+  ],
+  "future_clock_skew_limit_seconds": 300,
+  "image_id": "sha256:c51392a1508b9a3b4c278336a835b005d8dc7dd7f5341c12c8f7f62a4ede696c",
+  "input_sha256": {
+    "advisories": "a539996ee1036d16779b90bf407b31338153b0a81d87dc3a01dc149d0025e701",
+    "inventory": "f8bc0c1e9ebbaa28427b4f16368c9304ee801d878a49248eac155d1a83e36bf8",
+    "trivy": "a8791b46a221723375ae9f6e145f165191c167f5b410a91d2b20c3ce41281472"
+  },
+  "release_allowed": false,
+  "scan_created_at": "2026-11-03T12:53:04.04588064Z",
+  "schema_version": 1,
+  "scope": "Trusted CI inputs; caller-supplied image identity; no exploitability or profitability assurance.",
+  "status": "blocked",
+  "trivy_severity_counts": {
+    "CRITICAL": 0,
+    "HIGH": 45,
+    "LOW": 62,
+    "MEDIUM": 77,
+    "UNKNOWN": 7
+  },
+  "unverified_codes": [
+    "TRIVY_FINDING_SEVERITY_UNKNOWN"
+  ],
+  "unverified_finding_count": 7,
+  "unverified_findings": [
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-119371",
+      "installed_version": "3.46.1-7+deb13u2",
+      "package": "libsqlite3-0",
+      "severity": "UNKNOWN",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-119372",
+      "installed_version": "3.46.1-7+deb13u2",
+      "package": "libsqlite3-0",
+      "severity": "UNKNOWN",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-119374",
+      "installed_version": "3.46.1-7+deb13u2",
+      "package": "libsqlite3-0",
+      "severity": "UNKNOWN",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-119375",
+      "installed_version": "3.46.1-7+deb13u2",
+      "package": "libsqlite3-0",
+      "severity": "UNKNOWN",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-119376",
+      "installed_version": "3.46.1-7+deb13u2",
+      "package": "libsqlite3-0",
+      "severity": "UNKNOWN",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-119377",
+      "installed_version": "3.46.1-7+deb13u2",
+      "package": "libsqlite3-0",
+      "severity": "UNKNOWN",
+      "source": "trivy"
+    },
+    {
+      "fixed_version": "",
+      "id": "CVE-2026-119379",
+      "installed_version": "3.46.1-7+deb13u2",
+      "package": "libsqlite3-0",
+      "severity": "UNKNOWN",
+      "source": "trivy"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "date_utc": "2026-11-01",
+  "scanner": "Trivy 0.76.1",
+  "scope": "application image only",
+  "image_id": "sha256:12cb0c1e7cae768ddf3533fb09e2e6484cf6347b260308722892be2647822a94",
+  "os": {
+    "Family": "debian",
+    "Name": "13.7"
+  },
+  "critical_hits": 0,
+  "high_hits": 46,
+  "unique_cves": 10,
+  "release_gate_passed": false,
+  "findings": [
+    {
+      "id": "CVE-2025-69720",
+      "severity": "HIGH",
+      "packages": [
+        "libncursesw6",
+        "libtinfo6",
+        "ncurses-base",
+        "ncurses-bin"
+      ],
+      "title": "ncurses: ncurses: Buffer overflow vulnerability may lead to arbitrary code execution.",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-119373",
+      "severity": "HIGH",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "title": "sqlite: sqlite: Denial of service via heap-based buffer overflow in FTS5",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-119586",
+      "severity": "HIGH",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "title": "sqlite: sqlite: Arbitrary command execution via .recover command",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-16742",
+      "severity": "HIGH",
+      "packages": [
+        "libsystemd0",
+        "libudev1"
+      ],
+      "title": "systemd: systemd-homed: Local privilege escalation via missing home-record signature verification",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-54369",
+      "severity": "HIGH",
+      "packages": [
+        "libacl1"
+      ],
+      "title": "acl: Symlink traversal privilege escalation via libacl functions",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-76642",
+      "severity": "HIGH",
+      "packages": [
+        "bsdutils",
+        "libblkid1",
+        "liblastlog2-2",
+        "libmount1",
+        "libsmartcols1",
+        "libuuid1",
+        "login",
+        "mount",
+        "util-linux"
+      ],
+      "title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-78408",
+      "severity": "HIGH",
+      "packages": [
+        "bsdutils",
+        "libblkid1",
+        "liblastlog2-2",
+        "libmount1",
+        "libsmartcols1",
+        "libuuid1",
+        "login",
+        "mount",
+        "util-linux"
+      ],
+      "title": "util-linux: util-linux: nsenter --join-cgroup leaks root cgroup migration authority",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-78409",
+      "severity": "HIGH",
+      "packages": [
+        "bsdutils",
+        "libblkid1",
+        "liblastlog2-2",
+        "libmount1",
+        "libsmartcols1",
+        "libuuid1",
+        "login",
+        "mount",
+        "util-linux"
+      ],
+      "title": "util-linux: util-linux: X-mount.subdir detached-tree resolution can escape via intermediate symlinks",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-78410",
+      "severity": "HIGH",
+      "packages": [
+        "bsdutils",
+        "libblkid1",
+        "liblastlog2-2",
+        "libmount1",
+        "libsmartcols1",
+        "libuuid1",
+        "login",
+        "mount",
+        "util-linux"
+      ],
+      "title": "util-linux: util-linux: restricted bind mounts do not pin the source, allowing X-mount.owner/group/mode redirection",
+      "status": [
+        "affected"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    },
+    {
+      "id": "CVE-2026-9538",
+      "severity": "HIGH",
+      "packages": [
+        "perl-base"
+      ],
+      "title": "perl-Archive-Tar: perl-Archive-Tar: Denial of Service via crafted tar header with large entry size",
+      "status": [
+        "fix_deferred"
+      ],
+      "fixed_versions": [
+        "unavailable"
+      ]
+    }
+  ]
+}

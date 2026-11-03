@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}反馈与问题{% endblock %}
+{% block content %}<header class="page-header"><div><p class="eyebrow">SUPPORT</p><h1>反馈与问题</h1><p class="muted">提供任务 ID 和复现步骤。请勿提交密码、令牌、API 密钥或账户敏感信息。</p></div></header>
+<section class="card"><h2>提交反馈</h2><form method="post" class="form-grid">{% csrf_token %}{{ form.as_p }}<button class="button button-primary" type="submit">提交反馈</button></form></section>
+<section class="card"><h2>我的反馈</h2>{% for item in page_obj %}<article class="card"><div class="page-header"><h3>{{ item.subject }}</h3><span class="badge">{{ item.get_status_display }}</span></div><p>{{ item.message|linebreaksbr }}</p><p class="muted">{{ item.created_at|date:"Y-m-d H:i" }} UTC · {{ item.pk }}</p>{% if item.response %}<h4>管理员回复</h4><p>{{ item.response|linebreaksbr }}</p>{% endif %}</article>{% empty %}<div class="empty-state">暂无反馈记录。</div>{% endfor %}{% include "trading/_pagination.html" %}</section>{% endblock %}

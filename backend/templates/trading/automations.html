@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}自动运行{% endblock %}
+{% block content %}
+<header class="page-header"><div><p class="eyebrow">AUTOMATED RESEARCH</p><h1>自动运行</h1><p class="muted">明确授权后，后台自动运行历史做市模拟；每轮独立记录结果。</p></div></header>
+<div class="alert">自动运行使用你选择的固定历史文件，每轮从独立模拟账户开始。重复运行同一历史记录不是持续获得实时行情，也不产生可累加的真实收益。本功能不提交实盘订单，不保证盈利。</div>
+<section class="card"><h2>我的自动配置</h2><div class="table-wrap"><table><thead><tr><th>名称</th><th>数据集</th><th>状态</th><th>运行次数</th><th>下次计划（UTC）</th><th>操作</th></tr></thead><tbody>
+{% for item in page_obj %}<tr><td>{{ item.name }}</td><td>{{ item.dataset.name }}</td><td><span class="badge">{{ item.get_state_display }}</span>{% if item.risk_latched %} · 风险锁存{% endif %}</td><td>{{ item.runs_created }} / {{ item.max_runs }}</td><td>{{ item.next_run_at|date:"Y-m-d H:i:s"|default:"未计划" }}</td><td><a href="{% url 'trading:automation_detail' item.pk %}">查看与控制</a></td></tr>{% empty %}<tr><td colspan="6"><div class="empty-state">尚未创建自动运行。配置保存后默认停止，需要你重新验证密码并主动启动。</div></td></tr>{% endfor %}
+</tbody></table></div>{% include "trading/_pagination.html" %}</section>
+<section class="card"><h2>新建自动模拟配置</h2><p class="muted">风险参数取自创建时的研究参数快照，后续修改个人参数不会影响此配置。间隔至少 60 秒，最多运行 1000 次；不补发停机期间错过的周期。</p><form method="post" class="form-grid" data-prevent-double-submit>{% csrf_token %}{{ form.non_field_errors }}{{ form.key }}
+{% for field in form.visible_fields %}<p>{{ field.label_tag }}{{ field }}{{ field.errors }}</p>{% endfor %}
+<p class="muted">模拟延迟单位 ns，费用/回扣单位 0.0001 USD/股，报价生命周期不等于文件截断时长。</p><button class="button button-primary" type="submit" {% if not user.email_verified %}disabled{% endif %}>保存为停止状态</button></form></section>
+{% endblock %}

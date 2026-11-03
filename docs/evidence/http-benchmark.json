@@ -1,0 +1,18 @@
+{
+  "scope": "HTTP GET only, not trading latency",
+  "offered": 300,
+  "completed": 300,
+  "not_admitted": 0,
+  "statuses": {
+    "200": 300
+  },
+  "elapsed_seconds": 29.913,
+  "scheduled_to_done_ms": {
+    "p50": 11.721,
+    "p90": 16.054,
+    "p99": 31.941,
+    "p99_9": 66.757,
+    "max": 66.757
+  },
+  "max_scheduling_delay_ms": 3.3730579998518806
+}

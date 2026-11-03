@@ -1,0 +1,36 @@
+{
+  "/health/live/": {
+    "http_status": 200,
+    "body": {
+      "success": true,
+      "code": "OK",
+      "message": "",
+      "data": {
+        "status": "alive",
+        "version": "1.0.0-rc.3"
+      }
+    }
+  },
+  "/health/ready/": {
+    "http_status": 200,
+    "body": {
+      "success": true,
+      "code": "OK",
+      "message": "",
+      "data": {
+        "ready": true
+      }
+    }
+  },
+  "/api/v1/ai/status/": {
+    "http_status": 401,
+    "body": {
+      "success": false,
+      "code": "AUTHENTICATION_REQUIRED",
+      "message": "\u8bf7\u5148\u767b\u5f55\u3002",
+      "data": {
+        "execution_authorized": false
+      }
+    }
+  }
+}

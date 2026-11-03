@@ -1,0 +1,17 @@
+[Unit]
+Description=Trading system daily PostgreSQL backup
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=trading-ops
+Group=trading-ops
+WorkingDirectory=/opt/trading-system
+UMask=0077
+ExecStart=/usr/bin/python3 scripts/backup.py --output /var/backups/trading/daily --keep-days 14
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/var/backups/trading
+# Docker socket access is effectively root access. Use a dedicated operations host/user.

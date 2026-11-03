@@ -1,0 +1,35 @@
+# Template only. Not installed/enabled by Docker Compose or project setup.
+[Unit]
+Description=Vector explicit opt-in IBKR paper execution
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=vectorpaper
+Group=vectorpaper
+WorkingDirectory=/opt/vector
+EnvironmentFile=/etc/vector/paper.env
+ExecStart=/opt/vector/.venv-ibkr/bin/python -m execution.auto_paper --enable-paper --status-file /run/vector-paper-status/status.json
+StateDirectory=vector-paper
+StateDirectoryMode=0700
+RuntimeDirectory=vector-paper-status
+RuntimeDirectoryMode=0700
+RuntimeDirectoryPreserve=yes
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+ReadWritePaths=/var/lib/vector-paper /run/vector-paper-status
+TimeoutStopSec=40
+KillSignal=SIGTERM
+Restart=no
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

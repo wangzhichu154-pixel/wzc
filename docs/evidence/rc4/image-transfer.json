@@ -1,0 +1,9 @@
+{
+  "scope": "local export/load mechanism only; remote CI and publication not executed",
+  "image_id": "sha256:c51392a1508b9a3b4c278336a835b005d8dc7dd7f5341c12c8f7f62a4ede696c",
+  "image_id_preserved": true,
+  "archive_sha256": "9de2201959d620b29b105ea85d9fabd56b08a7e7b02dafbb8a008c59f0cf58f6",
+  "archive_bytes": 91777699,
+  "published": false,
+  "release_allowed": false
+}

@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.20)
+project(vector_execution_contract VERSION 1.0.0 LANGUAGES CXX)
+enable_testing()
+add_executable(execution-contract-tests tests/contract_test.cpp)
+target_include_directories(execution-contract-tests PRIVATE include)
+target_compile_features(execution-contract-tests PRIVATE cxx_std_20)
+target_compile_options(execution-contract-tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME execution-contract COMMAND execution-contract-tests)

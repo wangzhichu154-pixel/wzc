@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "available": true,
+  "state": "ready",
+  "live_enabled": false,
+  "active": {
+    "simulation": null,
+    "paper": null
+  },
+  "models": [
+    {
+      "version": "ridge-af7a151d210f2f0476851553",
+      "provenance_kind": "synthetic",
+      "registered_at_ns": 1793616252976583113,
+      "model_sha256": "7a17fc0a5f3e21971821e744571f9e9e6c9deed0a341c439722c7df14d7d2444",
+      "policy_sha256": "0961d43b8c45cd5d09f20ce8cd501885c94d3167d650385815265e211b59ca73",
+      "stage": "evaluated",
+      "training_summary": {
+        "split": {
+          "train": {
+            "sessions": 6,
+            "samples": 57179
+          },
+          "validation": {
+            "sessions": 2,
+            "samples": 19060
+          },
+          "test": {
+            "sessions": 2,
+            "samples": 19060
+          }
+        },
+        "metrics": {
+          "train": {
+            "ridge": {
+              "correlation": 0.10161478461862379,
+              "samples": 57179,
+              "direction_accuracy": 0.5421024641021096,
+              "mae_bps": 1.0599582073949598,
+              "mse_bps2": 1.9814821031067331,
+              "rmse_bps": 1.4076512718378558
+            },
+            "zero": {
+              "correlation": null,
+              "samples": 57179,
+              "direction_accuracy": 0.0,
+              "mae_bps": 1.0386792988885842,
+              "mse_bps2": 2.003418473624107,
+              "rmse_bps": 1.4154216593030173
+            },
+            "microprice": {
+              "correlation": 0.045897402438620435,
+              "samples": 57179,
+              "direction_accuracy": 0.5234887431306506,
+              "mae_bps": 1.3535136863879587,
+              "mse_bps2": 2.9180036869480337,
+              "rmse_bps": 1.7082165222676058
+            }
+          },
+          "validation": {
+            "ridge": {
+              "correlation": 0.08094399666935248,
+              "samples": 19060,
+              "direction_accuracy": 0.538165049211921,
+              "mae_bps": 1.2220661373792912,
+              "mse_bps2": 2.448084202054934,
+              "rmse_bps": 1.5646354853623043
+            },
+            "zero": {
+              "correlation": null,
+              "samples": 19060,
+              "direction_accuracy": 0.0,
+              "mae_bps": 1.2054067695194122,
+              "mse_bps2": 2.4746375037699995,
+              "rmse_bps": 1.5730980591717731
+            },
+            "microprice": {
+              "correlation": 0.014972208150150844,
+              "samples": 19060,
+              "direction_accuracy": 0.5186179365407116,
+              "mae_bps": 1.4726808971046241,
+              "mse_bps2": 3.4289752236302227,
+              "rmse_bps": 1.851749233462842
+            }
+          },
+          "test": {
+            "ridge": {
+              "correlation": 0.07994265077405822,
+              "samples": 19060,
+              "direction_accuracy": 0.526468740182218,
+              "mae_bps": 0.9711989709180309,
+              "mse_bps2": 1.6912353204401467,
+              "rmse_bps": 1.3004750364540438
+            },
+            "zero": {
+              "correlation": null,
+              "samples": 19060,
+              "direction_accuracy": 0.0,
+              "mae_bps": 0.9431231141903051,
+              "mse_bps2": 1.6963269900142437,
+              "rmse_bps": 1.3024311843680048
+            },
+            "microprice": {
+              "correlation": 0.05610682035501584,
+              "samples": 19060,
+              "direction_accuracy": 0.5057335846685517,
+              "mae_bps": 1.2922179406114676,
+              "mse_bps2": 2.650136408902703,
+              "rmse_bps": 1.627923956732225
+            }
+          }
+        },
+        "selected_alpha": 0.1
+      },
+      "simulation_summary": {
+        "fill_count": 0,
+        "fees_units": 0,
+        "open_exposure": false,
+        "unrealized_pnl_units": null,
+        "realized_pnl_units": 0,
+        "rebates_units": 0,
+        "net_pnl_units": null,
+        "max_drawdown_units": null,
+        "fills": 0,
+        "pnl_mark_valid": false,
+        "inventory": 0,
+        "filled_quantity": 0,
+        "open_orders_at_end": 0,
+        "events": 19212,
+        "killed": false
+      },
+      "evaluation_passed": true,
+      "simulation_passed": false
+    },
+    {
+      "version": "ridge-7c58b134e83740784dd16f60",
+      "provenance_kind": "synthetic",
+      "registered_at_ns": 1793616164997277256,
+      "model_sha256": "7340bf1ec4dca1fe8f5e97a7b1775a6cb41e29ef0a11f4a07e7cb2019739f83d",
+      "policy_sha256": "0961d43b8c45cd5d09f20ce8cd501885c94d3167d650385815265e211b59ca73",
+      "stage": "evaluated",
+      "training_summary": {
+        "split": {
+          "train": {
+            "sessions": 12,
+            "samples": 229559
+          },
+          "validation": {
+            "sessions": 4,
+            "samples": 76520
+          },
+          "test": {
+            "sessions": 4,
+            "samples": 76520
+          }
+        },
+        "metrics": {
+          "train": {
+            "ridge": {
+              "correlation": 0.07091375275903189,
+              "samples": 229559,
+              "direction_accuracy": 0.525265794190586,
+              "mae_bps": 1.0849675380898698,
+              "mse_bps2": 2.034784728714935,
+              "rmse_bps": 1.4264588072268105
+            },
+            "zero": {
+              "correlation": null,
+              "samples": 229559,
+              "direction_accuracy": 0.0,
+              "mae_bps": 1.0681922109222612,
+              "mse_bps2": 2.045153531012166,
+              "rmse_bps": 1.4300886444595544
+            },
+            "microprice": {
+              "correlation": 0.04370699265586733,
+              "samples": 229559,
+              "direction_accuracy": 0.5126820045669949,
+              "mae_bps": 1.3753008232695136,
+              "mse_bps2": 2.9941753098568493,
+              "rmse_bps": 1.7303685474074155
+            }
+          },
+          "validation": {
+            "ridge": {
+              "correlation": 0.03406806601593727,
+              "samples": 76520,
+              "direction_accuracy": 0.5196703438845465,
+              "mae_bps": 1.0889607468760505,
+              "mse_bps2": 2.060566614570016,
+              "rmse_bps": 1.4354673854079778
+            },
+            "zero": {
+              "correlation": null,
+              "samples": 76520,
+              "direction_accuracy": 0.0,
+              "mae_bps": 1.0706394062190796,
+              "mse_bps2": 2.060659087229309,
+              "rmse_bps": 1.4354995949944775
+            },
+            "microprice": {
+              "correlation": 0.02705623229324569,
+              "samples": 76520,
+              "direction_accuracy": 0.5088973889905205,
+              "mae_bps": 1.384044059129526,
+              "mse_bps2": 3.0479296191127556,
+              "rmse_bps": 1.7458320707080495
+            }
+          },
+          "test": {
+            "ridge": {
+              "correlation": 0.04308590993577102,
+              "samples": 76520,
+              "direction_accuracy": 0.5134714831746984,
+              "mae_bps": 1.045044583130055,
+              "mse_bps2": 1.9162268532769269,
+              "rmse_bps": 1.3842784594426538
+            },
+            "zero": {
+              "correlation": null,
+              "samples": 76520,
+              "direction_accuracy": 0.0,
+              "mae_bps": 1.025056966264776,
+              "mse_bps2": 1.9186881031712317,
+              "rmse_bps": 1.3851671751710086
+            },
+            "microprice": {
+              "correlation": 0.036730173570814886,
+              "samples": 76520,
+              "direction_accuracy": 0.5122723525444053,
+              "mae_bps": 1.342763033321577,
+              "mse_bps2": 2.8672392369381043,
+              "rmse_bps": 1.6932924251109447
+            }
+          }
+        },
+        "selected_alpha": 10.0
+      },
+      "simulation_summary": {
+        "fill_count": 0,
+        "fees_units": 0,
+        "open_exposure": false,
+        "unrealized_pnl_units": null,
+        "realized_pnl_units": 0,
+        "rebates_units": 0,
+        "net_pnl_units": null,
+        "max_drawdown_units": null,
+        "fills": 0,
+        "pnl_mark_valid": false,
+        "inventory": 0,
+        "filled_quantity": 0,
+        "open_orders_at_end": 0,
+        "events": 76824,
+        "killed": false
+      },
+      "evaluation_passed": true,
+      "simulation_passed": false
+    }
+  ],
+  "retrain": {
+    "state": "completed",
+    "reason": "CREATED_CANDIDATE",
+    "updated_at_ns": 1793616252981793357
+  }
+}

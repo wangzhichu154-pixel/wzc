@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}服务暂时不可用{% endblock %}
+{% block content %}
+<section class="error-page" aria-labelledby="error-title">
+  <div class="error-code" aria-hidden="true">500</div>
+  <span class="eyebrow">服务异常</span>
+  <h1 id="error-title">服务暂时无法完成请求</h1>
+  <p>请稍后重新打开页面。如果刚才提交了任务，请先在任务列表核实状态，避免重复创建。</p>
+  {% if request.request_id %}<p class="text-small">向支持人员提供此问题编号：<code>{{ request.request_id }}</code></p>{% endif %}
+  <div class="actions"><a class="button button-primary" href="/jobs/">检查任务状态</a><a class="button button-secondary" href="/">返回工作台</a></div>
+</section>
+{% endblock %}

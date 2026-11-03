@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}研究概览{% endblock %}
+{% block content %}
+<header class="page-header"><div><p class="eyebrow">RESEARCH WORKSPACE</p><h1>研究概览</h1><p class="muted">从真实行情文件开始，记录每一次可追溯的研究运行。</p></div><a class="button button-primary" href="{% url 'trading:datasets' %}">上传行情文件</a></header>
+{% if not user.email_verified %}<div class="alert">请先验证邮箱，之后才能上传数据和运行回放。账户仍可查看设置与已有记录。</div>{% endif %}
+{% if safety.halted %}<div class="alert" role="status">研究任务入口已暂停。原因：{{ safety.reason }}。已运行任务按当前状态继续处理。</div>{% endif %}
+<section class="stats" aria-label="工作区统计">
+  <article class="stat-card"><span class="stat-label">私有数据集</span><strong class="stat-value">{{ dataset_count }}</strong></article>
+  <article class="stat-card"><span class="stat-label">累计回放</span><strong class="stat-value">{{ job_count }}</strong></article>
+  <article class="stat-card"><span class="stat-label">运行中</span><strong class="stat-value">{{ running_count }}</strong></article>
+  <article class="stat-card"><span class="stat-label">已完成</span><strong class="stat-value">{{ completed_count }}</strong></article>
+</section>
+<section class="card"><div class="page-header"><h2>自动运行</h2><a class="button button-secondary" href="{% url 'trading:automations' %}">管理自动配置</a></div><p>运行中：<strong>{{ automation_running }}</strong> · 暂停或故障：<strong>{{ automation_attention }}</strong></p><p class="muted">只有经你明确启动的配置才会自动创建模拟任务；每轮历史模拟独立核算，不累加为真实收益。</p></section>
+<section class="card"><div class="page-header"><h2>最近运行</h2><a href="{% url 'trading:jobs' %}">查看全部</a></div>{% include "trading/_jobs_table.html" with jobs=recent_jobs %}</section>
+<section class="grid grid-2"><article class="card"><h2>确定性回放与自动做市模拟</h2><p>使用 ITCH 文件重建订单簿。选择模拟模式后，按显式延迟、费用和成交假设运行自动报价、风险管理与模拟盈亏核算。</p><a href="{% url 'trading:datasets' %}">选择数据与运行模式 →</a></article><article class="card"><h2>研究与执行边界</h2><p>本工作区不提交真实订单。模拟账本不等于实际成交或收益，不能保证盈利；真实执行仍需经纪商连接与独立风险验收。</p><a href="{% url 'trading:risk_profile' %}">检查研究参数 →</a></article></section>
+{% endblock %}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Retain a weekly full database backup
+
+[Timer]
+OnCalendar=Sun *-*-* 03:45:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+Unit=trading-backup-weekly.service
+
+[Install]
+WantedBy=timers.target

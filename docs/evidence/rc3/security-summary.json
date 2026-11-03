@@ -1,0 +1,21 @@
+{
+  "image": "trading-system:local",
+  "image_id": "sha256:46270b1df71e4b4936e9d1246309fd8f6df70483713e5a39161e62145d62cf86",
+  "severity_hits": {
+    "HIGH": 46
+  },
+  "unique_cves": [
+    "CVE-2025-69720",
+    "CVE-2026-119373",
+    "CVE-2026-119586",
+    "CVE-2026-16742",
+    "CVE-2026-54369",
+    "CVE-2026-76642",
+    "CVE-2026-78408",
+    "CVE-2026-78409",
+    "CVE-2026-78410",
+    "CVE-2026-9538"
+  ],
+  "fixed_version_hits": 0,
+  "release_gate": "blocked"
+}

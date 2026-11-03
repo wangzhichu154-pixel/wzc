@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Vector 矢量交易：可审计的行情研究、ITCH 回放与风险运营工作台。">
+  <title>{% block title %}工作台{% endblock %} · Vector 矢量交易</title>
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/vector-mark.svg' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <script src="{% static 'js/app.js' %}" defer></script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳转到主要内容</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Vector 矢量交易首页">
+      <img src="{% static 'img/vector-mark.svg' %}" width="34" height="34" alt="">
+      <span class="brand-wordmark">VECTOR<span class="brand-caption">矢量交易</span></span>
+    </a>
+    <div class="topbar-context"><span class="mode-indicator" aria-hidden="true"></span>研究与回放工作台</div>
+    <div class="topbar-actions">
+      {% if user.is_authenticated %}
+        <a class="account-link" href="/accounts/profile/" aria-label="账户与安全"><span class="avatar" aria-hidden="true">{{ user.email|first|upper }}</span><span class="account-email">{{ user.email }}</span></a>
+        <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button class="button button-quiet button-sm" type="submit">退出</button></form>
+      {% else %}
+        <a class="button button-quiet button-sm" href="/accounts/login/">登录</a>
+        <a class="button button-primary button-sm" href="/accounts/register/">创建账户</a>
+      {% endif %}
+      <button class="nav-toggle button button-icon" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="打开导航"><span aria-hidden="true">☰</span></button>
+    </div>
+  </header>
+  <div class="app-shell">
+    <aside class="sidebar" id="primary-navigation" aria-label="主导航区域">
+      <nav aria-label="主导航">
+        <p class="nav-section-label">工作空间</p>
+        <a class="nav-link" href="/" data-nav-path="/"><span class="nav-icon" aria-hidden="true">◫</span>总览</a>
+        <a class="nav-link" href="/datasets/" data-nav-path="/datasets/"><span class="nav-icon" aria-hidden="true">▤</span>行情数据</a>
+        <a class="nav-link" href="/jobs/" data-nav-path="/jobs/"><span class="nav-icon" aria-hidden="true">▷</span>回放任务</a>
+        <a class="nav-link" href="/automations/" data-nav-path="/automations/"><span class="nav-icon" aria-hidden="true">↻</span>自动运行</a>
+        <a class="nav-link" href="/assessments/" data-nav-path="/assessments/"><span class="nav-icon" aria-hidden="true">◴</span>收益评估</a>
+        <a class="nav-link" href="/risk/" data-nav-path="/risk/"><span class="nav-icon" aria-hidden="true">◇</span>风险配置</a>
+        <p class="nav-section-label">账户与支持</p>
+        <a class="nav-link" href="/accounts/profile/" data-nav-path="/accounts/"><span class="nav-icon" aria-hidden="true">◎</span>账户安全</a>
+        <a class="nav-link" href="/feedback/" data-nav-path="/feedback/"><span class="nav-icon" aria-hidden="true">◌</span>反馈与问题</a>
+        {% if user.is_operator %}
+          <p class="nav-section-label">运营管理</p>
+          <a class="nav-link" href="/execution/" data-nav-path="/execution/"><span class="nav-icon" aria-hidden="true">⇄</span>执行接入</a>
+          <a class="nav-link" href="/ai/" data-nav-path="/ai/"><span class="nav-icon" aria-hidden="true">◎</span>AI 模型</a>
+          {% if perms.trading.change_platformsafetystate %}<a class="nav-link" href="/operations/" data-nav-path="/operations/"><span class="nav-icon" aria-hidden="true">⏣</span>平台控制</a>{% endif %}
+          <a class="nav-link" href="/admin/"><span class="nav-icon" aria-hidden="true">▦</span>管理后台<span class="nav-external" aria-hidden="true">↗</span></a>
+        {% endif %}
+      </nav>
+      <div class="sidebar-note">
+        <span class="eyebrow">RESEARCH ENVIRONMENT</span>
+        <p>历史回放结果不代表实盘成交。平台账户不授予实盘交易权限。</p>
+      </div>
+      <div class="sidebar-bottom"><span>VECTOR</span><span>1.0.0 · 候选版本</span></div>
+    </aside>
+    <div class="main-column">
+      <main id="main-content" class="main-content" tabindex="-1">
+        {% if user.is_authenticated and not user.email_verified %}
+          <div class="alert alert-warning" role="status"><span class="alert-marker" aria-hidden="true">!</span><div>请先验证邮箱，再上传行情或运行回放。<a href="/accounts/profile/">前往账户设置</a></div></div>
+        {% endif %}
+        {% if messages %}
+          <div class="message-stack" aria-live="polite" aria-atomic="false">
+            {% for message in messages %}<div class="alert alert-{{ message.tags|default:'info' }}" role="status"><div>{{ message }}</div><button class="alert-dismiss" type="button" aria-label="关闭提示" data-dismiss-alert>×</button></div>{% endfor %}
+          </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+      </main>
+      <footer class="footer">
+        <span>Vector 矢量交易 · 可审计的研究与运营</span>
+        <nav aria-label="法律与隐私"><a href="/about/">产品说明</a><a href="/privacy/">隐私政策</a><a href="/terms/">用户协议</a><a href="/cookies/">Cookie 说明</a></nav>
+      </footer>
+    </div>
+  </div>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

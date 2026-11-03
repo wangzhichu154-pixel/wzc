@@ -1,0 +1,7 @@
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="actions" aria-label="分页">
+  {% if page_obj.has_previous %}<a class="button button-secondary" href="?page={{ page_obj.previous_page_number }}">上一页</a>{% endif %}
+  <span class="muted">第 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} 页</span>
+  {% if page_obj.has_next %}<a class="button button-secondary" href="?page={{ page_obj.next_page_number }}">下一页</a>{% endif %}
+</nav>
+{% endif %}

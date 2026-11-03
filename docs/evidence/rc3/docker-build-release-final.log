@@ -1,0 +1,149 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.48kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.81kB done
+#2 DONE 0.0s
+
+#3 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#3 DONE 0.3s
+
+#4 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#4 CACHED
+
+#5 [internal] load metadata for docker.io/library/python:3.12-slim-trixie
+#5 ...
+
+#6 [internal] load metadata for docker.io/library/debian:trixie-slim
+#6 DONE 0.3s
+
+#5 [internal] load metadata for docker.io/library/python:3.12-slim-trixie
+#5 DONE 0.3s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 352B done
+#7 DONE 0.0s
+
+#8 [engine-build 1/5] FROM docker.io/library/debian:trixie-slim@sha256:f6b08b09a05725f9431502d3b5714f5c4576e82c1a84fa1debe0c24a7e0c3ec4
+#8 DONE 0.0s
+
+#9 [python-build 1/4] FROM docker.io/library/python:3.12-slim-trixie@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 11.04kB 0.0s done
+#10 DONE 0.0s
+
+#11 [runtime  2/16] RUN --mount=type=secret,id=proxy_ca,mode=0444     set --; if [ -f /run/secrets/proxy_ca ]; then set -- -o Acquire::https::CaInfo=/run/secrets/proxy_ca; fi;     apt-get "$@" update && apt-get "$@" upgrade -y --no-install-recommends     && apt-get "$@" install -y --no-install-recommends libstdc++6 ca-certificates && rm -rf /var/lib/apt/lists/*     && groupadd --gid 10001 app && useradd --uid 10001 --gid app --no-create-home --shell /usr/sbin/nologin app
+#11 CACHED
+
+#12 [python-build 2/4] WORKDIR /build
+#12 CACHED
+
+#13 [runtime  3/16] COPY --from=python-build /wheels /wheels
+#13 CACHED
+
+#14 [python-build 3/4] COPY requirements.txt .
+#14 CACHED
+
+#15 [python-build 4/4] RUN --mount=type=secret,id=proxy_ca,mode=0444     if [ -f /run/secrets/proxy_ca ]; then export PIP_CERT=/run/secrets/proxy_ca; fi;     pip wheel --only-binary=:all: --no-cache-dir --wheel-dir /wheels -r requirements.txt
+#15 CACHED
+
+#16 [runtime  4/16] COPY requirements.txt /app/requirements.txt
+#16 CACHED
+
+#17 [engine-build 4/5] COPY engine/ ./engine/
+#17 CACHED
+
+#18 [engine-build 2/5] RUN --mount=type=secret,id=proxy_ca,mode=0444     set --; if [ -f /run/secrets/proxy_ca ]; then set -- -o Acquire::https::CaInfo=/run/secrets/proxy_ca; fi;     apt-get "$@" update && apt-get "$@" install -y --no-install-recommends g++ cmake make python3 ca-certificates && rm -rf /var/lib/apt/lists/*
+#18 CACHED
+
+#19 [engine-build 3/5] WORKDIR /src
+#19 CACHED
+
+#20 [engine-build 5/5] RUN cmake -S engine -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build -j2 && ctest --test-dir /build --output-on-failure
+#20 CACHED
+
+#21 [runtime  5/16] COPY --chmod=0444 VERSION /app/VERSION
+#21 DONE 0.8s
+
+#22 [runtime  6/16] RUN pip install --no-cache-dir --no-index --find-links=/wheels -r /app/requirements.txt && rm -rf /wheels
+#22 2.206 Looking in links: /wheels
+#22 2.215 Processing /wheels/django-5.2.18-py3-none-any.whl (from -r /app/requirements.txt (line 2))
+#22 2.245 Processing /wheels/amqp-5.4.1-py3-none-any.whl (from -r /app/requirements.txt (line 3))
+#22 2.248 Processing /wheels/argon2_cffi_bindings-26.1.0-cp310-abi3-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (from -r /app/requirements.txt (line 4))
+#22 2.251 Processing /wheels/argon2_cffi-25.1.0-py3-none-any.whl (from -r /app/requirements.txt (line 5))
+#22 2.253 Processing /wheels/asgiref-3.13.0-py3-none-any.whl (from -r /app/requirements.txt (line 6))
+#22 2.256 Processing /wheels/billiard-4.3.1-py3-none-any.whl (from -r /app/requirements.txt (line 7))
+#22 2.258 Processing /wheels/celery-5.6.3-py3-none-any.whl (from -r /app/requirements.txt (line 8))
+#22 2.281 Processing /wheels/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r /app/requirements.txt (line 9))
+#22 2.283 Processing /wheels/click_didyoumean-0.3.1-py3-none-any.whl (from -r /app/requirements.txt (line 10))
+#22 2.285 Processing /wheels/click_plugins-1.1.1.2-py2.py3-none-any.whl (from -r /app/requirements.txt (line 11))
+#22 2.288 Processing /wheels/click_repl-0.4.1-py3-none-any.whl (from -r /app/requirements.txt (line 12))
+#22 2.290 Processing /wheels/click-8.5.0-py3-none-any.whl (from -r /app/requirements.txt (line 13))
+#22 2.292 Processing /wheels/dj_database_url-3.1.2-py3-none-any.whl (from -r /app/requirements.txt (line 14))
+#22 2.294 Processing /wheels/gunicorn-25.3.0-py3-none-any.whl (from -r /app/requirements.txt (line 15))
+#22 2.298 Processing /wheels/kombu-5.6.2-py3-none-any.whl (from -r /app/requirements.txt (line 16))
+#22 2.304 Processing /wheels/packaging-26.3-py3-none-any.whl (from -r /app/requirements.txt (line 17))
+#22 2.306 Processing /wheels/prometheus_client-0.26.0-py3-none-any.whl (from -r /app/requirements.txt (line 18))
+#22 2.309 Processing /wheels/prompt_toolkit-3.0.53-py3-none-any.whl (from -r /app/requirements.txt (line 19))
+#22 2.312 Processing /wheels/psycopg_binary-3.3.6-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r /app/requirements.txt (line 20))
+#22 2.322 Processing /wheels/psycopg-3.3.6-py3-none-any.whl (from -r /app/requirements.txt (line 21))
+#22 2.327 Processing /wheels/pycparser-3.12-py3-none-any.whl (from -r /app/requirements.txt (line 22))
+#22 2.330 Processing /wheels/python_dateutil-4.0.0-py3-none-any.whl (from -r /app/requirements.txt (line 23))
+#22 2.332 Processing /wheels/python_json_logger-4.2.0-py3-none-any.whl (from -r /app/requirements.txt (line 24))
+#22 2.334 Processing /wheels/redis-6.4.0-py3-none-any.whl (from -r /app/requirements.txt (line 25))
+#22 2.338 Processing /wheels/sqlparse-0.6.0-py3-none-any.whl (from -r /app/requirements.txt (line 26))
+#22 2.341 Processing /wheels/typing_extensions-4.16.0-py3-none-any.whl (from -r /app/requirements.txt (line 27))
+#22 2.343 Processing /wheels/tzdata-2026.6-py2.py3-none-any.whl (from -r /app/requirements.txt (line 28))
+#22 2.347 Processing /wheels/tzlocal-5.4.5-py3-none-any.whl (from -r /app/requirements.txt (line 29))
+#22 2.350 Processing /wheels/vine-5.1.0-py3-none-any.whl (from -r /app/requirements.txt (line 30))
+#22 2.352 Processing /wheels/wcwidth-0.9.4-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r /app/requirements.txt (line 31))
+#22 2.355 Processing /wheels/whitenoise-6.12.0-py3-none-any.whl (from -r /app/requirements.txt (line 32))
+#22 2.442 Installing collected packages: whitenoise, wcwidth, vine, tzlocal, tzdata, typing_extensions, sqlparse, redis, python-json-logger, pycparser, psycopg-binary, prometheus_client, packaging, click, billiard, asgiref, python-dateutil, psycopg, prompt_toolkit, gunicorn, Django, click-plugins, click-didyoumean, cffi, amqp, kombu, dj-database-url, click-repl, argon2-cffi-bindings, celery, argon2-cffi
+#22 8.406 Successfully installed Django-5.2.18 amqp-5.4.1 argon2-cffi-25.1.0 argon2-cffi-bindings-26.1.0 asgiref-3.13.0 billiard-4.3.1 celery-5.6.3 cffi-2.1.1 click-8.5.0 click-didyoumean-0.3.1 click-plugins-1.1.1.2 click-repl-0.4.1 dj-database-url-3.1.2 gunicorn-25.3.0 kombu-5.6.2 packaging-26.3 prometheus_client-0.26.0 prompt_toolkit-3.0.53 psycopg-3.3.6 psycopg-binary-3.3.6 pycparser-3.12 python-dateutil-4.0.0 python-json-logger-4.2.0 redis-6.4.0 sqlparse-0.6.0 typing_extensions-4.16.0 tzdata-2026.6 tzlocal-5.4.5 vine-5.1.0 wcwidth-0.9.4 whitenoise-6.12.0
+#22 8.406 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#22 DONE 8.5s
+
+#23 [runtime  7/16] COPY --from=engine-build /build/trading-replay /app/build/trading-replay
+#23 DONE 2.4s
+
+#24 [runtime  8/16] COPY --from=engine-build /build/trading-ml-replay /app/build/trading-ml-replay
+#24 DONE 1.1s
+
+#25 [runtime  9/16] COPY --from=engine-build /build/libvector_core.so /app/build/libvector_core.so
+#25 DONE 1.2s
+
+#26 [runtime 10/16] COPY --chown=app:app backend/ /app/backend/
+#26 DONE 5.4s
+
+#27 [runtime 11/16] COPY --chown=app:app execution/ /app/execution/
+#27 DONE 2.3s
+
+#28 [runtime 12/16] COPY --chown=app:app ml/ /app/ml/
+#28 DONE 2.1s
+
+#29 [runtime 13/16] COPY --chown=app:app infrastructure/docker/app-entrypoint.sh /app/entrypoint.sh
+#29 DONE 2.0s
+
+#30 [runtime 14/16] RUN mkdir -p /app/staticfiles /app/media /app/emails && chown app:app /app/staticfiles /app/media /app/emails && chmod 0700 /app/emails && chmod 0755 /app/entrypoint.sh
+#30 DONE 2.1s
+
+#31 [runtime 15/16] WORKDIR /app/backend
+#31 DONE 1.4s
+
+#32 [runtime 16/16] RUN python manage.py makemigrations --check --dry-run --settings=config.testing
+#32 2.196 No changes detected
+#32 DONE 2.3s
+
+#33 exporting to image
+#33 exporting layers
+#33 exporting layers 3.7s done
+#33 writing image sha256:46270b1df71e4b4936e9d1246309fd8f6df70483713e5a39161e62145d62cf86 done
+#33 naming to docker.io/library/trading-system:local done
+#33 DONE 3.7s
+
+#34 resolving provenance for metadata file
+#34 DONE 0.0s
+ trading-system:local  Built

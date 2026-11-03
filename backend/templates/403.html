@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}访问未获授权{% endblock %}
+{% block content %}
+<section class="error-page" aria-labelledby="error-title">
+  <div class="error-code" aria-hidden="true">403</div>
+  <span class="eyebrow">访问保护</span>
+  <h1 id="error-title">当前无法完成此操作</h1>
+  <p>你的账户可能没有所需权限，或页面的安全凭据已过期。请确认登录状态与邮箱验证情况，再重新打开页面操作。</p>
+  {% if request.request_id %}<p class="text-small">问题编号：<code>{{ request.request_id }}</code></p>{% endif %}
+  <div class="actions"><a class="button button-primary" href="/">返回工作台</a>{% if not user.is_authenticated %}<a class="button button-secondary" href="/accounts/login/">重新登录</a>{% else %}<a class="button button-secondary" href="/accounts/profile/">检查账户</a>{% endif %}</div>
+</section>
+{% endblock %}

@@ -1,0 +1,17 @@
+# Managed execution environments: uses the session's combined public CA bundle.
+services:
+  backend:
+    build:
+      secrets: [proxy_ca]
+  worker:
+    build:
+      secrets: [proxy_ca]
+  migrate:
+    build:
+      secrets: [proxy_ca]
+  scheduler:
+    build:
+      secrets: [proxy_ca]
+secrets:
+  proxy_ca:
+    file: ${BUILD_CA_BUNDLE:?Set BUILD_CA_BUNDLE to the combined trusted CA bundle path}

@@ -1,0 +1,21 @@
+{
+  "readiness": 200,
+  "prometheus": [
+    {
+      "job": "node",
+      "health": "up"
+    },
+    {
+      "job": "postgres",
+      "health": "up"
+    },
+    {
+      "job": "redis",
+      "health": "up"
+    },
+    {
+      "job": "trading-app",
+      "health": "up"
+    }
+  ]
+}

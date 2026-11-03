@@ -1,0 +1,8 @@
+{
+  "model_version": "ridge-af7a151d210f2f0476851553",
+  "model_sha256": "7a17fc0a5f3e21971821e744571f9e9e6c9deed0a341c439722c7df14d7d2444",
+  "recorded_prediction_bps": -0.04162317097008152,
+  "loaded_prediction_bps": -0.04162317097008152,
+  "match": true,
+  "action": "WAIT"
+}

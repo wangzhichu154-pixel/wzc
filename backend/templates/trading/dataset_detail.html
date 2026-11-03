@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}{{ dataset.name }}{% endblock %}
+{% block content %}
+<header class="page-header"><div><p class="eyebrow">DATASET</p><h1>{{ dataset.name }}</h1><p class="muted">长度前缀结构已验证；完整消息语义由回放引擎检查。</p></div><a href="{% url 'trading:datasets' %}">返回数据集</a></header>
+<section class="card"><dl class="detail-list"><dt>原始文件名</dt><dd>{{ dataset.original_name }}</dd><dt>大小</dt><dd>{{ dataset.byte_size|filesizeformat }}</dd><dt>消息数</dt><dd>{{ dataset.message_count }}</dd><dt>SHA-256</dt><dd><code>{{ dataset.sha256 }}</code></dd><dt>创建时间</dt><dd>{{ dataset.created_at|date:"Y-m-d H:i:s" }} UTC</dd></dl>
+<a class="button button-secondary" href="{% url 'trading:dataset_download' dataset.pk %}">下载原文件</a></section>
+<section class="card"><h2>创建研究任务</h2><p>行情回放分析订单簿和报价意图；自动做市模拟在明确的延迟、队列和费用假设下运行报价、模拟成交及风险控制。模拟仅支持单个标的，不连接 IBKR，不保证盈利。</p>
+<form method="post" action="{% url 'trading:replay_create' dataset.pk %}" class="form-grid" data-prevent-double-submit>{% csrf_token %}{{ replay_form.non_field_errors }}<p>{{ replay_form.mode.label_tag }}{{ replay_form.mode }}{{ replay_form.mode.errors }}</p>
+<details><summary>模拟执行假设（仅自动做市模拟模式使用）</summary><p class="muted">1,000,000 ns = 1 ms；费用单位为 0.0001 USD/股。默认 30 单位 = 0.003 USD/股，回扣为 0。修改这些假设会影响结果。</p>
+{% for field in replay_form %}{% if field.name != 'mode' %}<p>{{ field.label_tag }}{{ field }}{{ field.errors }}</p>{% endif %}{% endfor %}</details>
+<button class="button button-primary" type="submit" {% if not user.email_verified %}disabled{% endif %}>创建并运行任务</button></form><p class="muted">任务使用提交时的研究参数快照。模拟盈亏来自模型，不是真实账户收益。</p></section>
+<section class="card"><h2>相关回放</h2>{% include "trading/_jobs_table.html" %}</section>
+<section class="card"><h2>删除数据集</h2><p>删除后无法继续下载或创建新回放。文件将由后台清理；运行中的任务需要先取消。历史操作审计按保留政策处理。</p><form method="post" action="{% url 'trading:dataset_delete' dataset.pk %}" data-confirm="确认删除这个私有数据集？">{% csrf_token %}<button class="button button-danger" type="submit">删除数据集</button></form></section>
+{% endblock %}

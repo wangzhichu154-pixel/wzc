@@ -1,0 +1,16 @@
+# Optional observation only. Does not define/start an execution service.
+# The source MUST be the dedicated redacted status directory, never the private
+# /var/lib/vector-paper account journal. Prepare it through the reviewed runner
+# service, with owner UID 10001 (matching the backend), or an audited ACL/export
+# arrangement that also works after each atomic file replacement.
+services:
+  backend:
+    environment:
+      PAPER_STATUS_PATH: /run/vector-paper-status/status.json
+    volumes:
+      - type: bind
+        source: /run/vector-paper-status
+        target: /run/vector-paper-status
+        read_only: true
+        bind:
+          create_host_path: false
