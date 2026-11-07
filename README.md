@@ -1,8 +1,10 @@
 # Vector · 矢量交易
 
-**新增原生桌面入口**：Mac 用户请先阅读 [桌面安装与升级](desktop/README.md)。客户端使用 Qt 原生窗口和浅色商务主题，复用本机 Docker 数据服务，无需在浏览器里完成日常行情研究。新功能位于 `vector/desktop-rc5` 分支；原 rc.4 训练/发布证据保持历史版本含义。
+**新增原生桌面入口**：支持 Mac 与 Windows x64。安装说明：[Mac](desktop/README.md) / [Windows](desktop/WINDOWS.md)。客户端使用 Qt 原生窗口和浅色商务主题，复用本机 Docker 数据服务，无需在浏览器里完成日常行情研究。新功能位于 `vector/desktop-rc5` 分支；原 rc.4 训练/发布证据保持历史版本含义。
 
 Mac 应用已由 GitHub Actions 构建并通过启动检查：[Apple Silicon](https://github.com/wangzhichu154-pixel/wzc/actions/runs/42327438962/artifacts/13556210866) / [Intel](https://github.com/wangzhichu154-pixel/wzc/actions/runs/42327438962/artifacts/13554984894)。开发预览尚未公证，首次使用需按桌面说明更新原有数据服务。[验证记录](docs/DESKTOP_VERIFICATION.md)。
+
+Windows 应用：[下载 Vector-Windows-x64](https://github.com/wangzhichu154-pixel/wzc/actions/runs/42333599344/artifacts/13558845377)。登录 GitHub 后下载，解压内层 ZIP，保留完整文件夹并双击 `Vector.exe`，无需另装 Python。已在 Windows runner 完成 35 项测试（1 项可选截图跳过）、204 个文件校验和原生窗口启动；当前未签名，后台仍需 WSL 2 / Docker。构建产物保留至 2026-12-07，可由仓库工作流重新生成。[Windows 验证记录](docs/WINDOWS_VERIFICATION.md)。
 
 基于美股做市系统方案实现的 C++20 行情研究引擎与 Django 运营平台。
 

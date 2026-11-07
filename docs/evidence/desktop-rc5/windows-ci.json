@@ -1,0 +1,65 @@
+{
+  "verified_at_utc": "2026-11-07T03:22:49Z",
+  "source_commit": "6006463a3824d38da5949b0167c670faad6330a5",
+  "workflow_run": {
+    "id": 42333599344,
+    "url": "https://github.com/wangzhichu154-pixel/wzc/actions/runs/42333599344",
+    "status": "completed",
+    "conclusion": "success",
+    "job_id": 128285405848
+  },
+  "tests": {
+    "total": 36,
+    "passed": 35,
+    "skipped": 1,
+    "skip_reason": "Optional screenshot destination not requested"
+  },
+  "distribution": {
+    "status": "passed",
+    "platform": "Windows-2025Server-10.0.26100-SP0",
+    "architecture": "AMD64",
+    "source_commit": "6006463a3824d38da5949b0167c670faad6330a5",
+    "pe_machine": "0x8664",
+    "files_verified": 204,
+    "archive_sha256": "4f6294cd9090bc1f0f712df50aa7b38aaa149f6383f42e19499763c200821608",
+    "extracted_unicode_and_space_path_launch": true,
+    "qt_platforms_tested": [
+      "offscreen",
+      "windows"
+    ],
+    "native_platform_plugin_included": true,
+    "backend_started": false,
+    "user_windows_device_tested": false,
+    "code_signing_configured": false,
+    "live_trading": false
+  },
+  "source_launcher": {
+    "status": "passed",
+    "source_launcher_executed": true,
+    "unicode_and_space_path": true,
+    "backend_credentials_created": false
+  },
+  "artifact": {
+    "id": 13558845377,
+    "name": "Vector-Windows-x64",
+    "bytes": 40622844,
+    "archive_digest": "sha256:a2a1371442f8bd9edd7e4af81e5200870d335e215a79bd8f4076db6f95e4dc21",
+    "expires_at": "2026-12-07T03:22:43Z",
+    "url": "https://github.com/wangzhichu154-pixel/wzc/actions/runs/42333599344/artifacts/13558845377"
+  },
+  "mac_regression": {
+    "run_id": 42333599333,
+    "jobs": [
+      {
+        "id": 128285405769,
+        "name": "mac-app (macos-15)",
+        "conclusion": "success"
+      },
+      {
+        "id": 128285405831,
+        "name": "mac-app (macos-15-intel)",
+        "conclusion": "success"
+      }
+    ]
+  }
+}
