@@ -19,25 +19,40 @@ Windows 版沿用原生 Qt 窗口和浅色主题，包含账户登录、行情�
 
 默认地址为 `http://127.0.0.1:8080`。先让对应数据服务运行，再用该服务中已有的邮箱和密码登录。客户端不持久化账户密码或 Cookie，不提供实盘授权。
 
-如果 Windows 上还没有部署数据服务：
+桌面窗口直接在 Windows 运行；数据服务的配置生成、Docker Compose、备份和恢复操作应在 **WSL 2 的 Linux 终端**执行。配置生成器使用 POSIX 文件权限及 `os.fchmod`，不能直接用 Windows Python 执行 `scripts/init_env.py`。
 
-1. 安装并启动 Docker Desktop，按其官方指引启用 **WSL 2 后端和 Linux containers**。
-2. 下载当前桌面分支的完整源码，在含 `docker-compose.yml` 的项目根目录操作。
-3. 首次初始化配置需使用 Python 3.12；已有 `.env`、`.secrets` 或数据卷时保留原配置，跳过初始化。
+如果当前电脑尚未部署数据服务：
 
-在 PowerShell 或命令提示符中逐条执行（第一行仅首次初始化）：
+1. 安装 WSL 2 和 Ubuntu 24.04，安装并启动 Docker Desktop。
+2. 在 Docker Desktop 中启用 **WSL 2 后端、Linux containers**，并在 **Resources → WSL Integration** 中启用对应 Ubuntu 发行版。不需要在 WSL 中另外安装第二套 Docker daemon。
+3. 打开 **Ubuntu 终端**，将服务源码和秘密配置保存在 Linux 主目录，例如 `~/vector-service`；不要放在 `/mnt/c`、Windows 下载目录或共享 NTFS 文件夹中，以保留 Linux 权限和脚本换行格式。
+4. 以下步骤只用于首次部署。已有服务应回到其原目录，保留原 `.env`、`.secrets`、Compose 项目名和数据卷，不另建配置去连接旧卷。
 
-```powershell
-py -3.12 scripts\init_env.py
+在 **Ubuntu 终端**安装初始化工具并检查 Docker 连接：
+
+```bash
+sudo apt update
+sudo apt install -y git python3
+docker info
+```
+
+确认 Docker 可用后，在同一个 Ubuntu 终端逐条执行：
+
+```bash
+git clone --branch vector/desktop-rc5 --single-branch https://github.com/wangzhichu154-pixel/wzc.git ~/vector-service
+cd ~/vector-service
+python3 scripts/init_env.py
 docker compose up -d --build
 docker compose ps
 ```
 
-首次部署并且尚无账户时，在服务正常后创建管理员：
+首次部署并且尚无账户时，在服务正常后仍于该 **Ubuntu 终端**创建管理员：
 
-```powershell
+```bash
 docker compose exec backend python manage.py createsuperuser
 ```
+
+然后在 Windows 打开 `Vector.exe`。Docker Desktop 发布的本机 8080 端口用于客户端连接；如服务正常但客户端无法连接，检查 WSL Integration 和本机端口转发配置。Windows CI 只验证客户端构建与启动，没有替代你电脑上的 WSL/Docker 服务部署验收。
 
 新服务使用独立数据卷，不会自动得到另一台 Mac 上的账户或研究数据。数据库备份/恢复遵循仓库部署手册；不要把不同电脑上的环境文件、密码和旧数据库卷任意混用。
 
@@ -62,6 +77,7 @@ ssh -N -L 127.0.0.1:8080:127.0.0.1:8080 your-user@your-server
 - 路径包含空格时可正常启动；脚本始终以自身目录为工作目录。
 - 脚本不创建、覆盖或删除后端的 `.env`、`.secrets` 或数据库卷。
 - 从 Mac/Linux 拷贝来的 `.venv` 不能用于 Windows；脚本会提示先将不兼容目录另行保留，不会自动删除。
+- 客户端源码可以放在 Windows 文件夹；它的 Windows `.venv` 与 WSL 后端源码、配置分开，不能跨系统共用。
 - 启动失败时窗口保留错误供排查。自动化 CI 环境不暂停等待按键。
 - 关闭桌面窗口不会停止服务器上的任务；停止自动仿真应在应用中执行。
 
