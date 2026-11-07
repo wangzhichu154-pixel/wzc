@@ -1,9 +1,11 @@
 from django.urls import path
 
-from . import views, views_automations, views_assessments
+from . import desktop_api, views, views_automations, views_assessments
 
 app_name = "trading"
 urlpatterns = [
+    path("api/v1/dashboard/", desktop_api.api_dashboard, name="api_dashboard"),
+    path("api/v1/risk/", desktop_api.api_risk, name="api_risk"),
     path("assessments/", views_assessments.assessments, name="assessments"),
     path("assessments/<uuid:pk>/", views_assessments.assessment_detail, name="assessment_detail"),
     path("api/v1/assessments/", views_assessments.api_assessments, name="api_assessments"),

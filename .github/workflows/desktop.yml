@@ -1,0 +1,54 @@
+name: native-desktop
+on:
+  push:
+    branches: [vector/desktop-rc5]
+    paths: ["desktop/**", ".github/workflows/desktop.yml"]
+  pull_request:
+    paths: ["desktop/**", ".github/workflows/desktop.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mac-app:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: desktop/requirements*.txt
+      - name: Install native widgets and packager
+        run: python -m pip install -r desktop/requirements-build.txt
+      - name: Native desktop tests
+        env:
+          QT_QPA_PLATFORM: offscreen
+          PYTHONPATH: desktop
+        run: python -m unittest discover -s desktop/tests -v
+      - name: Build native application
+        run: python desktop/build_app.py
+      - name: Launch the packaged native window without a backend
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: desktop/dist/Vector.app/Contents/MacOS/Vector --smoke-test
+      - name: Package actual target architecture
+        run: |
+          architecture="$(uname -m)"
+          echo "APP_ARCH=$architecture" >> "$GITHUB_ENV"
+          ditto -c -k --sequesterRsrc --keepParent desktop/dist/Vector.app "Vector-macOS-$architecture.zip"
+          shasum -a 256 "Vector-macOS-$architecture.zip" > "Vector-macOS-$architecture.zip.sha256"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Vector-macOS-${{ env.APP_ARCH }}
+          path: |
+            Vector-macOS-*.zip
+            Vector-macOS-*.sha256
+          if-no-files-found: error
+          retention-days: 30

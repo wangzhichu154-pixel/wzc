@@ -1,5 +1,7 @@
 # Vector · 矢量交易
 
+**新增原生桌面入口**：Mac 用户请先阅读 [桌面安装与升级](desktop/README.md)。客户端使用 Qt 原生窗口和浅色商务主题，复用本机 Docker 数据服务，无需在浏览器里完成日常行情研究。新功能位于 `vector/desktop-rc5` 分支；原 rc.4 训练/发布证据保持历史版本含义。
+
 基于美股做市系统方案实现的 C++20 行情研究引擎与 Django 运营平台。
 
 当前 rc.4 完善 AI 离线训练流水线、逐会话评估校验和模型库备份恢复。真实数据、真实 IBKR Paper 与实盘仍未验收。入口见 [AI 升级审计](docs/AI_UPGRADE_AUDIT.md)、[流水线手册](docs/ML_PIPELINE_OPS.md)、[模型备份恢复](docs/MODEL_BACKUP.md)及[本轮验收记录](docs/VERIFICATION_RC4.md)。

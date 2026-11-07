@@ -10,10 +10,10 @@ from pathlib import Path
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DIRECTORIES = {".github", "backend", "engine", "execution", "ml", "infrastructure", "scripts", "tests", "docs"}
+DIRECTORIES = {".github", "backend", "engine", "execution", "ml", "infrastructure", "scripts", "tests", "docs", "desktop"}
 FILES = {".dockerignore", ".gitignore", ".env.example", "Dockerfile", "docker-compose.yml",
          "pyproject.toml", "requirements.txt", "requirements-dev.txt", "requirements-ml.txt", "VERSION"}
-EXCLUDED_PARTS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".git", ".cache", "media", "emails", "backups"}
+EXCLUDED_PARTS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".git", ".cache", ".venv", "build", "dist", "media", "emails", "backups"}
 
 
 def included(path: Path) -> bool:
@@ -43,7 +43,7 @@ def main():
             name = path.relative_to(ROOT).as_posix()
             entry = tarfile.TarInfo("trading-system/" + name)
             entry.size = len(data)
-            entry.mode = 0o755 if path.suffix == ".sh" else 0o644
+            entry.mode = 0o755 if path.suffix in {".sh", ".command"} else 0o644
             archive.addfile(entry, io.BytesIO(data))
             manifest["files"].append({"path": name, "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)})
         data = json.dumps(manifest, indent=2).encode() + b"\n"

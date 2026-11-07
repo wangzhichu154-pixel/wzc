@@ -1,0 +1,37 @@
+test_automation_control_requires_explicit_valid_action (test_client.ClientTests.test_automation_control_requires_explicit_valid_action) ... ok
+test_error_keeps_saved_job_and_request_id_without_retry (test_client.ClientTests.test_error_keeps_saved_job_and_request_id_without_retry) ... ok
+test_file_upload_streams_correct_multipart_length (test_client.ClientTests.test_file_upload_streams_correct_multipart_length) ... ok
+test_invalid_identifier_mode_and_header_do_not_send (test_client.ClientTests.test_invalid_identifier_mode_and_header_do_not_send) ... ok
+test_invalid_or_html_response_never_masquerades_as_success (test_client.ClientTests.test_invalid_or_html_response_never_masquerades_as_success) ... ok
+test_invalid_timeouts_and_bounds (test_client.ClientTests.test_invalid_timeouts_and_bounds) ... ok
+test_login_rotates_csrf_and_passes_real_session_cookie (test_client.ClientTests.test_login_rotates_csrf_and_passes_real_session_cookie) ... ok
+test_logout_clears_local_session_even_when_server_unreachable (test_client.ClientTests.test_logout_clears_local_session_even_when_server_unreachable) ... ok
+test_missing_empty_or_special_file_does_not_send (test_client.ClientTests.test_missing_empty_or_special_file_does_not_send) ... ok
+test_network_failure_returns_reconciliation_key_and_does_not_retry (test_client.ClientTests.test_network_failure_returns_reconciliation_key_and_does_not_retry) ... ok
+test_only_loopback_http_origins (test_client.ClientTests.test_only_loopback_http_origins) ... ok
+test_proxy_disabled_even_with_environment_proxy (test_client.ClientTests.test_proxy_disabled_even_with_environment_proxy) ... ok
+test_reject_redirect_before_second_request (test_client.ClientTests.test_reject_redirect_before_second_request) ... ok
+test_response_size_enforced_with_and_without_content_length (test_client.ClientTests.test_response_size_enforced_with_and_without_content_length) ... ok
+test_risk_changes_use_partial_patch_and_preserve_server_error (test_client.ClientTests.test_risk_changes_use_partial_patch_and_preserve_server_error) ... ok
+test_automation_requires_name_and_starts_in_stopped_state (test_window.NativeWidgetTests.test_automation_requires_name_and_starts_in_stopped_state) ... ok
+test_missing_financial_evidence_is_not_zero (test_window.NativeWidgetTests.test_missing_financial_evidence_is_not_zero) ... ok
+test_modes_never_offer_live_and_costs_are_exact_integer_units (test_window.NativeWidgetTests.test_modes_never_offer_live_and_costs_are_exact_integer_units) ... ok
+test_partial_bad_list_clears_model_and_visual_rows_together (test_window.NativeWidgetTests.test_partial_bad_list_clears_model_and_visual_rows_together) ... ok
+test_refresh_clears_selection_instead_of_applying_action_to_different_row (test_window.NativeWidgetTests.test_refresh_clears_selection_instead_of_applying_action_to_different_row) ... ok
+test_valid_flat_ledger_and_unknown_drawdown_are_separate (test_window.NativeWidgetTests.test_valid_flat_ledger_and_unknown_drawdown_are_separate) ... ok
+test_close_waits_for_inflight_request_without_blocking_gui (test_window.NativeWindowTests.test_close_waits_for_inflight_request_without_blocking_gui) ... ok
+test_empty_model_store_is_explicit (test_window.NativeWindowTests.test_empty_model_store_is_explicit) ... ok
+test_full_risk_range_preserves_large_backend_limit (test_window.NativeWindowTests.test_full_risk_range_preserves_large_backend_limit) ... ok
+test_invalid_risk_payload_disables_save_without_partial_write (test_window.NativeWindowTests.test_invalid_risk_payload_disables_save_without_partial_write) ... ok
+test_login_failure_keeps_login_page_and_does_not_save_password (test_window.NativeWindowTests.test_login_failure_keeps_login_page_and_does_not_save_password) ... ok
+test_login_runs_off_gui_thread_and_clears_password_before_request (test_window.NativeWindowTests.test_login_runs_off_gui_thread_and_clears_password_before_request) ... ok
+test_logout_transport_failure_still_clears_private_workspace (test_window.NativeWindowTests.test_logout_transport_failure_still_clears_private_workspace) ... ok
+test_native_pages_connect_real_client_methods (test_window.NativeWindowTests.test_native_pages_connect_real_client_methods) ... ok
+test_optional_screenshots_are_explicit_test_fixtures (test_window.NativeWindowTests.test_optional_screenshots_are_explicit_test_fixtures) ... ok
+test_unauthorized_response_resets_workspace (test_window.NativeWindowTests.test_unauthorized_response_resets_workspace) ... ok
+test_unavailable_execution_does_not_display_fake_zero_inventory (test_window.NativeWindowTests.test_unavailable_execution_does_not_display_fake_zero_inventory) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 1.176s
+
+OK

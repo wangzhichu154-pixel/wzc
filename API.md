@@ -121,3 +121,10 @@ Base: `/api/v1/`。浏览器同源 session 认证；所有修改请求必须携�
 
 `evaluation_failure_codes` / `simulation_failure_codes` 提供受限错误码，例如 `NO_FILLS`、`OPEN_EXPOSURE`、`HOLDOUT_MISMATCH`、`AGGREGATE_MISMATCH`、`INCOMPLETE_DRAWDOWN` 和 `LEGACY_REPORT_REQUIRES_REVALIDATION`。这些字段用于解释证据为何未通过，不是重新启用策略的指令。
 
+# Native desktop additions (rc.5)
+
+`GET /api/v1/dashboard/` 返回当前用户的数据集/任务/自动仿真统计及最多五条近期任务，不构造账户 PnL。
+`GET /api/v1/risk/` 返回六项研究参数、persisted/updated_at、scope=research、live_trading=false。
+`PATCH /api/v1/risk/` 部分更新；`POST` 完整更新。复用现有表单、用户锁、CSRF、API 限流及审计，修改仅影响新任务。
+风险修改要求已验证邮箱，不接受 owner、实盘开关、熔断复位等附加字段。
+

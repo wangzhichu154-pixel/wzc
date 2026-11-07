@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "stage": "complete",
+  "flows": [
+    "anonymous-read-and-missing-csrf-denied",
+    "login-csrf-rotation-session-and-identity",
+    "risk-read-patch-form-validation-and-persistence",
+    "streamed-multipart-itch-upload-and-owner-list",
+    "real-cpp-replay-idempotency-and-terminal-cancel-rejection",
+    "real-cpp-historical-simulation",
+    "automation-create-idempotency-password-check-scheduler-real-cpp-stop",
+    "owner-dashboard-and-logout-revokes-access"
+  ],
+  "scope": "isolated local HTTP / SQLite / synchronous real Celery and C++; no broker or real funds",
+  "fixture_data": "synthetic protocol fixtures only",
+  "gui_tested": false,
+  "macos_tested": false,
+  "production_database_touched": false,
+  "created_at": "2026-11-07T02:01:17.257998+00:00",
+  "engine_sha256": "6441a750daf1a851af4b12d7dd472abba3909cb28021de69afe2c8cd3ae712a2",
+  "engine_results": {
+    "replay_messages": 8,
+    "replay_checksum": "a6c8c56291558802",
+    "simulation_messages": 12,
+    "simulation_checksum": "c6e34b17ca6a4610",
+    "simulation_status": "succeeded"
+  }
+}
