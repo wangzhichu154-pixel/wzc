@@ -11,9 +11,9 @@ import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = {".github", "backend", "engine", "execution", "ml", "infrastructure", "scripts", "tests", "docs", "desktop"}
-FILES = {".dockerignore", ".gitignore", ".env.example", "Dockerfile", "docker-compose.yml",
+FILES = {".dockerignore", ".gitignore", ".gitattributes", ".env.example", "Dockerfile", "docker-compose.yml",
          "pyproject.toml", "requirements.txt", "requirements-dev.txt", "requirements-ml.txt", "VERSION"}
-EXCLUDED_PARTS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".git", ".cache", ".venv", "build", "dist", "media", "emails", "backups"}
+EXCLUDED_PARTS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".git", ".cache", ".venv", "build", "dist", "release", "media", "emails", "backups"}
 
 
 def included(path: Path) -> bool:

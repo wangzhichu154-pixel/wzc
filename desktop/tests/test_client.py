@@ -11,7 +11,7 @@ from urllib import error, request, response
 from unittest.mock import patch
 import uuid
 
-from vector_desktop.client import ApiError, VectorClient, _NoRedirect
+from vector_desktop.client import ApiError, VectorClient, _NoRedirect, _upload_filename
 
 
 def packet(data=None, *, status=200, success=True, code="OK", message="", headers=None, raw=None):
@@ -176,17 +176,22 @@ class ClientTests(unittest.TestCase):
 
     def test_file_upload_streams_correct_multipart_length(self):
         client, transport = client_with(csrf_packet(), packet({"id": "dataset"}, status=201))
-        content = b"\x00ITCH\xff" * 3000
+        content = b"\x00ITCH\xff\r\n\x1a" * 3000
         with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / 'file"\r\nInjected.itch'
+            path = Path(directory) / 'market data 行情.itch'
             path.write_bytes(content)
             client.upload_dataset(path, "测试行情")
         uploaded = transport.calls[-1]
         self.assertEqual(int(uploaded["headers"]["content-length"]), len(uploaded["body"]))
         self.assertIn(content, uploaded["body"])
         self.assertIn("测试行情".encode(), uploaded["body"])
-        self.assertNotIn(b'file"\r\nInjected', uploaded["body"])
+        self.assertIn(b'filename="market_data___.itch"', uploaded["body"])
         self.assertEqual(uploaded["method"], "POST")
+
+    def test_upload_filename_rejects_header_injection_on_every_os(self):
+        self.assertEqual(_upload_filename('file"\r\nInjected.itch'), "file___Injected.itch")
+        self.assertEqual(_upload_filename(""), "capture.itch")
+        self.assertEqual(len(_upload_filename("a" * 300)), 180)
 
     def test_missing_empty_or_special_file_does_not_send(self):
         client, transport = client_with()

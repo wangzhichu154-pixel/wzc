@@ -26,5 +26,6 @@ playwright-report/
 test-results/
 .cache/
 desktop/dist/
+desktop/release/
 desktop/*.spec
 

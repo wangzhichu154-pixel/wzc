@@ -1,0 +1,7 @@
+# Linux backend scripts must remain executable text when checked out on Windows.
+*.sh text eol=lf
+*.command text eol=lf
+Dockerfile text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.cmd text eol=crlf

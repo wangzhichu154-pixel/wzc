@@ -105,6 +105,11 @@ def _page(value: int) -> str:
     return str(value)
 
 
+def _upload_filename(name: str) -> str:
+    """Keep multipart headers ASCII and single-line on every OS."""
+    return re.sub(r"[^A-Za-z0-9._-]", "_", name)[:180] or "capture.itch"
+
+
 def _key(value: str | None) -> str:
     if value is None:
         return str(uuid.uuid4())
@@ -268,13 +273,14 @@ class VectorClient:
             # block the worker before the bounded network timeout starts.
             if not stat.S_ISREG(path.stat().st_mode):
                 raise ApiError("请选择普通行情文件。", code="INVALID_FILE")
-            descriptor = os.open(path, os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_CLOEXEC", 0))
+            descriptor = os.open(path, os.O_RDONLY | getattr(os, "O_BINARY", 0)
+                                 | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_CLOEXEC", 0))
             with os.fdopen(descriptor, "rb") as file:
                 metadata = os.fstat(file.fileno())
                 if not stat.S_ISREG(metadata.st_mode) or not 0 < metadata.st_size <= MAX_UPLOAD_BYTES:
                     raise ApiError("文件必须非空且不超过 256 MiB。", code="INVALID_FILE_SIZE")
                 boundary = "VectorDesktop" + uuid.uuid4().hex
-                filename = re.sub(r"[^A-Za-z0-9._-]", "_", path.name)[:180] or "capture.itch"
+                filename = _upload_filename(path.name)
                 head = (f'--{boundary}\r\nContent-Disposition: form-data; name="name"\r\n\r\n'
                         f'{label}\r\n--{boundary}\r\nContent-Disposition: form-data; name="file"; '
                         f'filename="{filename}"\r\nContent-Type: application/octet-stream\r\n\r\n').encode("utf-8")

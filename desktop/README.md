@@ -3,6 +3,8 @@
 原生 PySide6 / Qt Widgets 桌面窗口，白色和浅灰配色、深色文字、蓝色强调。
 没有 Chromium、WebView、浏览器标签或网页嵌入；窗口通过现有带会话、CSRF 和权限控制的 JSON API 访问本机服务。
 
+**Windows 用户**：[下载、运行与后台配置说明](WINDOWS.md)。Windows x64 包提供 `Vector.exe`，源码入口为 `Start-Vector.cmd`；Windows 包必须由 Windows runner 构建与启动验证。
+
 ## 在已经运行服务的 Mac 上使用
 
 保持原项目的 Docker 服务运行，保留 `.env`、`.secrets` 和 Docker 数据卷。
