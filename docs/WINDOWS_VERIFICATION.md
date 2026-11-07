@@ -18,13 +18,13 @@ Linux 中执行 36 项客户端、Qt 和打包逻辑测试：35 项通过、1 �
 ## Windows CI 要求
 
 `native-desktop-windows` 在 Windows runner 使用 x64 Python 3.12 执行桌面测试和 PyInstaller 构建。
-实际交付 ZIP 解压到包含中文、空格的临时目录，再通过 Python 等待窗口进程完成 `--smoke-test`。
+实际交付 ZIP 解压到包含中文、空格的临时目录，确认包含 `qwindows.dll`，再通过 Python 等待窗口进程分别以 offscreen 和原生 windows 平台插件完成 `--smoke-test`。
 源码 `.cmd` 启动器也在独立中文/空格目录创建虚拟环境、安装依赖并运行窗口，错误必须传播为非零退出码。
 CI 成功后公开其运行编号和摘要。没有 Windows CI 结果时不能声称 Windows 包已验证。
 
 ## 边界
 
-- Qt 窗口检查使用 offscreen；用户 Windows 11 桌面上的安装与交互未验证。
+- Windows runner 检查 offscreen 与原生 windows 平台插件；用户 Windows 11 桌面上的安装与交互未验证。
 - CI runner 为 Windows Server，不代表所有 Windows 版本均受支持。建议 Windows 11 x64；未构建 Windows ARM64 原生包。
 - Windows 代码签名未配置，开发预览包可能提示发布者未知。
 - Windows 上的完整 Docker/WSL2 后端部署未在此次 CI 中执行。客户端仍需要可访问的本机数据服务。

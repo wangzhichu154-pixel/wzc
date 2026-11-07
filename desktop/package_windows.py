@@ -76,6 +76,8 @@ def main() -> int:
     args.output.mkdir(parents=True, exist_ok=True)
     archive = args.output / (PACKAGE + ".zip")
     manifest = create_archive(args.dist, archive, ROOT / "WINDOWS.md")
+    if not any(Path(name).name.lower() == "qwindows.dll" for name in manifest):
+        raise ValueError("Windows native Qt platform plugin is missing")
     with tempfile.TemporaryDirectory(prefix="Vector Windows 中文 ") as temporary:
         extracted = Path(temporary)
         with zipfile.ZipFile(archive) as bundle:
@@ -86,17 +88,19 @@ def main() -> int:
             if sha256(extracted / name) != digest:
                 raise ValueError("Extracted distribution checksum mismatch")
         executable = extracted / PACKAGE / "Vector.exe"
-        environment = dict(os.environ, QT_QPA_PLATFORM="offscreen")
         # Wait for the GUI process explicitly. A bare PowerShell call may return
         # before a windowed executable has actually initialized or failed.
-        subprocess.run([str(executable), "--smoke-test"], cwd=executable.parent,
-                       env=environment, check=True, timeout=60)
+        for qt_platform in ("offscreen", "windows"):
+            environment = dict(os.environ, QT_QPA_PLATFORM=qt_platform)
+            subprocess.run([str(executable), "--smoke-test"], cwd=executable.parent,
+                           env=environment, check=True, timeout=60)
     digest = sha256(archive)
     archive.with_suffix(".zip.sha256").write_text(f"{digest}  {archive.name}\n", encoding="utf-8")
     report = {"status": "passed", "platform": platform.platform(), "architecture": platform.machine(),
               "source_commit": os.environ.get("GITHUB_SHA", ""), "pe_machine": "0x8664",
               "files_verified": len(manifest), "archive_sha256": digest,
-              "extracted_unicode_and_space_path_launch": True, "qt_platform": "offscreen",
+              "extracted_unicode_and_space_path_launch": True,
+              "qt_platforms_tested": ["offscreen", "windows"], "native_platform_plugin_included": True,
               "backend_started": False, "user_windows_device_tested": False,
               "code_signing_configured": False, "live_trading": False}
     (args.output / "windows-verification.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
