@@ -23,11 +23,22 @@
 - 超时/队列异常保留任务编号和幂等编号供核对，不自动重复提交。
 - 初次集成失败来自测试对错误密码错误码的错误预期；改为服务实际合同 REAUTHENTICATION_FAILED，保留首轮失败记录。
 
+## Mac 应用构建实测
+
+[GitHub Actions 42327438962](https://github.com/wangzhichu154-pixel/wzc/actions/runs/42327438962) 已成功完成，源代码提交 `d9c879031db2563a3b4193d464ccf2274440a3db`。
+macOS ARM64 和 Intel runner 均通过原生测试、PyInstaller 构建、打包后的窗口启动检查及产物上传。
+该检查使用 Qt offscreen，不等于用户 Mac 上通过 Finder/Gatekeeper 的安装验收。
+
+- [苹果芯片 Mac 应用包](https://github.com/wangzhichu154-pixel/wzc/actions/runs/42327438962/artifacts/13556210866)
+- [Intel Mac 应用包](https://github.com/wangzhichu154-pixel/wzc/actions/runs/42327438962/artifacts/13554984894)
+
+下载需登录 GitHub。每份 artifact 包含对应架构的 Vector.app ZIP 和 SHA-256 文件；运行 ID、摘要和到期时间记录在 `docs/evidence/desktop-rc5/macos-ci.json`。
+
 ## 尚未完成的验收
 
 - 用户 Mac 上的安装、交互和升级验收未执行。
 - Apple Developer ID 签名与公证未配置；源码及 CI 应用包为开发预览。
-- Mac CI 是否完成，以 GitHub `native-desktop` 的实际运行/产物为准，不用 Linux 构建代替 Mac 构建。
+- Mac CI 已完成，仍未在用户本机安装；应用包未做 Developer ID 签名与公证。
 - 本次未重跑历史 AI 训练、完整性能测试、生产部署或镜像安全扫描；rc.4 安全发布阻塞仍有效。
 - 完整后台管理、注册/密码恢复、隐私和独立收益评估创建页尚未全部迁移到原生客户端。
 - 桌面客户端仍依赖本机 Docker 数据服务，不是无后端的离线单文件交易软件；不启用实盘。

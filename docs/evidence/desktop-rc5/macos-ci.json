@@ -1,0 +1,36 @@
+{
+  "source_commit": "d9c879031db2563a3b4193d464ccf2274440a3db",
+  "run_id": 42327438962,
+  "url": "https://github.com/wangzhichu154-pixel/wzc/actions/runs/42327438962",
+  "status": "completed",
+  "conclusion": "success",
+  "scope": "Mac runner native tests, PyInstaller packaging and packaged offscreen window launch; not user-device installation, notarization, backend deployment or live trading.",
+  "jobs": [
+    {
+      "name": "mac-app (macos-15-intel)",
+      "conclusion": "success"
+    },
+    {
+      "name": "mac-app (macos-15)",
+      "conclusion": "success"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13556210866,
+      "name": "Vector-macOS-arm64",
+      "bytes": 27466349,
+      "sha256": "sha256:18d64e1d8321b5fa410503a4d8b4de54c5b55b3bec7209ca287d4c53aa7fed92",
+      "expires_at": "2026-12-07T02:05:55Z",
+      "url": "https://github.com/wangzhichu154-pixel/wzc/actions/runs/42327438962/artifacts/13556210866"
+    },
+    {
+      "id": 13554984894,
+      "name": "Vector-macOS-x86_64",
+      "bytes": 30055187,
+      "sha256": "sha256:df2e67b0a960f17e0dce4462023d9f25ff77dbd90478770299fd760e2e3a283f",
+      "expires_at": "2026-12-07T02:06:21Z",
+      "url": "https://github.com/wangzhichu154-pixel/wzc/actions/runs/42327438962/artifacts/13554984894"
+    }
+  ]
+}
