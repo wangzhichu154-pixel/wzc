@@ -1,5 +1,9 @@
 # IBKR 执行边界与接入验收
 
+## 实时 API 自动交易升级
+
+新的实时 Bid/Ask 接入代码、已验证范围与多标的自动交易尚缺环节见 [实时自动交易接入约定](REALTIME_AUTOTRADING_PLAN.md)。该数据入口未接通订单发送，不改变下述单标的 Paper 工具的权限和限制。
+
 ## 当前实际交付
 
 `execution/include/trading/execution_gateway.hpp` 提供独立 C++20 `IExecutionGateway` 契约、发送边界检查和显式不可用实现。`execution/ibkr_probe.py` 是使用官方 `ibapi` 的独立只读运维工具，能够请求账户值、持仓、开放订单和可获得的执行记录。

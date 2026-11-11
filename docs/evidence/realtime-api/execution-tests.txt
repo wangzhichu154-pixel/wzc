@@ -1,0 +1,118 @@
+test_causal_warmup_and_unmodified_quote_contract (test_ai_gate.ApprovedAIGateTests.test_causal_warmup_and_unmodified_quote_contract) ... ok
+test_changed_approval_latches_wait_and_cannot_auto_replace (test_ai_gate.ApprovedAIGateTests.test_changed_approval_latches_wait_and_cannot_auto_replace) ... ok
+test_clock_and_short_permission_cannot_be_overridden (test_ai_gate.ApprovedAIGateTests.test_clock_and_short_permission_cannot_be_overridden) ... ok
+test_cost_not_covered_and_short_signal_wait (test_ai_gate.ApprovedAIGateTests.test_cost_not_covered_and_short_signal_wait) ... ok
+test_default_loader_rejects_unregistered_fixture (test_ai_gate.ApprovedAIGateTests.test_default_loader_rejects_unregistered_fixture) ... ok
+test_exact_file_hash_and_symlink_are_refused (test_ai_gate.ApprovedAIGateTests.test_exact_file_hash_and_symlink_are_refused) ... ok
+test_feature_failure_latches_wait_even_after_good_input (test_ai_gate.ApprovedAIGateTests.test_feature_failure_latches_wait_even_after_good_input) ... ok
+test_no_lookahead_from_monotonic_time (test_ai_gate.ApprovedAIGateTests.test_no_lookahead_from_monotonic_time) ... ok
+test_redundant_valid_status_preserves_signal_without_extending_ttl (test_ai_gate.ApprovedAIGateTests.test_redundant_valid_status_preserves_signal_without_extending_ttl) ... ok
+test_same_timestamp_change_invalidates_previous_feature (test_ai_gate.ApprovedAIGateTests.test_same_timestamp_change_invalidates_previous_feature) ... ok
+test_synthetic_and_policy_mismatch_are_refused (test_ai_gate.ApprovedAIGateTests.test_synthetic_and_policy_mismatch_are_refused) ... ok
+test_unchanged_messages_cannot_renew_ttl (test_ai_gate.ApprovedAIGateTests.test_unchanged_messages_cannot_renew_ttl) ... ok
+test_unchanged_status_event_still_checks_source_clock (test_ai_gate.ApprovedAIGateTests.test_unchanged_status_event_still_checks_source_clock) ... ok
+test_core_binding_requires_new_economics_export (test_auto_paper.AccountingTests.test_core_binding_requires_new_economics_export) ... ok
+test_fifo_crossing_flat_and_fee_corrections (test_auto_paper.AccountingTests.test_fifo_crossing_flat_and_fee_corrections) ... ok
+test_funds_and_ai_config_fail_closed (test_auto_paper.AccountingTests.test_funds_and_ai_config_fail_closed) ... ok
+test_journal_preserves_identity_and_blocks_same_day_restart (test_auto_paper.AccountingTests.test_journal_preserves_identity_and_blocks_same_day_restart) ... ok
+test_paper_attestations_and_live_rejection (test_auto_paper.AccountingTests.test_paper_attestations_and_live_rejection) ... ok
+test_quote_economics_bounds_and_integral_types (test_auto_paper.AccountingTests.test_quote_economics_bounds_and_integral_types) ... ok
+test_quote_economics_environment_values (test_auto_paper.AccountingTests.test_quote_economics_environment_values) ... ok
+test_token_bucket_bound_and_no_backward_clock (test_auto_paper.AccountingTests.test_token_bucket_bound_and_no_backward_clock) ... ok
+test_unmatched_commission_does_not_fabricate_fill (test_auto_paper.AccountingTests.test_unmatched_commission_does_not_fabricate_fill) ... ok
+test_bad_frame_and_wrong_session (test_auto_paper.FeedTests.test_bad_frame_and_wrong_session) ... ok
+test_complete_start_and_duplicate (test_auto_paper.FeedTests.test_complete_start_and_duplicate) ... ok
+test_conflicting_duplicate_refused (test_auto_paper.FeedTests.test_conflicting_duplicate_refused) ... ok
+test_gap_latches_and_cannot_resume (test_auto_paper.FeedTests.test_gap_latches_and_cannot_resume) ... ok
+test_mid_session_or_historical_source_refused (test_auto_paper.FeedTests.test_mid_session_or_historical_source_refused) ... ok
+test_ai_expiry_cancels_working_order_without_releasing_risk (test_auto_paper.RealCorePaperTests.test_ai_expiry_cancels_working_order_without_releasing_risk) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097022840123, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+{"event": "paper_status", "utc_ns": 1794399097022974394, "armed": true, "killed": false, "position": 0, "open_orders": 1, "pnl_units": 0, "pnl_mark_valid": true, "sequence": 0, "mode": "paper"}
+ok
+test_ai_gate_cannot_change_cpp_quote_size_or_price (test_auto_paper.RealCorePaperTests.test_ai_gate_cannot_change_cpp_quote_size_or_price) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097025164378, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_ai_permission_does_not_bypass_missing_account_resources (test_auto_paper.RealCorePaperTests.test_ai_permission_does_not_bypass_missing_account_resources) ... ok
+test_ai_warmup_and_failure_cancel_old_quotes (test_auto_paper.RealCorePaperTests.test_ai_warmup_and_failure_cancel_old_quotes) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097029226479, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_armed_economics_cannot_change_or_reset_risk (test_auto_paper.RealCorePaperTests.test_armed_economics_cannot_change_or_reset_risk) ... ok
+test_audit_disk_failure_does_not_skip_cancel (test_auto_paper.RealCorePaperTests.test_audit_disk_failure_does_not_skip_cancel) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097032412737, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+{"event": "paper_killed", "utc_ns": 1794399097032687630, "reason": "test disk fault", "cancellation_confirmed": false}
+ok
+test_binding_prevents_integer_wrapping (test_auto_paper.RealCorePaperTests.test_binding_prevents_integer_wrapping) ... ok
+test_callback_backlog_blocks_send (test_auto_paper.RealCorePaperTests.test_callback_backlog_blocks_send) ... ok
+test_configured_ai_cannot_silently_fall_back_to_baseline (test_auto_paper.RealCorePaperTests.test_configured_ai_cannot_silently_fall_back_to_baseline) ... ok
+test_ctypes_layout_and_real_send_reservation (test_auto_paper.RealCorePaperTests.test_ctypes_layout_and_real_send_reservation) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097037856281, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_duplicate_fill_fee_adjustment_and_pending_cancel (test_auto_paper.RealCorePaperTests.test_duplicate_fill_fee_adjustment_and_pending_cancel) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097039272094, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+{"event": "paper_killed", "utc_ns": 1794399097039577832, "reason": "Late fill arrived after a terminal cancel.", "cancellation_confirmed": false}
+ok
+test_economics_cannot_bypass_kill_or_open_reservation (test_auto_paper.RealCorePaperTests.test_economics_cannot_bypass_kill_or_open_reservation) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097041176390, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_expensive_ai_validation_cannot_outlive_cpp_permit (test_auto_paper.RealCorePaperTests.test_expensive_ai_validation_cannot_outlive_cpp_permit) ... ok
+test_foreign_client_cancel_never_releases_reservation (test_auto_paper.RealCorePaperTests.test_foreign_client_cancel_never_releases_reservation) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097044914055, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_missing_funds_blocks_order_without_reservation (test_auto_paper.RealCorePaperTests.test_missing_funds_blocks_order_without_reservation) ... ok
+test_pending_submit_can_have_unassigned_permanent_id (test_auto_paper.RealCorePaperTests.test_pending_submit_can_have_unassigned_permanent_id) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097047387484, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_per_message_feature_observation_uses_exchange_time_and_committed_sequence (test_auto_paper.RealCorePaperTests.test_per_message_feature_observation_uses_exchange_time_and_committed_sequence) ... ok
+test_permanent_identity_change_refused (test_auto_paper.RealCorePaperTests.test_permanent_identity_change_refused) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097050819770, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_position_mismatch_blocks_send_and_cannot_extend_deadline (test_auto_paper.RealCorePaperTests.test_position_mismatch_blocks_send_and_cannot_extend_deadline) ... ok
+test_real_core_cost_floor_and_rebate_independence (test_auto_paper.RealCorePaperTests.test_real_core_cost_floor_and_rebate_independence) ... ok
+test_reported_fill_without_execution_blocks_new_orders (test_auto_paper.RealCorePaperTests.test_reported_fill_without_execution_blocks_new_orders) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097058895591, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_sdk_send_exception_retains_exposure_and_never_retries (test_auto_paper.RealCorePaperTests.test_sdk_send_exception_retains_exposure_and_never_retries) ... {"event": "paper_killed", "utc_ns": 1794399097060375090, "reason": "SDK send outcome is unknown; automatic resend prohibited.", "cancellation_confirmed": false}
+ok
+test_short_order_denied_even_with_large_funds (test_auto_paper.RealCorePaperTests.test_short_order_denied_even_with_large_funds) ... ok
+test_stale_funds_arrange_cancel_without_releasing_reservation (test_auto_paper.RealCorePaperTests.test_stale_funds_arrange_cancel_without_releasing_reservation) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097062820687, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_startup_control_requests_share_wire_budget (test_auto_paper.RealCorePaperTests.test_startup_control_requests_share_wire_budget) ... ok
+test_status_file_is_private_atomic_and_redacted (test_auto_paper.RealCorePaperTests.test_status_file_is_private_atomic_and_redacted) ... ok
+test_terminal_order_missing_execution_still_times_out (test_auto_paper.RealCorePaperTests.test_terminal_order_missing_execution_still_times_out) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097066619554, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+{"event": "paper_killed", "utc_ns": 1794399097066698873, "reason": "Reported cumulative fill has no matching execution; risk retained.", "cancellation_confirmed": false}
+{"event": "paper_status", "utc_ns": 1794399097066722077, "armed": false, "killed": true, "position": 0, "open_orders": 0, "pnl_units": 0, "pnl_mark_valid": true, "sequence": 0, "mode": "paper"}
+ok
+test_unconfigured_economics_cannot_arm (test_auto_paper.RealCorePaperTests.test_unconfigured_economics_cannot_arm) ... ok
+test_unsettled_or_insufficient_funds_do_not_reuse_budget (test_auto_paper.RealCorePaperTests.test_unsettled_or_insufficient_funds_do_not_reuse_budget) ... {"event": "paper_order_submitted_locally", "utc_ns": 1794399097069802997, "internal_order_id": 1, "side": 0, "quantity": 2, "price_units": 10000, "exchange_ack": false}
+ok
+test_commission_callback_variants_and_explicit_route (test_auto_paper.SDKCallbackContractTests.test_commission_callback_variants_and_explicit_route) ... ok
+test_modern_cancel_signature_and_no_constructor_send (test_auto_paper.SDKCallbackContractTests.test_modern_cancel_signature_and_no_constructor_send) ... ok
+test_new_and_old_error_signatures_normalized (test_auto_paper.SDKCallbackContractTests.test_new_and_old_error_signatures_normalized) ... ok
+test_buying_power_is_not_cash (test_funds.FundsTests.test_buying_power_is_not_cash) ... ok
+test_duplicate_conflicting_field_keeps_lower_value (test_funds.FundsTests.test_duplicate_conflicting_field_keeps_lower_value) ... ok
+test_exact_account_and_currency_required (test_funds.FundsTests.test_exact_account_and_currency_required) ... ok
+test_initial_missing_and_partial_snapshot_fail_closed (test_funds.FundsTests.test_initial_missing_and_partial_snapshot_fail_closed) ... ok
+test_invalid_money_and_conservative_rounding (test_funds.FundsTests.test_invalid_money_and_conservative_rounding) ... ok
+test_newer_snapshot_does_not_increase_a_lower_observed_ceiling (test_funds.FundsTests.test_newer_snapshot_does_not_increase_a_lower_observed_ceiling) ... ok
+test_old_generation_and_post_end_updates_cannot_refresh_ttl (test_funds.FundsTests.test_old_generation_and_post_end_updates_cannot_refresh_ttl) ... ok
+test_pending_and_spent_and_fee_debits_survive_new_snapshots (test_funds.FundsTests.test_pending_and_spent_and_fee_debits_survive_new_snapshots) ... ok
+test_permission_not_inferred_from_funds_or_model (test_funds.FundsTests.test_permission_not_inferred_from_funds_or_model) ... ok
+test_slow_snapshot_does_not_gain_freshness_from_end_callback (test_funds.FundsTests.test_slow_snapshot_does_not_gain_freshness_from_end_callback) ... ok
+test_backlog_expiration_uses_source_age_too (test_ibkr_market_stream.QuoteTests.test_backlog_expiration_uses_source_age_too) ... ok
+test_clock_regression (test_ibkr_market_stream.QuoteTests.test_clock_regression) ... ok
+test_consumer_clock_is_sampled_after_dequeue (test_ibkr_market_stream.QuoteTests.test_consumer_clock_is_sampled_after_dequeue) ... ok
+test_each_invalid_quote_latches_failure (test_ibkr_market_stream.QuoteTests.test_each_invalid_quote_latches_failure) ... ok
+test_exact_prices_fractional_sizes_and_honest_clock (test_ibkr_market_stream.QuoteTests.test_exact_prices_fractional_sizes_and_honest_clock) ... ok
+test_full_buffer_never_silently_drops_data (test_ibkr_market_stream.QuoteTests.test_full_buffer_never_silently_drops_data) ... ok
+test_preflight_does_not_load_sdk_or_connect (test_ibkr_market_stream.QuoteTests.test_preflight_does_not_load_sdk_or_connect) ... ok
+test_two_changes_in_same_source_second_are_retained (test_ibkr_market_stream.QuoteTests.test_two_changes_in_same_source_second_are_retained) ... ok
+test_universe_is_bounded_explicit_and_unique (test_ibkr_market_stream.QuoteTests.test_universe_is_bounded_explicit_and_unique) ... ok
+test_consumer_failure_closes_subscription (test_ibkr_market_stream.SDKContractTests.test_consumer_failure_closes_subscription) ... ok
+test_identity_delay_entitlement_and_disconnect_fail_closed (test_ibkr_market_stream.SDKContractTests.test_identity_delay_entitlement_and_disconnect_fail_closed) ... ok
+test_sdk_stream_delivers_in_memory_without_files_or_orders (test_ibkr_market_stream.SDKContractTests.test_sdk_stream_delivers_in_memory_without_files_or_orders) ... ok
+test_invalid_config_cannot_create_snapshot (test_ibkr_probe.AvailabilityTests.test_invalid_config_cannot_create_snapshot) ... ok
+test_missing_sdk_fail_closed (test_ibkr_probe.AvailabilityTests.test_missing_sdk_fail_closed) ... ok
+test_client_zero_and_invalid_account_refused (test_ibkr_probe.ConfigurationTests.test_client_zero_and_invalid_account_refused) ... ok
+test_live_readonly_is_explicit_and_cannot_attest_write_mode (test_ibkr_probe.ConfigurationTests.test_live_readonly_is_explicit_and_cannot_attest_write_mode) ... ok
+test_paper_account_and_session_identity (test_ibkr_probe.ConfigurationTests.test_paper_account_and_session_identity) ... ok
+test_write_modes_refused (test_ibkr_probe.ConfigurationTests.test_write_modes_refused) ... ok
+test_capacity_failure_explicit (test_ibkr_probe.SnapshotTests.test_capacity_failure_explicit) ... ok
+test_conflicting_duplicate_refused (test_ibkr_probe.SnapshotTests.test_conflicting_duplicate_refused) ... ok
+test_correction_identity_is_retained_not_treated_as_duplicate (test_ibkr_probe.SnapshotTests.test_correction_identity_is_retained_not_treated_as_duplicate) ... ok
+test_exact_execution_duplicate_does_not_double_count (test_ibkr_probe.SnapshotTests.test_exact_execution_duplicate_does_not_double_count) ... ok
+test_output_private_and_not_overwritten (test_ibkr_probe.SnapshotTests.test_output_private_and_not_overwritten) ... ok
+test_output_symlink_refused (test_ibkr_probe.SnapshotTests.test_output_symlink_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 93 tests in 2.090s
+
+OK
