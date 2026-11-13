@@ -16,7 +16,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=ROOT / "dist")
     args = parser.parse_args()
     command = [sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean", "--windowed",
-               "--name", "Vector", "--paths", str(ROOT), "--distpath", str(args.output.resolve()),
+               "--name", "Vector", "--paths", str(ROOT), "--paths", str(ROOT.parent), "--distpath", str(args.output.resolve()),
                "--workpath", str(ROOT / "build"), "--specpath", str(ROOT / "build"),
                "--exclude-module", "PySide6.QtWebEngineCore", "--exclude-module", "PySide6.QtWebEngineWidgets"]
     command.extend(["--add-data", f"{ROOT / 'THIRD_PARTY.md'}:."])

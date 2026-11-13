@@ -24,7 +24,8 @@ def main() -> int:
     except (ApiError, ValueError):
         QMessageBox.critical(None, "服务地址无效", "请使用本机服务地址，例如 http://127.0.0.1:8080。")
         return 2
-    window = MainWindow(client, auto_check=not args.smoke_test)
+    from vector_desktop.houmen_window import HoumenWindow
+    window = HoumenWindow(lambda: MainWindow(client, auto_check=not args.smoke_test))
     window.show()
     if args.smoke_test:
         from PySide6.QtCore import QTimer

@@ -42,13 +42,22 @@ jobs:
         run: |
           architecture="$(uname -m)"
           echo "APP_ARCH=$architecture" >> "$GITHUB_ENV"
+          QT_QPA_PLATFORM=cocoa desktop/dist/Vector.app/Contents/MacOS/Vector --smoke-test
           ditto -c -k --sequesterRsrc --keepParent desktop/dist/Vector.app "Vector-macOS-$architecture.zip"
           shasum -a 256 "Vector-macOS-$architecture.zip" > "Vector-macOS-$architecture.zip.sha256"
+          mkdir -p desktop/dmg-stage
+          ditto desktop/dist/Vector.app desktop/dmg-stage/Vector.app
+          ln -s /Applications desktop/dmg-stage/Applications
+          cp desktop/MAC_HOUMEN.md desktop/dmg-stage/READ-ME.txt
+          hdiutil create -volname Vector -srcfolder desktop/dmg-stage -ov -format UDZO "Vector-macOS-$architecture.dmg"
+          hdiutil verify "Vector-macOS-$architecture.dmg"
+          shasum -a 256 "Vector-macOS-$architecture.dmg" > "Vector-macOS-$architecture.dmg.sha256"
       - uses: actions/upload-artifact@v4
         with:
           name: Vector-macOS-${{ env.APP_ARCH }}
           path: |
             Vector-macOS-*.zip
             Vector-macOS-*.sha256
+            Vector-macOS-*.dmg
           if-no-files-found: error
           retention-days: 30
