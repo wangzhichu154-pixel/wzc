@@ -2,9 +2,9 @@ name: native-desktop-windows
 on:
   push:
     branches: [vector/desktop-rc5]
-    paths: ["desktop/**", ".github/workflows/desktop-windows.yml", ".gitattributes"]
+    paths: ["desktop/**", "execution/alpaca_cloud.py", "execution/__init__.py", ".github/workflows/desktop-windows.yml", ".gitattributes"]
   pull_request:
-    paths: ["desktop/**", ".github/workflows/desktop-windows.yml", ".gitattributes"]
+    paths: ["desktop/**", "execution/alpaca_cloud.py", "execution/__init__.py", ".github/workflows/desktop-windows.yml", ".gitattributes"]
   workflow_dispatch:
 
 permissions:
