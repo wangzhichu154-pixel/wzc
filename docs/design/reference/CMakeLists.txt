@@ -1,0 +1,16 @@
+# Reference prototype for docs/design/hft-market-making-system-design.md — NOT production code.
+cmake_minimum_required(VERSION 3.20)
+project(hft_reference CXX)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+find_package(Threads REQUIRED)
+# Benchmarks use -march=native for local measurement only; production builds pin -march=<target CPU>.
+add_compile_options(-Wall -Wextra -Wpedantic -ffp-contract=off)
+add_executable(test_bench test_bench.cpp)
+target_compile_options(test_bench PRIVATE -march=native)
+target_link_libraries(test_bench PRIVATE Threads::Threads)
+add_executable(test_oms test_oms.cpp)
